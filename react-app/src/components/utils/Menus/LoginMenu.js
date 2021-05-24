@@ -1,13 +1,14 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useEffect, useState} from 'react'
 import LogoutButton from "../../auth/LogoutButton";
 import DehazeIcon from '@material-ui/icons/Dehaze';
 import Menu from "@material-ui/core/Menu"
 import MenuItem from '@material-ui/core/MenuItem'
 import Button from "@material-ui/core/Button";
 import { NavLink } from "react-router-dom";
-const LoginMenu = () => {
+import { authenticate } from "../../../services/auth.js"
 
+const LoginMenu = () => {
+  const [loggedIn, setLoggedIn] = useState(null)
   const [anchorEl, setAnchorEl] = useState(null)
 
   const openMenu = event => {
@@ -17,6 +18,30 @@ const LoginMenu = () => {
   const handleClose = () => {
     setAnchorEl(null)
   }
+
+  useEffect(() => {
+    let res;
+    (async () => {
+      res = await authenticate();
+      if(res.id) {
+        setLoggedIn(true)
+      }
+    })();
+  })
+
+  if (loggedIn) {
+    return (
+      <>
+        <Button onClick={openMenu}><DehazeIcon /></Button>
+        <Menu keepMounted anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
+          <MenuItem>
+            <LogoutButton/>
+          </MenuItem>
+        </Menu>
+      </>
+    )
+  }
+
   return (
     <>
       <Button onClick={openMenu}><DehazeIcon /></Button>
@@ -24,22 +49,17 @@ const LoginMenu = () => {
         <MenuItem>
           <NavLink to="/login" exact={true} activeClassName="active">
             Login
-  </NavLink>
+          </NavLink>
         </MenuItem>
-
         <MenuItem>
           <NavLink to="/sign-up" exact={true} activeClassName="active">
             Sign Up
-  </NavLink>
+          </NavLink>
         </MenuItem>
         <MenuItem>
           <NavLink exact={true} activeClassName="active" to="/users">
             <Button variant="contained">Users</Button>
           </NavLink>
-        </MenuItem>
-
-        <MenuItem>
-          <LogoutButton />
         </MenuItem>
       </Menu>
     </>
