@@ -1,8 +1,8 @@
-"""created tables
+"""starting over
 
-Revision ID: 65f68122582f
+Revision ID: 2b25d7b026cc
 Revises: 
-Create Date: 2021-05-23 19:55:18.648931
+Create Date: 2021-05-24 16:06:17.868850
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '65f68122582f'
+revision = '2b25d7b026cc'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -23,10 +23,16 @@ def upgrade():
     sa.Column('name', sa.String(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
-    op.create_table('regions',
+    op.create_table('states',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('city_code', sa.Integer(), nullable=False),
-    sa.Column('city_state_code', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(), nullable=True),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('cities',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(), nullable=True),
+    sa.Column('state_id', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['state_id'], ['states.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('users',
@@ -39,7 +45,11 @@ def upgrade():
     sa.Column('city', sa.String(length=100), nullable=False),
     sa.Column('state', sa.String(length=50), nullable=False),
     sa.Column('zipcode', sa.Integer(), nullable=True),
+    sa.Column('state_id', sa.Integer(), nullable=True),
+    sa.Column('city_id', sa.Integer(), nullable=True),
     sa.Column('hashed_password', sa.String(length=255), nullable=False),
+    sa.ForeignKeyConstraint(['city_id'], ['cities.id'], ),
+    sa.ForeignKeyConstraint(['state_id'], ['states.id'], ),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
@@ -48,7 +58,8 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('category_id', sa.Integer(), nullable=True),
-    sa.Column('region_id', sa.Integer(), nullable=True),
+    sa.Column('state_id', sa.Integer(), nullable=True),
+    sa.Column('city_id', sa.Integer(), nullable=True),
     sa.Column('title', sa.String(length=100), nullable=False),
     sa.Column('description', sa.String(length=2000), nullable=False),
     sa.Column('goal', sa.Integer(), nullable=False),
@@ -60,7 +71,8 @@ def upgrade():
     sa.Column('state', sa.String(length=50), nullable=False),
     sa.Column('zipcode', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['category_id'], ['categories.id'], ),
-    sa.ForeignKeyConstraint(['region_id'], ['regions.id'], ),
+    sa.ForeignKeyConstraint(['city_id'], ['cities.id'], ),
+    sa.ForeignKeyConstraint(['state_id'], ['states.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
@@ -82,6 +94,7 @@ def downgrade():
     op.drop_table('donations')
     op.drop_table('projects')
     op.drop_table('users')
-    op.drop_table('regions')
+    op.drop_table('cities')
+    op.drop_table('states')
     op.drop_table('categories')
     # ### end Alembic commands ###

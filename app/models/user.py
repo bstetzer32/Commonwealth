@@ -14,7 +14,15 @@ class User(db.Model, UserMixin):
   city = db.Column(db.String(100), nullable=False)
   state = db.Column(db.String(50), nullable=False)
   zipcode = db.Column(db.Integer)
+  state_id = db.Column(db.Integer, db.ForeignKey("states.id"))
+  city_id = db.Column(db.Integer, db.ForeignKey("cities.id"))
   hashed_password = db.Column(db.String(255), nullable = False)
+
+
+  donations = db.relationship("Donation", back_populates="user")
+  state_relationship = db.relationship("State", back_populates="users")
+  city_relationship = db.relationship("City", back_populates="users")
+  projects = db.relationship("Project", back_populates="user")
 
 
   @property
@@ -35,5 +43,15 @@ class User(db.Model, UserMixin):
     return {
       "id": self.id,
       "username": self.username,
-      "email": self.email
+      "email": self.email,
+      "fullname": self.fullname,
+      "address_1": self.address_1,
+      "address_2": self.address_2,
+      "city": self.city,
+      "state": self.state,
+      "zipcode": self.zipcode,
+      "donations": self.donations,
+      "state_relationship": self.state_relationship,
+      "city_relationship": self.city_relationship,
+      "projects": self.projects
     }
