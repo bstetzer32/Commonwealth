@@ -3,10 +3,12 @@ import { NavLink } from "react-router-dom";
 import LogoutButton from "./auth/LogoutButton";
 import Button from "@material-ui/core/Button";
 import SearchBar from "./Search";
+import Discover from "./utils/Menus/Discover"
+import LoginMenu from './utils/Menus/LoginMenu'
 
 const NavBar = () => {
   return (
-    <nav>
+    <nav id="navbar">
       <NavLink to="/" exact={true} activeClassName="active">
         Menu
       </NavLink>
