@@ -7,7 +7,7 @@ class State(db.Model):
   name = db.Column(db.String)
 
   cities = db.relationship("City", back_populates="state")
-  users = db.relationship("User", back_populates="state")
+  users = db.relationship("User", back_populates="state_relationship")
   projects = db.relationship("Project", back_populates="state_relationship")
 
   def to_dict(self):
