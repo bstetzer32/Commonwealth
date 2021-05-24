@@ -8,6 +8,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
 import FeaturedRecommended from "./components/FeaturedRecommended"
+import ScrollBanner from "./components/ScrollBanner"
 import { authenticate } from "./store/session";
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
       <Switch>
         <Route path="/" exact={true}>
           <FeaturedRecommended />
+          <ScrollBanner/>
         </Route>
         <Route path="/login" exact={true}>
           <LoginForm user={user}/>
