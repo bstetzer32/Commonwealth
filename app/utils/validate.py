@@ -1,5 +1,6 @@
 from usps import USPSApi, Address
 
+
 def validate_location(location):
 
     address = Address(
@@ -15,17 +16,17 @@ def validate_location(location):
     print(validation.result)
     if 'Error' in validation.result['AddressValidateResponse']['Address']:
         return validation.result['AddressValidateResponse']['Address']['Error']['Description']
-    else: 
+    else:
         return validation.result['AddressValidateResponse']['Address']
 
 
 test = {
-    'name':'Name Name',
-    'address_1':'102 Atkinson dr',
-    'address_2':'',
-    'city':'Apex',
-    'state':'North carolina',
-    'zipcode':'27502'
+    'name': 'Name Name',
+    'address_1': '102 Atkinson dr',
+    'address_2': '',
+    'city': 'Apex',
+    'state': 'North carolina',
+    'zipcode': '27502'
 }
 
 print(validate_location(test))
