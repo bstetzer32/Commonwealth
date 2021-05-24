@@ -11,11 +11,12 @@ const SearchBar = () => {
   return (
     <TextField
       id="standard-search"
+      label="Search"
       type="search"
       InputProps={{
-        startAdornment: (
-          <InputAdornment position="start">
-            <IconButton aria-label="search" onClick={handleSearch}>
+        endAdornment: (
+          <InputAdornment position="end">
+            <IconButton aria-label="search" onClick={handleSearch} edge="end">
               <SearchIcon />
             </IconButton>
           </InputAdornment>
