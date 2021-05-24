@@ -2,26 +2,28 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import LogoutButton from "./auth/LogoutButton";
 import Button from "@material-ui/core/Button";
+import SearchBar from "./Search";
 
 const NavBar = () => {
   return (
     <nav>
       <NavLink to="/" exact={true} activeClassName="active">
-        Discover
+        Menu
       </NavLink>
 
-      <NavLink to="/login" exact={true} activeClassName="active">
+      {/* <NavLink to="/login" exact={true} activeClassName="active">
         Login
       </NavLink>
 
       <NavLink to="/sign-up" exact={true} activeClassName="active">
         Sign Up
-      </NavLink>
+      </NavLink> */}
 
-      <NavLink exact={true} activeClassName="active" to="/users">
+      {/* <NavLink exact={true} activeClassName="active" to="/users">
         <Button variant="contained">Users</Button>
-      </NavLink>
-
+    </NavLink>*/}
+      <div class="navbar logo">Commonwealth</div>
+      <SearchBar />
       <LogoutButton />
     </nav>
   );
