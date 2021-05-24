@@ -30,7 +30,7 @@ function App() {
       <NavBar />
       <Switch>
         <Route path="/login" exact={true}>
-          <LoginForm />
+          <LoginForm user={user}/>
         </Route>
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
