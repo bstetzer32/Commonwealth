@@ -7,7 +7,13 @@ class User(db.Model, UserMixin):
 
   id = db.Column(db.Integer, primary_key = True)
   username = db.Column(db.String(40), nullable = False, unique = True)
+  fullname = db.Column(db.String(100), nullable=False)
   email = db.Column(db.String(255), nullable = False, unique = True)
+  address_1 = db.Column(db.String(100), nullable=False)
+  address_2 = db.Column(db.String(100))
+  city = db.Column(db.String(100), nullable=False)
+  state = db.Column(db.String(50), nullable=False)
+  zipcode = db.Column(db.Integer)
   hashed_password = db.Column(db.String(255), nullable = False)
 
 
