@@ -1,1 +1,30 @@
 /* TODO Add site wide styles */
+
+/* NavBar Styling */
+nav {
+  box-shadow: 0.15em 0.15em 0.15em rgba(0, 0, 0, 0.25);
+  height: 3em;
+  border: 0;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+}
+
+.nav_element {
+  color: black;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 12em;
+  height: 100%;
+  cursor: pointer;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 2em;
+}
+
+#nav_logo {
+  font-family: "Righteous", cursive;
+  align-self: center;
+  color: rgb(0, 136, 255);
+}
