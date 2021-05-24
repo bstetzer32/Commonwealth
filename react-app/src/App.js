@@ -31,7 +31,7 @@ function App() {
       <NavBar />
       <Switch>
         <Route path="/" exact={true}>
-          <h1>Splash</h1>
+          <FeaturedRecommended />
         </Route>
         <Route path="/login" exact={true}>
           <LoginForm user={user}/>
@@ -45,9 +45,6 @@ function App() {
         <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
         </ProtectedRoute>
-        <Route>
-          <FeaturedRecommended />
-        </Route>
       </Switch>
     </BrowserRouter>
   );
