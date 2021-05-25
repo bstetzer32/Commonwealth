@@ -6,7 +6,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 
 search_route = Blueprint('search', __name__)
 
-@search_route.route('/')
+@search_route.route('/', methods=["GET", "POST"])
 def search(category, state, city, input):
     if (category):
         if (state):
@@ -57,6 +57,3 @@ def search(category, state, city, input):
         Project.title.ilike('%' + input + '%')
     )
     return {'projects': [project.to_dict() for project in projects]}
-
-
-
