@@ -7,8 +7,8 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
-import FeaturedRecommended from "./components/FeaturedRecommended"
-import ScrollBanner from "./components/ScrollBanner"
+import LandingPage from "./components/LandingPage"
+
 import { authenticate } from "./store/session";
 
 function App() {
@@ -32,8 +32,7 @@ function App() {
       <NavBar />
       <Switch>
         <Route path="/" exact={true}>
-          <FeaturedRecommended />
-          <ScrollBanner/>
+          <LandingPage />
         </Route>
         <Route path="/login" exact={true}>
           <LoginForm user={user}/>

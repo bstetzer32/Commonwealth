@@ -1,6 +1,7 @@
 import React from "react";
 import Box from '@material-ui/core/Box';
 import { flexbox } from '@material-ui/system';
+import { makeStyles } from '@material-ui/core/styles';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import Filter1Icon from '@material-ui/icons/Filter1';
@@ -8,8 +9,33 @@ import Filter2Icon from '@material-ui/icons/Filter2';
 import Filter3Icon from '@material-ui/icons/Filter3';
 import RecomendedTile from './RecommendedTile'
 import FeaturedTile from './FeaturedTile'
+import Typography from '@material-ui/core/Typography';
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        display:"flex", 
+        width:"100%"
+    },
+    featured: {
+        width:"45%",  
+        margin:"5%"
+    },
+    recommended: {
+        width:"35%", 
+        margin:"5%" ,
+        display:"flex", 
+        flexDirection:"column"
+    },
+    arrows: {
+        display:"flex", 
+        justifyContent:"center", 
+        margin:"5%"
+    }
+}))
 
 const FeaturedRecommended = () => {
+  const classes = useStyles();
+
     const project = {
         id: 1,
         img: "https://ksr-static.imgix.net/21-05-04Oven_Steel_Lifestyle_Veggie_Chicken1368-4257a65.jpg?ixlib=rb-4.0.2&auto=compress%2Cformat&w=1000&fit=min&s=f81c8fec64231267b46beb06d29bc9c5",
@@ -24,18 +50,17 @@ const FeaturedRecommended = () => {
     }
 
     return (
-        <Box display="flex" width="100%">
-            <Box width="45%"  m="5%">
-            <div>Featured Project</div>
-            <br/>
+        <Box className={classes.root}>
+            <Box className={classes.featured}>
+                <Typography gutterBottom variant="h6" component="h1">Featured Project</Typography>
                 <FeaturedTile project={project}/>
             </Box>
-            <Box width="35%" m="5%" display="flex" flexDirection="column">
-                <div>Recomended Projects</div>
+            <Box className={classes.recommended}>
+                <Typography gutterBottom variant="h6" component="h1">Recomended Projects</Typography>
                 <RecomendedTile project={project}/>
                 <RecomendedTile project={project}/>
                 <RecomendedTile project={project}/>
-                <Box display="flex" justifyContent="center" m="5%">
+                <Box className={classes.arrows}>
                     <ArrowBackIosIcon/>
                     <Filter1Icon/>
                     <Filter2Icon/>
