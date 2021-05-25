@@ -44,8 +44,8 @@ class Project(db.Model):
       "state": self.state,
       "zipcode": self.zipcode,
       "donations": self.donations,
-      "user": self.user,
-      "state_relationship": self.state_relationship,
-      "city_relationship": self.city_relationship,
-      "category": self.category
+      "user": self.user.to_simple_dictionary(),
+      # "state_relationship": self.state_relationship.to_dict(),
+      # "city_relationship": self.city_relationship.to_dict(),
+      # "category": self.category.to_dict()
     }
