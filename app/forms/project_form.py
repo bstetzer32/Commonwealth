@@ -4,8 +4,8 @@ from wtforms.validators import DataRequired, Email, ValidationError
 from app.models import Project, City, State, db
 
 
-states = State.query.filter(State.name.desc()).all()
-states_list = list(zip(states, states))
+# states = State.query.filter(State.name.desc()).all()
+# states_list = list(zip(states, states))
 
 
 class ProjectForm(FlaskForm):
@@ -19,6 +19,6 @@ class ProjectForm(FlaskForm):
     city = SelectField(
         'City', choices=["San Francisco, New York City, Chicago"],
         validators=[DataRequired()])
-    state = SelectField('State', choices=states_list,
+    state = SelectField('State', choices=["California, New York"],
                         validators=[DataRequired()])
     zipcode = IntegerField('Zipcode', validators=[DataRequired()])
