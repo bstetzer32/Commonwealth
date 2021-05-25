@@ -1,11 +1,17 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@material-ui/core/Button";
 import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {getDiscovery} from '../../../store/discovery'
+
+  
 
 const Discover = () => {
+  const discovery = useSelector((state) => state.discovery);
+  const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState(null);
   const openMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -13,6 +19,9 @@ const Discover = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  useEffect(()=>{
+    dispatch(getDiscovery())
+  }, [])
 
   return (
     <>
@@ -25,10 +34,14 @@ const Discover = () => {
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleClose}
+        PaperProps={{
+          style: {
+            maxHeight: 48 * 4.5,
+            width: '20ch',
+          },
+        }}
       >
-        <MenuItem onClick={handleClose}>Arkansas</MenuItem>
-        <MenuItem onClick={handleClose}>Alabama</MenuItem>
-        <MenuItem onClick={handleClose}>Dakota</MenuItem>
+        {Array.from(discovery).map(state => <MenuItem onClick={handleClose}>{state.name}</MenuItem>)}
       </Menu>
     </>
   );

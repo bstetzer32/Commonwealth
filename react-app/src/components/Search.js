@@ -24,8 +24,13 @@ const SearchBar = () => {
       id="standard-search"
       label="Search"
       type="search"
+
       onChange={e=> {setValue(e.target.value)}}
       value={value}
+
+      className="nav__element"
+      id="nav__element--searchBar"
+
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">
