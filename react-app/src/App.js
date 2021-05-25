@@ -8,6 +8,8 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
+import LandingPage from "./components/LandingPage"
+import ProjectPage from "./components/ProjectPage"
 import FeaturedRecommended from "./components/FeaturedRecommended";
 import ScrollBanner from "./components/ScrollBanner";
 import { authenticate } from "./store/session";
@@ -52,6 +54,9 @@ function App() {
         <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
         </ProtectedRoute>
+        <Route path="/project/:id">
+          <ProjectPage />
+        </Route>
       </Switch>
     </BrowserRouter>
   );
