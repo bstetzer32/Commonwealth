@@ -7,7 +7,9 @@ state_routes = Blueprint('states', __name__)
 @state_routes.route('/')
 def all_states():
     states = State.query.all()
-    return {'states': [state.to_dict() for state in states]}
+    state_info = [state.to_dict() for state in states]
+    list = [{'id': info['id'], 'name':info['name']} for info in state_info]
+    return jsonify(list)
 
 
 @state_routes.route('/:id')

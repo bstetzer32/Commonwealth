@@ -15,18 +15,18 @@ def validate_location(location):
     validation = usps.validate_address(address)
     print(validation.result)
     if 'Error' in validation.result['AddressValidateResponse']['Address']:
-        return validation.result['AddressValidateResponse']['Address']['Error']['Description']
+        return validation.result['AddressValidateResponse']['Address']
     else:
         return validation.result['AddressValidateResponse']['Address']
 
 
-test = {
-    'name': 'Name Name',
-    'address_1': '102 Atkinson dr',
-    'address_2': '',
-    'city': 'Apex',
-    'state': 'North carolina',
-    'zipcode': '27502'
-}
+# test = {
+#     'name': 'Name Name',
+#     'address_1': '102 Atkinson dr',
+#     'address_2': '',
+#     'city': 'Apex',
+#     'state': 'North carolina',
+#     'zipcode': '27502'
+# }
 
-print(validate_location(test))
+# print(validate_location(test))
