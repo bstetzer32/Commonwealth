@@ -32,7 +32,7 @@ function App() {
       <NavBar />
       <Switch>
         <Route path="/" exact={true}>
-          <LandingPage />
+          <LandingPage pageType="home"/>
         </Route>
         <Route path="/login" exact={true}>
           <LoginForm user={user}/>
