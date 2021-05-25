@@ -2,8 +2,24 @@ import React from 'react';
 import Box from '@material-ui/core/Box';
 import { Link } from "react-router-dom";
 import ScrollTile from './ScrollTile'
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 
-const ScrollBanner = () => {
+const useStyles = makeStyles((theme) => ({
+    header: {
+        width:"95%" ,
+        display:"flex", 
+        marginLeft:"5%"
+    },
+    tiles: {
+        width:"100%", 
+        display:"flex", 
+        overflow:"scroll"
+    }
+}))
+
+const ScrollBanner = ({type}) => {
+  const classes = useStyles();
 
     const project = {
         id: 1,
@@ -19,10 +35,10 @@ const ScrollBanner = () => {
     }
     return (
         <>
-        <Box width="100%" display="flex" ml="5%">
-        <div>Fresh Favorites</div>
+        <Box className={classes.header}>
+        <Typography gutterBottom variant="h6" component="h1">{type}</Typography>
         </Box>
-        <Box width="100%" display="flex" overflow="scroll">
+        <Box className={classes.tiles}>
             <ScrollTile project={project} />
             <ScrollTile project={project} />
             <ScrollTile project={project} />
