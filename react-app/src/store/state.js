@@ -14,7 +14,6 @@ export const getStates = () => async (dispatch) => {
     },
   });
   const data = await response.json();
-  console.log("store", data);
   if (data.errors) {
     return;
   }
@@ -26,7 +25,6 @@ const initialState = {};
 export default function states(state = initialState, action) {
   switch (action.type) {
     case LOAD:
-      console.log("hello", action);
       return action.payload;
 
     default:

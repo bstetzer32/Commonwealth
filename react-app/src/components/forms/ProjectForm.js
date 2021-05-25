@@ -27,7 +27,7 @@ export default function ProjectForm() {
   }, [dispatch]);
 
   const states = useSelector((state) => {
-    console.log(state);
+    return Object.values(state.states);
   });
 
   const handleSubmit = async (e) => {
@@ -120,7 +120,7 @@ export default function ProjectForm() {
         <div className="projectForm__input--category projectForm__input">
           <Select placeholder="Category" onChange={setState}>
             {states?.map((state) => (
-              <MenuItem key={state.id} value={state.id}>
+              <MenuItem key={state.id} value={state.name}>
                 {state.name}
               </MenuItem>
             ))}
