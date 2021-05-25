@@ -35,6 +35,7 @@ function App() {
         <Route path="/" exact={true}>
           <FeaturedRecommended />
           <ScrollBanner />
+          <LandingPage pageType="home"/>
         </Route>
         <Route path="/login" exact={true}>
           <LoginForm user={user} />

@@ -3,11 +3,16 @@ import thunk from "redux-thunk";
 import session from "./session";
 import discovery from "./discovery";
 import states from "./state";
+import session from "./session"
+import search from "./search"
+import discovery from './discovery'
 
 const rootReducer = combineReducers({
-  session,
-  discovery,
-  states,
+    session,
+    search,
+    discovery,
+    states
+
 });
 
 let enhancer;
