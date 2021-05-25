@@ -17,7 +17,7 @@ export default function ProjectForm() {
   const [address_1, setAddress_1] = useState("");
   const [address_2, setAddress_2] = useState("");
   const [city, setCity] = useState("");
-  const [state, setState] = useState("");
+  const [st, setSt] = useState("");
   const [zipcode, setZipcode] = useState(12345);
 
   const dispatch = useDispatch();
@@ -40,7 +40,7 @@ export default function ProjectForm() {
       address_1,
       address_2,
       city,
-      state,
+      st,
       zipcode,
     };
   };
@@ -118,9 +118,9 @@ export default function ProjectForm() {
           />
         </div>
         <div className="projectForm__input--category projectForm__input">
-          <Select placeholder="Category" onChange={setState}>
+          <Select placeholder="Category" value={st} onChange={e=> setSt(e.target.value)}>
             {states?.map((state) => (
-              <MenuItem key={state.id} value={state.name}>
+              <MenuItem key={state.id} value={st}>
                 {state.name}
               </MenuItem>
             ))}
