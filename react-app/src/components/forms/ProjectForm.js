@@ -22,6 +22,17 @@ export default function ProjectForm() {
 
   const dispatch = useDispatch();
 
+  const updateTitle = (e) => setTitle(e.target.value);
+  const updateCategory = (e) => setCategory(e.target.value);
+  const updateDescription = (e) => setDescription(e.target.value);
+  const updateGoal = (e) => setGoal(e.target.value);
+  const updateImage = (e) => setImage(e.target.value);
+  const updateAddress_1 = (e) => setAddress_1(e.target.value);
+  const updateAddress_2 = (e) => setAddress_2(e.target.value);
+  const updateCity = (e) => setCity(e.target.value);
+  const updateSt = (e) => setSt(e.target.value);
+  const updateZipcode = (e) => setZipcode(e.target.value);
+
   useEffect(() => {
     dispatch(getStates());
   }, [dispatch]);
@@ -54,14 +65,14 @@ export default function ProjectForm() {
             label="Title"
             margin="normal"
             value={title}
-            onChange={setTitle}
+            onChange={updateTitle}
           />
         </div>
         <div className="projectForm__input--category projectForm__input">
           <Select
             placeholder="Category"
             value={category}
-            onChange={setCategory}
+            onChange={updateCategory}
           >
             {/* iterate on return of query to db of categories to create MenuItem */}
             <MenuItem value={1}>Education</MenuItem>
@@ -73,7 +84,7 @@ export default function ProjectForm() {
             label="Description"
             margin="normal"
             value={description}
-            onChange={setDescription}
+            onChange={updateDescription}
           />
         </div>
         <div className="projectForm__input--goal projectForm__input">
@@ -82,7 +93,7 @@ export default function ProjectForm() {
             margin="normal"
             type="number"
             value={goal}
-            onChange={setGoal}
+            onChange={updateGoal}
           />
         </div>
         <div className="projectForm__input--image projectForm__input">
@@ -90,7 +101,7 @@ export default function ProjectForm() {
             label="Image URL"
             margin="normal"
             value={image}
-            onChange={setImage}
+            onChange={updateImage}
           />
         </div>
         <div className="projectForm__input--address_1 projectForm__input">
@@ -98,7 +109,7 @@ export default function ProjectForm() {
             label="Street Address"
             margin="normal"
             value={address_1}
-            onChange={setAddress_1}
+            onChange={updateAddress_1}
           />
         </div>
         <div className="projectForm__input--address_2 projectForm__input">
@@ -106,7 +117,7 @@ export default function ProjectForm() {
             label="Street Address Line 2"
             margin="normal"
             value={address_2}
-            onChange={setAddress_2}
+            onChange={updateAddress_2}
           />
         </div>
         <div className="projectForm__input--city projectForm__input">
@@ -114,13 +125,13 @@ export default function ProjectForm() {
             label="City"
             margin="normal"
             value={city}
-            onChange={setCity}
+            onChange={updateCity}
           />
         </div>
         <div className="projectForm__input--category projectForm__input">
-          <Select placeholder="Category" value={st} onChange={e=> setSt(e.target.value)}>
+          <Select placeholder="Category" value={""} onChange={updateSt}>
             {states?.map((state) => (
-              <MenuItem key={state.id} value={st}>
+              <MenuItem key={state.id} value={state.name}>
                 {state.name}
               </MenuItem>
             ))}
@@ -132,7 +143,7 @@ export default function ProjectForm() {
             margin="normal"
             type="number"
             value={zipcode}
-            onChange={setZipcode}
+            onChange={updateZipcode}
           />
         </div>
         <div className="projectForm__input--submit projectForm__input">
