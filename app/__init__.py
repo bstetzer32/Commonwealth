@@ -12,7 +12,7 @@ from .api.category_routes import category_routes
 from .api.state_routes import state_routes
 from .api.city_routes import city_routes
 from .seeds import seed_commands
-
+from .api.search_route import search_route
 from .config import Config
 
 app = Flask(__name__)
@@ -36,6 +36,7 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(category_routes, url_prefix='/api/category')
 app.register_blueprint(state_routes, url_prefix='/api/state')
 app.register_blueprint(city_routes, url_prefix='/api/city')
+app.register_blueprint(search_route, url_prefix='/api/search_route')
 db.init_app(app)
 Migrate(app, db)
 
