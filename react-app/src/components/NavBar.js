@@ -8,13 +8,17 @@ import LoginMenu from "./utils/Menus/LoginMenu";
 
 const NavBar = () => {
   return (
-    <nav id="navbar">
-      <Discover className="nav_element" id="nav_element--discover" />
-      <div className="nav_element" id="nav_logo">
+    <nav className="nav__bar">
+      <div className="nav__element--discover">
+        <Discover className="nav__element" />
+      </div>
+      <div className="nav__element" id="nav__logo">
         commonwealth
       </div>
-      <SearchBar className="nav_element" id="nav_element--searchBar" />
-      <LoginMenu className="nav_element" id="nav_element--loginMenu" />
+      <div className="nav__element--searchlog">
+        <SearchBar id="nav__element--searchBar" />
+        <LoginMenu className="nav__element" id="nav__element--loginMenu" />
+      </div>
     </nav>
   );
 };

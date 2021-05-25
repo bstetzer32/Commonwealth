@@ -13,6 +13,8 @@ const SearchBar = () => {
       id="standard-search"
       label="Search"
       type="search"
+      className="nav__element"
+      id="nav__element--searchBar"
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">
