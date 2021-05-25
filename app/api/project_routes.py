@@ -26,7 +26,6 @@ def create_project():
                 'zipcode': form.data['zipcode']
                 }
     validate_address = validate_location(location)
-    # change validate_location error handling to keep the error key
     if 'Error' in validate_address:
         return validate_address
     else:

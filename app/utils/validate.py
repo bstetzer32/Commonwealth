@@ -20,13 +20,13 @@ def validate_location(location):
         return validation.result['AddressValidateResponse']['Address']
 
 
-test = {
-    'name': 'Name Name',
-    'address_1': '102 Atkinson dr',
-    'address_2': '',
-    'city': 'Apex',
-    'state': 'North carolina',
-    'zipcode': '27502'
-}
+# test = {
+#     'name': 'Name Name',
+#     'address_1': '102 Atkinson dr',
+#     'address_2': '',
+#     'city': 'Apex',
+#     'state': 'North carolina',
+#     'zipcode': '27502'
+# }
 
-print(validate_location(test))
+# print(validate_location(test))

@@ -13,12 +13,9 @@ class ProjectForm(FlaskForm):
     description = TextAreaField('Description', validators=[DataRequired()])
     goal = IntegerField('Goal', validators=[DataRequired()])
     image = StringField('Image URL')
-    address_1 = StringField('Street Address',
-                            validators=[DataRequired()])
+    address_1 = StringField('Street Address', validators=[DataRequired()])
     address_2 = StringField('Street Address Line 2')
     city = SelectField(
-        'City', choices=["San Francisco, New York City, Chicago"],
-        validators=[DataRequired()])
-    state = SelectField('State', choices=["California, New York"],
-                        validators=[DataRequired()])
+        'City', validators=[DataRequired()])
+    state = SelectField('State', validators=[DataRequired()])
     zipcode = IntegerField('Zipcode', validators=[DataRequired()])

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
@@ -6,8 +6,9 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Button from "@material-ui/core/Button";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
+import { getStates } from "../../store/state";
 
-const ProjectForm = () => {
+export default function ProjectForm() {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
@@ -20,6 +21,14 @@ const ProjectForm = () => {
   const [zipcode, setZipcode] = useState(12345);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getStates());
+  }, [dispatch]);
+
+  const states = useSelector((state) => {
+    console.log(state);
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,7 +51,6 @@ const ProjectForm = () => {
       <form onSubmit={handleSubmit} className="projectForm">
         <div className="projectForm__input--title projectForm__input">
           <TextField
-            id="margin-normal"
             label="Title"
             margin="normal"
             value={title}
@@ -62,7 +70,6 @@ const ProjectForm = () => {
         </div>
         <div className="projectForm__input--description projectForm__input">
           <TextField
-            id="margin-normal"
             label="Description"
             margin="normal"
             value={description}
@@ -71,18 +78,15 @@ const ProjectForm = () => {
         </div>
         <div className="projectForm__input--goal projectForm__input">
           <TextField
-            id="margin-normal"
             label="Goal"
             margin="normal"
             type="number"
-            startAdornment={<InputAdornment position="start">$</InputAdornment>}
             value={goal}
             onChange={setGoal}
           />
         </div>
         <div className="projectForm__input--image projectForm__input">
           <TextField
-            id="margin-normal"
             label="Image URL"
             margin="normal"
             value={image}
@@ -91,7 +95,6 @@ const ProjectForm = () => {
         </div>
         <div className="projectForm__input--address_1 projectForm__input">
           <TextField
-            id="margin-normal"
             label="Street Address"
             margin="normal"
             value={address_1}
@@ -100,7 +103,6 @@ const ProjectForm = () => {
         </div>
         <div className="projectForm__input--address_2 projectForm__input">
           <TextField
-            id="margin-normal"
             label="Street Address Line 2"
             margin="normal"
             value={address_2}
@@ -109,25 +111,23 @@ const ProjectForm = () => {
         </div>
         <div className="projectForm__input--city projectForm__input">
           <TextField
-            id="margin-normal"
             label="City"
             margin="normal"
             value={city}
             onChange={setCity}
           />
         </div>
-        <div className="projectForm__input--state projectForm__input">
-          <TextField
-            id="margin-normal"
-            label="State"
-            margin="normal"
-            value={state}
-            onChange={setState}
-          />
+        <div className="projectForm__input--category projectForm__input">
+          <Select placeholder="Category" onChange={setState}>
+            {states?.map((state) => (
+              <MenuItem key={state.id} value={state.id}>
+                {state.name}
+              </MenuItem>
+            ))}
+          </Select>
         </div>
         <div className="projectForm__input--zipcode projectForm__input">
           <TextField
-            id="margin-normal"
             label="Zip"
             margin="normal"
             type="number"
@@ -143,6 +143,4 @@ const ProjectForm = () => {
       </form>
     </div>
   );
-};
-
-export default ProjectForm;
+}
