@@ -5,20 +5,7 @@ import ScrollBanner from './ScrollBanner';
 import {useParams} from "react-router-dom";
 import {PageContext} from '../context/PageContext'
 
-const LandingPage = ({landingPageType}) => {
-    const dispatch = useDispatch();
-    const {type, id} = useContext(PageContext)
-    const {pageType, setPageType} = type
-    const {pageId, setPageId} = id
-    const {landingPageId} = useParams()
-    useEffect(() => {
-        if (landingPageType !== pageType) {
-            dispatch(setPageType(landingPageType))
-        }
-        if (landingPageId !== pageId) {
-            dispatch(setPageId(landingPageId))
-        }
-    })
+const LandingPage = () => {
     return (<>
         <FeaturedRecommended />
         <ScrollBanner type='Fresh Favorites'/>
