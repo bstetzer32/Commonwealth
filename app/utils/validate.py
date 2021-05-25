@@ -15,7 +15,7 @@ def validate_location(location):
     validation = usps.validate_address(address)
     print(validation.result)
     if 'Error' in validation.result['AddressValidateResponse']['Address']:
-        return validation.result['AddressValidateResponse']['Address']['Error']['Description']
+        return validation.result['AddressValidateResponse']['Address']
     else:
         return validation.result['AddressValidateResponse']['Address']
 
