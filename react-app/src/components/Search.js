@@ -9,9 +9,9 @@ import {useState} from 'react'
 
 const SearchBar = () => {
   const [value, setValue] = useState('')
-  const [category, setCategory] = useState('')
-  const [state, setState] = useState('')
-  const [city, setCity] = useState('')
+  const [category, setCategory] = useState(null)
+  const [state, setState] = useState(null)
+  const [city, setCity] = useState(null)
   const dispatch = useDispatch()
 
   const handleSearch = () => {

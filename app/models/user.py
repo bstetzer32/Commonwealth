@@ -51,3 +51,11 @@ class User(db.Model, UserMixin):
             "city_relationship": self.city_relationship,
             "projects": self.projects
         }
+
+    def to_simple_dictionary(self):
+        return{
+             "id": self.id,
+            "username": self.username,
+            "email": self.email,
+            "fullname": self.fullname,
+        }

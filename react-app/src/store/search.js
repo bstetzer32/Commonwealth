@@ -1,4 +1,5 @@
 
+
 const SEARCH_DB = "search/SEARCH_DB";
 
 const searchResult = (result) => ({
@@ -6,8 +7,7 @@ const searchResult = (result) => ({
   payload: result
 })
 
-export const searching = (category, state, city, input) => async (dispatch) => {
-  console.log("in the action")
+export const searching = (category, state, city, inputs) => async (dispatch) => {
   const response = await fetch('/api/search/', {
     method: "POST",
     headers: {
@@ -17,26 +17,26 @@ export const searching = (category, state, city, input) => async (dispatch) => {
       category,
       state,
       city,
-      input
+      inputs
     })
   })
   const results = await response.json()
   console.log(results)
   if (!results.ok) {
-    return;
+    dispatch(searchResult(results))
   }
-  console.log('here'
-  )
-  dispatch(searchResult(results))
 }
 
 const initialState = {}
 
 export default function search(state = initialState, action) {
-  console.log(action)
   switch (action.type) {
     case SEARCH_DB:
-      return { ...action.payload }
+      let newState = {}
+      action.payload['projects'].forEach((item, i) => {
+        newState[i] = item
+      });
+      return newState
     default:
       return state
   }
