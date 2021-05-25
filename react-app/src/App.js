@@ -3,12 +3,13 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
+import ProjectForm from "./components/forms/ProjectForm";
 import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
-import LandingPage from "./components/LandingPage"
-
+import FeaturedRecommended from "./components/FeaturedRecommended";
+import ScrollBanner from "./components/ScrollBanner";
 import { authenticate } from "./store/session";
 
 function App() {
@@ -32,13 +33,18 @@ function App() {
       <NavBar />
       <Switch>
         <Route path="/" exact={true}>
+          <FeaturedRecommended />
+          <ScrollBanner />
           <LandingPage pageType="home"/>
         </Route>
         <Route path="/login" exact={true}>
-          <LoginForm user={user}/>
+          <LoginForm user={user} />
         </Route>
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
+        </Route>
+        <Route path="/create-project" exact={true}>
+          <ProjectForm />
         </Route>
         <ProtectedRoute path="/users" exact={true}>
           <UsersList />
