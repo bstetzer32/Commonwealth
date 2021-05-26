@@ -8,13 +8,14 @@ export default function ProjectForm() {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
-  const [goal, setGoal] = useState(0);
+  const [goal, setGoal] = useState("");
   const [image, setImage] = useState("");
   const [address_1, setAddress_1] = useState("");
   const [address_2, setAddress_2] = useState("");
   const [city, setCity] = useState("");
   const [st, setSt] = useState("");
-  const [zipcode, setZipcode] = useState(12345);
+  const [zipcode, setZipcode] = useState("");
+  const [errors, setErrors] = useState({});
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -34,12 +35,46 @@ export default function ProjectForm() {
     dispatch(getStates());
   }, [dispatch]);
 
+  useEffect(() => {
+    let errors = {};
+    if (title.length < 5) {
+      errors.title = "Title must be more than 5 characters";
+    } else if (title.length > 100) {
+      errors.title = "Title must be less than 100 characters";
+    }
+    if (category.startsWith("--")) {
+      errors.category = "Please select a category";
+    }
+    if (goal < 1) {
+      errors.goal = "Please choose a goal greater than 0";
+    }
+    if (description.length > 2000) {
+      errors.description = "Description must be less than 2000 characters";
+    }
+    if (!address_1) {
+      errors.address_1 = "Please enter an address";
+    }
+    if (!city) {
+      errors.city = "Please enter a city";
+    }
+    if (!st) {
+      errors.st = "Please select a state";
+    }
+    if (zipcode.toString().length !== 5) {
+      errors.zipcode = "Zipcode must be 5 numbers";
+    }
+    setErrors(errors);
+  }, [title, goal, category, description, address_1, city, st, zipcode]);
+
   const states = useSelector((state) => {
     return Object.values(state.states);
   });
-
   const user_id = useSelector((state) => {
-    return state.session.user.id;
+    if (state.session.user?.id) {
+      return state.session.user.id;
+    } else {
+      return 1;
+    }
   });
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -57,7 +92,7 @@ export default function ProjectForm() {
       user_id,
     };
     dispatch(createProject(project));
-    // history.push("/");
+    history.push("/");
   };
 
   return (
@@ -68,29 +103,47 @@ export default function ProjectForm() {
           <div className="projectForm__input--title projectForm__input">
             <label>
               Title
+              {errors.title && (
+                <div className="projectForm__error">{errors.title}</div>
+              )}
               <input value={title} onChange={updateTitle} required />
             </label>
           </div>
           <div className="projectForm__input--category projectForm__input">
             <label>
               Category
-              <select value={category} onChange={updateCategory}>
+              {errors.category && (
+                <div className="projectForm__error">{errors.category}</div>
+              )}
+              <select value={category} onChange={updateCategory} required>
                 <option value={""}>--------</option>
                 <option value={"Education"}>Education</option>
                 <option value={"Sports"}>Sports</option>
               </select>
             </label>
-            {console.log("category", category)}
           </div>
           <div className="projectForm__input--description projectForm__input">
             <label>
               Description
+              {errors.description && (
+                <div className="projectForm__error">{errors.description}</div>
+              )}
               <textarea value={description} onChange={updateDescription} />
             </label>
           </div>
           <div className="projectForm__input--goal projectForm__input">
             <label>
-              Goal <input type="number" value={goal} onChange={updateGoal} />
+              Goal
+              {errors.goal && (
+                <div className="projectForm__error">{errors.goal}</div>
+              )}
+              <input
+                type="number"
+                value={goal}
+                placeholder="10000"
+                onChange={updateGoal}
+                required
+              />
             </label>
           </div>
           <div className="projectForm__input--image projectForm__input">
@@ -102,7 +155,10 @@ export default function ProjectForm() {
           <div className="projectForm__input--address_1 projectForm__input">
             <label>
               Street Address
-              <input value={address_1} onChange={updateAddress_1} />
+              {errors.address_1 && (
+                <div className="projectForm__error">{errors.address_1}</div>
+              )}
+              <input value={address_1} onChange={updateAddress_1} required />
             </label>
           </div>
           <div className="projectForm__input--address_2 projectForm__input">
@@ -114,13 +170,19 @@ export default function ProjectForm() {
           <div className="projectForm__input--city projectForm__input">
             <label>
               City
-              <input value={city} onChange={updateCity} />
+              {errors.city && (
+                <div className="projectForm__error">{errors.city}</div>
+              )}
+              <input value={city} onChange={updateCity} required />
             </label>
           </div>
           <div className="projectForm__input--category projectForm__input">
             <label>
               State
-              <select value={st} onChange={updateSt}>
+              {errors.st && (
+                <div className="projectForm__error">{errors.st}</div>
+              )}
+              <select value={st} onChange={updateSt} required>
                 {states?.map((state) => (
                   <option key={state.id} value={state.name}>
                     {state.name}
@@ -132,11 +194,24 @@ export default function ProjectForm() {
           <div className="projectForm__input--zipcode projectForm__input">
             <label>
               Zip
-              <input type="number" value={zipcode} onChange={updateZipcode} />
+              {errors.zipcode && (
+                <div className="projectForm__error">{errors.zipcode}</div>
+              )}
+              <input
+                type="number"
+                value={zipcode}
+                onChange={updateZipcode}
+                placeholder="12345"
+                required
+              />
             </label>
           </div>
           <div className="projectForm__input--submit projectForm__input">
-            <button className="projectForm__submit" type="submit">
+            <button
+              className="projectForm__submit"
+              type="submit"
+              disabled={Object.keys(errors).length}
+            >
               Submit
             </button>
           </div>

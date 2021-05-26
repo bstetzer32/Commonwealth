@@ -118,3 +118,13 @@
 .projectForm button:hover {
   background: #3a59a7;
 }
+
+.projectForm__error {
+  color: red;
+  font-size: 0.75em;
+  margin: 0.5em;
+}
+
+input[type="number"] {
+  text-align: right;
+}

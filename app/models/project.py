@@ -27,26 +27,25 @@ class Project(db.Model):
     category = db.relationship("Category", back_populates="projects")
 
     def to_dict(self):
-      return {
-        "id": self.id,
-        "user_id": self.user_id,
-        "category_id": self.category_id,
-        "state_id": self.state_id,
-        "city_id": self.city_id,
-        "title": self.title,
-        "description": self.description,
-        "goal": self.goal,
-        "amount_raised": self.amount_raised,
-        "status": self.status,
-        "address_1": self.address_1,
-        "address_2": self.address_2,
-        "city": self.city,
-        "state": self.state,
-        "zipcode": self.zipcode,
-        "donations": self.donations,
-        "user": self.user.to_simple_dictionary(),
-        # "state_relationship": self.state_relationship.to_dict(),
-        # "city_relationship": self.city_relationship.to_dict(),
-        # "category": self.category.to_dict()
-      }
-  
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "category_id": self.category_id,
+            "state_id": self.state_id,
+            "city_id": self.city_id,
+            "title": self.title,
+            "description": self.description,
+            "goal": self.goal,
+            "amount_raised": self.amount_raised,
+            "status": self.status,
+            "address_1": self.address_1,
+            "address_2": self.address_2,
+            "city": self.city,
+            "state": self.state,
+            "zipcode": self.zipcode,
+            "donations": self.donations,
+            "user": self.user.to_simple_dictionary(),
+            # "state_relationship": self.state_relationship.to_dict(),
+            # "city_relationship": self.city_relationship.to_dict(),
+            # "category": self.category.to_dict()
+        }
