@@ -51,10 +51,10 @@ const SignUpForm = () => {
   useEffect(() => {
     let errors = {};
     if (!username) {
-      errors.address_1 = "Please enter a username";
+      errors.username = "Please enter a username";
     }
     if (!fullname) {
-      errors.address_1 = "Please enter a name";
+      errors.fullname = "Please enter a name";
     }
     if (!address_1) {
       errors.address_1 = "Please enter an address";
@@ -67,6 +67,9 @@ const SignUpForm = () => {
     }
     if (zipcode.toString().length !== 5) {
       errors.zipcode = "Zipcode must be 5 numbers";
+    }
+    if (password !== repeatPassword) {
+      errors.password = "Passwords must match"
     }
     setErrors(errors);
   }, [username, fullname, address_1, city, st, zipcode]);const states = useSelector((state) => {
@@ -86,8 +89,12 @@ const SignUpForm = () => {
       <form onSubmit={onSignUp}>
         <fieldset>
           <legend>Create an Account</legend>
-          <div>
-            <label>User Name</label>
+          <div className="signupForm__input--username signupForm__input">
+            <label>User Name
+              {errors.username && (
+                <div className="signupForm__error">{errors.username}</div>
+              )}
+            </label>
             <input
               type="text"
               name="username"
@@ -95,8 +102,12 @@ const SignUpForm = () => {
               value={username}
             ></input>
           </div>
-          <div>
-            <label>Email</label>
+          <div className="signupForm__input--email signupForm__input">
+            <label>Email
+              {errors.email && (
+                <div className="signupForm__error">{errors.email}</div>
+              )}
+            </label>
             <input
               type="text"
               name="email"
@@ -104,8 +115,12 @@ const SignUpForm = () => {
               value={email}
             ></input>
           </div>
-          <div>
-            <label>Full Name</label>
+          <div className="signupForm__input--fullname signupForm__input">
+            <label>Full Name
+              {errors.fullname && (
+                <div className="signupForm__error">{errors.fullname}</div>
+              )}
+            </label>
             <input
               type="text"
               name="fullname"
@@ -113,8 +128,11 @@ const SignUpForm = () => {
               value={fullname}
             ></input>
           </div>
-          <div>
-            <label>Address Line 1</label>
+          <div className="signupForm__input--address_1 signupForm__input">
+            <label>Address Line 1
+              {errors.address_1 && (
+                <div className="signupForm__error">{errors.address_1}</div>
+              )}</label>
             <input
               type="text"
               name="address_1"
@@ -122,8 +140,12 @@ const SignUpForm = () => {
               value={address_1}
             ></input>
           </div>
-          <div>
-            <label>Address Line 2</label>
+          <div className="signupForm__input--address_2 signupForm__input">
+            <label>Address Line 2
+              {errors.address_2 && (
+                <div className="signupForm__error">{errors.address_2}</div>
+              )}
+            </label>
             <input
               type="text"
               name="address_2"
@@ -131,8 +153,12 @@ const SignUpForm = () => {
               value={address_2}
             ></input>
           </div>
-          <div>
-            <label>City</label>
+          <div className="signupForm__input--city signupForm__input">
+            <label>City
+              {errors.city && (
+                <div className="signupForm__error">{errors.city}</div>
+              )}
+            </label>
             <input
               type="text"
               name="city"
@@ -140,13 +166,13 @@ const SignUpForm = () => {
               value={city}
             ></input>
           </div>
-          <div className="projectForm__input--category projectForm__input">
+          <div className="signupForm__input--category signupForm__input">
             <label>
               State
-              {errors.st && (
-                <div className="projectForm__error">{errors.st}</div>
+              {errors.state && (
+                <div className="signupForm__error">{errors.state}</div>
               )}
-              <select value={st} onChange={updateSt} required>
+            <select value={st} onChange={updateSt} required>
                 {states?.map((state) => (
                   <option key={state.id} value={state.name}>
                     {state.name}
@@ -155,8 +181,12 @@ const SignUpForm = () => {
               </select>
             </label>
           </div>
-          <div>
-            <label>Zip Code</label>
+          <div className="signupForm__input--zipcode signupForm__input">
+            <label>Zip Code
+              {errors.zipcode && (
+                <div className="signupForm__error">{errors.zipcode}</div>
+              )}
+            </label>
             <input
               type="text"
               name="city"
@@ -164,7 +194,7 @@ const SignUpForm = () => {
               value={zipcode}
             ></input>
           </div>
-          <div>
+          <div className="signupForm__input--password signupForm__input">
             <label>Password</label>
             <input
               type="password"
@@ -173,8 +203,12 @@ const SignUpForm = () => {
               value={password}
             ></input>
           </div>
-          <div>
-            <label>Repeat Password</label>
+          <div className="signupForm__input--password signupForm__input">
+            <label>Repeat Password
+              {errors.password && (
+                <div className="signupForm__error">{errors.password}</div>
+              )}
+            </label>
             <input
               type="password"
               name="repeat_password"
