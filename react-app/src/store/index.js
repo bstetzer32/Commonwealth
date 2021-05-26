@@ -2,14 +2,18 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import session from "./session";
 import states from "./state";
-import search from "./search"
-import discovery from './discovery'
+import search from "./search";
+import discovery from "./discovery";
+import projectReducer from "./project";
+import feed from './feed'
 
 const rootReducer = combineReducers({
-    session,
-    search,
-    discovery,
-    states
+  session,
+  search,
+  discovery,
+  states,
+  feed,
+  projectReducer,
 
 });
 

@@ -38,3 +38,93 @@
   align-items: center;
   justify-content: center;
 }
+
+/* Project Form Styling */
+
+.projectForm {
+  max-width: 500px;
+  padding: 10px 20px;
+  background: #f4f7f8;
+  margin: 10px auto;
+  padding: 20px;
+  border-radius: 8px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.projectForm fieldset {
+  border: none;
+}
+
+.projectForm legend {
+  font-size: 1.4em;
+  margin-bottom: 1.5em;
+  text-align: center;
+}
+
+.projectForm label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.projectForm input,
+.projectForm textarea,
+.projectForm select {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 4px;
+  font-size: 15px;
+  margin: 0;
+  outline: 0;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #e8eeef;
+  color: #8a97a0;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+  margin-bottom: 30px;
+}
+
+.projectForm input:focus,
+.projectForm textarea:focus,
+.projectForm select:focus {
+  background: #d2d9dd;
+}
+
+.projectForm select {
+  height: 35px;
+}
+
+.projectForm__submit {
+  position: relative;
+  display: block;
+  padding: 19px 39px 18px 39px;
+  color: #fff;
+  margin: 0 auto;
+  background: #5581ee;
+  font-size: 1.5em;
+  text-align: center;
+  font-style: normal;
+  width: 75%;
+  border-width: 1px;
+  border-style: outset;
+  border-color: #4b73da;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  margin-bottom: auto;
+}
+
+.projectForm button:hover {
+  background: #3a59a7;
+}
+
+.projectForm__error {
+  color: red;
+  font-size: 0.75em;
+  margin: 0.5em;
+}
+
+input[type="number"] {
+  text-align: right;
+}
