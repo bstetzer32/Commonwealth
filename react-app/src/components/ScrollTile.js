@@ -12,7 +12,12 @@ const useStyles = makeStyles((theme) => ({
     root: {
         minWidth:"20%",
         maxWidth:"20%",
+        maxHeight:"100%",
         margin:"2.5%"
+    },
+    card: {
+        minHeight:"100%",
+        maxHeight:"100%",
     },
     info: {
         display:"flex", 
@@ -27,7 +32,7 @@ const ScrollTile = ({project}) => {
 
     return (
             <Box className={classes.root}>
-                <Card>
+                <Card className={classes.card}>
                     <CardActionArea>
                         <CardMedia image={project.img} component="img" title='title'/>
                         <CardContent>
