@@ -14,10 +14,12 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "20%",
     maxHeight: "100%",
     margin: "2.5%",
+    padding: "1em",
   },
   card: {
-    minHeight: "50%",
-    maxHeight: "50%",
+    minHeight: "100%",
+    maxHeight: "100%",
+    padding: "1em",
   },
   info: {
     display: "flex",

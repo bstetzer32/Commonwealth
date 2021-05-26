@@ -3,20 +3,22 @@ import TextField from "@material-ui/core/TextField";
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
-import {searching} from "../store/search"
-import {useDispatch} from 'react-redux'
-import {useState} from 'react'
+import { searching } from "../store/search";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const SearchBar = () => {
-  const [value, setValue] = useState('')
-  const [category, setCategory] = useState(null)
-  const [state, setState] = useState(null)
-  const [city, setCity] = useState(null)
-  const dispatch = useDispatch()
+  const [value, setValue] = useState("");
+  const [category, setCategory] = useState(null);
+  const [state, setState] = useState(null);
+  const [city, setCity] = useState(null);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleSearch = () => {
-    console.log(value)
-    dispatch(searching(category, state, city, value))
+    dispatch(searching(category, state, city, value));
+    history.push("/search");
   };
 
   return (
@@ -24,13 +26,12 @@ const SearchBar = () => {
       id="standard-search"
       label="Search"
       type="search"
-
-      onChange={e=> {setValue(e.target.value)}}
+      onChange={(e) => {
+        setValue(e.target.value);
+      }}
       value={value}
-
       className="nav__element"
       id="nav__element--searchBar"
-
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">
