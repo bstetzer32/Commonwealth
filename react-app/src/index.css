@@ -265,6 +265,8 @@ input[type="number"] {
   border-color: #4b73da;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 
+}
+
 #projectTitle {
   display: flex;
   justify-content: center;
