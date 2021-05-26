@@ -5,14 +5,6 @@ from flask import session
 
 def validate_location(location):
     state = State.query.filter_by(name=location['state']).first()
-    city = City.query.filter_by(name=location['city']).first()
-    if not city:
-        city = City(
-            state_id=state.id,
-            name=location['city']
-        )
-        db.session.add(city)
-        db.session.commit()
 
     address = Address(
         name="Test",
@@ -24,6 +16,16 @@ def validate_location(location):
     )
     usps = USPSApi('083APPAC4213', test=True)
     validation = usps.validate_address(address)
+    city = City.query.filter_by(
+        name=validation
+        .result['AddressValidateResponse']['Address']['City']).first()
+    if not city:
+        city = City(
+            state_id=state.id,
+            name=location['city']
+        )
+        db.session.add(city)
+        db.session.commit()
 
     if 'Error' in validation.result['AddressValidateResponse']['Address']:
         return validation.result['AddressValidateResponse']['Address']
