@@ -1,40 +1,67 @@
-// const SET_PROJECT = "project/SET_PROJECT";
+const LOAD = "project/LOAD";
+const ADD_ONE = "project/ADD_ONE";
 
-// const setProject = (project) => ({
-//   type: SET_PROJECT,
-//   payload: project
-// })
+const load = (projects) => ({
+  type: LOAD,
+  projects,
+});
 
-// export const findProject = (id) => async (dispatch) => {
-//   const response = await fetch('/api/project/id', {
-//     headers: {
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify({
-//       category,
-//       state,
-//       city,
-//       inputs
-//     })
-//   })
-//   const results = await response.json()
-//   console.log(results)
-//   if (!results.ok) {
-//     dispatch(searchResult(results))
-//   }
-// }
+const create = (project) => ({
+  type: ADD_ONE,
+  project,
+});
 
-// const initialState = {}
+export const getProjects = () => async (dispatch) => {
+  const response = await fetch("/api/project", {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const data = await response.json();
+  if (data.errors) {
+    return;
+  }
+  dispatch(load(data));
+};
 
-// export default function search(state = initialState, action) {
-//   switch (action.type) {
-//     case SEARCH_DB:
-//       let newState = {}
-//       action.payload['projects'].forEach((item, i) => {
-//         newState[i] = item
-//       });
-//       return newState
-//     default:
-//       return state
-//   }
-// }
+export const createProject = (project) => async (dispatch) => {
+  const response = await fetch("/api/project", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(project),
+  });
+
+  const data = await response.json();
+  if (data.errors) {
+    return;
+  }
+  dispatch(create(data));
+};
+
+const initialState = {};
+
+const projectReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case LOAD: {
+      let newState = { ...state };
+      action.projects.forEach((project) => {
+        newState[project.id] = project;
+      });
+      return newState;
+    }
+
+    case ADD_ONE: {
+      return {
+        ...state,
+        [action.project.id]: action.project,
+      };
+    }
+
+    default:
+      return state;
+  }
+};
+
+export default projectReducer;
