@@ -14,11 +14,12 @@ def validate_location(location):
         state=location['state'],
         zipcode=str(location['zipcode'])
     )
+    # print(location)
     usps = USPSApi('083APPAC4213', test=True)
     validation = usps.validate_address(address)
+    # print(validation.result)
     city = City.query.filter_by(
-        name=validation
-        .result['AddressValidateResponse']['Address']['City']).first()
+        name=validation.result['AddressValidateResponse']['Address']['City']).first()
     if not city:
         city = City(
             state_id=state.id,

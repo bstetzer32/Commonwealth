@@ -22,7 +22,7 @@ def seed():
 @seed_commands.command('undo')
 def undo():
     undo_users()
-    # undo_states()
+    undo_states()
     undo_categories()
     undo_projects()
     undo_cities()
