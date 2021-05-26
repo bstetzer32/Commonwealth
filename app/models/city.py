@@ -23,3 +23,9 @@ class City(db.Model):
             "users": self.users,
             "projects": self.projects
         }
+
+    def to_simple_dict(self):
+        return{
+            "id":self.id,
+            "name":self.name
+        }
