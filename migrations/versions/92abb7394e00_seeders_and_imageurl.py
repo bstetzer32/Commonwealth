@@ -1,8 +1,8 @@
-"""starting over
+"""seeders and imageurl
 
-Revision ID: 2b25d7b026cc
+Revision ID: 92abb7394e00
 Revises: 
-Create Date: 2021-05-24 16:06:17.868850
+Create Date: 2021-05-26 11:27:19.693409
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '2b25d7b026cc'
+revision = '92abb7394e00'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -60,6 +60,7 @@ def upgrade():
     sa.Column('category_id', sa.Integer(), nullable=True),
     sa.Column('state_id', sa.Integer(), nullable=True),
     sa.Column('city_id', sa.Integer(), nullable=True),
+    sa.Column('image_url', sa.String(), nullable=True),
     sa.Column('title', sa.String(length=100), nullable=False),
     sa.Column('description', sa.String(length=2000), nullable=False),
     sa.Column('goal', sa.Integer(), nullable=False),
