@@ -13,7 +13,7 @@ import ProjectPage from "./components/ProjectPage";
 import FeaturedRecommended from "./components/FeaturedRecommended";
 import ScrollBanner from "./components/ScrollBanner";
 import { authenticate } from "./store/session";
-import SearchPage from "./components/SearchPageBar";
+import SearchPage from "./components/SearchPage";
 
 function App() {
   const user = useSelector((state) => state.session.user);
@@ -62,7 +62,7 @@ function App() {
         <Route path="/project/:projectId">
           <ProjectPage />
         </Route>
-        <Route path="/search/" exact={true}>
+        <Route path="/search">
           <SearchPage />
         </Route>
       </Switch>
