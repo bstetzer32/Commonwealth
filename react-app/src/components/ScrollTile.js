@@ -45,10 +45,6 @@ const ScrollTile = ({ project }) => {
                     </CardActionArea>
                 </Card>
             </Box>
-          </CardContent>
-        </CardActionArea>
-      </Card>
-    </Box>
   );
 };
 
