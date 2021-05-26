@@ -28,7 +28,7 @@ def feed():
         "goal": featured_project['goal'],
         "amount_raised": featured_project['amount_raised'],
         "status": featured_project['status'],
-        "user": featured_project['user'].fullname,
+        "user": featured_project['user']['fullname'],
     }
     recommended_projects = sorted(projects, key=featured)[1:9]
     recommended_projects = [{      
@@ -40,7 +40,7 @@ def feed():
         "goal": project['goal'],
         "amount_raised": project['amount_raised'],
         "status": project['status'],
-        "user": project['user'].fullname,
+        "user": project['user']['fullname'],
     } for project in recommended_projects]
     def newest(project):
         return project['id']
@@ -54,7 +54,7 @@ def feed():
         "goal": project['goal'],
         "amount_raised": project['amount_raised'],
         "status": project['status'],
-        "user": project['user'].fullname,
+        "user": project['user']['fullname'],
     } for project in new_projects]
     old_projects = sorted(projects, key=newest, reverse=False)
     old_projects = [{      
@@ -66,7 +66,7 @@ def feed():
         "goal": project['goal'],
         "amount_raised": project['amount_raised'],
         "status": project['status'],
-        "user": project['user'].fullname,
+        "user": project['user']['fullname'],
     } for project in old_projects]
     return jsonify({'featured_project':featured_project, 'recommended_projects':recommended_projects, 'new_projects':new_projects, 'old_projects':old_projects})
 
