@@ -136,8 +136,8 @@ export default function ProjectForm() {
             </label>
           </div>
           <div className="projectForm__input--submit projectForm__input">
-            <button variant="outlined" color="primary" type="submit">
-              Create
+            <button className="projectForm__submit" type="submit">
+              Submit
             </button>
           </div>
         </fieldset>
