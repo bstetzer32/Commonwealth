@@ -10,18 +10,26 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: '100%'
+        width: '100%',
+        maxHeight: '100%'
     },
     cardRoot: {
-        display: 'flex'
+        display: 'flex',
+        maxHeight: '100%'
     },
     image: {
         display: 'flex',
-        alignSelf: 'start',
-        width: '40%',
-        height: '100%',
-        margin: '5%',
-        borderRadius: '4px'
+
+        alignSelf: 'start', 
+        height: "12rem",
+        float: "left",
+        minWidth: '40%',
+        maxWidth: '40%',
+        minHeight: '100%',
+        maxHeight: '100%',
+        margin: '2.5%',
+        borderRadius: '4px',
+        objectFit: "cover"
     },
     info: {
          display:"flex",
@@ -40,7 +48,7 @@ const RecomendedTile = ({project}) => {
         <Box className={classes.root} my="2.5%">
             <Card>
             <CardActionArea className={classes.cardRoot}>
-            <CardMedia image={project?.image_url} component="img" title='title' className={classes.image} />
+            <CardMedia image={project?.image_url} component="img" title='title' className={classes.image}/>
             <CardContent>
             <Link to={`/projects/${project?.id}`} className={classes.link}>
                 <Typography gutterBottom variant="h5" component="h1">{project?.title}</Typography>

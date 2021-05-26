@@ -18,6 +18,7 @@ def feed():
     projects = [project.to_dict() for project in projects]
     def featured(project):
         return project['amount_raised']
+
     if (len(projects) > 1):
         featured_project = sorted(projects, key=featured)[0]
         featured_project = {
@@ -50,6 +51,7 @@ def feed():
         } for project in recommended_projects]
     else:
         recommended_projects = []
+
     def newest(project):
         return project['id']
     new_projects = sorted(projects, key=newest, reverse=True)
@@ -58,6 +60,7 @@ def feed():
         "state_id": project['state_id'],
         "city_id": project['city_id'],
         "title": project['title'],
+        "image_url": project['image_url'],
         "description": project['description'],
         "goal": project['goal'],
         "amount_raised": project['amount_raised'],
@@ -70,6 +73,7 @@ def feed():
         "state_id": project['state_id'],
         "city_id": project['city_id'],
         "title": project['title'],
+        "image_url": project['image_url'],
         "description": project['description'],
         "goal": project['goal'],
         "amount_raised": project['amount_raised'],
