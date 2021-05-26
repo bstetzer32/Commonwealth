@@ -1,6 +1,7 @@
 import React from "react";
 import Box from '@material-ui/core/Box';
 import { flexbox } from '@material-ui/system';
+import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
@@ -34,7 +35,8 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const FeaturedRecommended = () => {
-  const classes = useStyles();
+    const feed = useSelector((state) => state.feed)
+    const classes = useStyles();
 
     const project = {
         id: 1,
@@ -53,7 +55,7 @@ const FeaturedRecommended = () => {
         <Box className={classes.root}>
             <Box className={classes.featured}>
                 <Typography gutterBottom variant="h6" component="h1">Featured Project</Typography>
-                <FeaturedTile project={project}/>
+                <FeaturedTile project={feed.featured_project}/>
             </Box>
             <Box className={classes.recommended}>
                 <Typography gutterBottom variant="h6" component="h1">Recomended Projects</Typography>

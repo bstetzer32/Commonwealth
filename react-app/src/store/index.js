@@ -4,9 +4,11 @@ import session from "./session";
 import states from "./state";
 import search from "./search"
 import discovery from './discovery'
+import feed from './feed'
 
 const rootReducer = combineReducers({
     session,
+    feed,
     search,
     discovery,
     states
