@@ -2,6 +2,8 @@ from flask import Blueprint, jsonify, request, session
 from app.models import Project, db, State, City, Category
 from app.forms import ProjectForm
 from app.utils.validate import validate_location
+from datetime import date
+from dateutil.relativedelta import relativedelta
 
 project_routes = Blueprint('project', __name__)
 
@@ -54,8 +56,9 @@ def create_project():
             state_id=int(state.id),
             city_id=city.id,
             category_id=int(category.id),
-            user_id=int(form.data['user_id'])
-
+            user_id=int(form.data['user_id']),
+            created_at=date.today(),
+            expiration_date=date.today() + relativedelta(months=+6)
         )
         db.session.add(project)
         db.session.commit()
