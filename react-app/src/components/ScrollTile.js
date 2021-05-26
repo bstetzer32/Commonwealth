@@ -23,6 +23,10 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
   },
+  link: {
+    textDecoration: 'none',
+    color: "#0088ff"
+   }
 }));
 
 const ScrollTile = ({ project }) => {
@@ -33,9 +37,9 @@ const ScrollTile = ({ project }) => {
         <CardActionArea>
           <CardMedia image={project?.image_url} component="img" title="title" />
           <CardContent>
-            <Link to={`/projects/${project?.id}`}>
+            <Link to={`/projects/${project?.id}`} className={classes.link}>
               <Typography gutterBottom variant="h5" component="h1">
-                {project.title}
+                {project?.title}
               </Typography>
             </Link>
             <Typography variant="body2" color="textSecondary" component="p">

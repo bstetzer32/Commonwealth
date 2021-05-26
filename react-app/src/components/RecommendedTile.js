@@ -17,16 +17,20 @@ const useStyles = makeStyles((theme) => ({
     },
     image: {
         display: 'flex',
-        alignSelf: 'start', 
+        alignSelf: 'start',
         width: '40%',
         height: '100%',
         margin: '5%',
         borderRadius: '4px'
     },
     info: {
-         display:"flex", 
+         display:"flex",
          justifyContent:"space-between"
-    }
+    },
+    link: {
+        textDecoration: 'none',
+        color: "#0088ff"
+       }
 }))
 
 const RecomendedTile = ({project}) => {
@@ -38,7 +42,7 @@ const RecomendedTile = ({project}) => {
             <CardActionArea className={classes.cardRoot}>
             <CardMedia image={project?.image_url} component="img" title='title' className={classes.image} />
             <CardContent>
-            <Link to={`/projects/${project?.id}`}>
+            <Link to={`/projects/${project?.id}`} className={classes.link}>
                 <Typography gutterBottom variant="h5" component="h1">{project?.title}</Typography>
             </Link>
             <Typography variant="body2" color="textSecondary" component="p">{project?.description}</Typography>
