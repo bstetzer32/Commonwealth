@@ -19,9 +19,9 @@ const Discover = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  useEffect(()=>{
-    dispatch(getDiscovery())
-  }, [])
+  // useEffect(()=>{
+  //   dispatch(getDiscovery())
+  // }, [])
 
   return (
     <>
