@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, Project, db
+from app.models import User, Project, db, Category
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
@@ -11,18 +11,19 @@ search_route = Blueprint('search', __name__)
 def search():
     data = request.json
     print("------------------", data)
-    category = data['category']
-    print("--------------------", category)
+    # category = data['category']
+    # print("--------------------", category)
     state = data['state']
     city = data['city']
     inputs = data['inputs']
+    category = Category.query.filter_by(name=data['category']).first()
 
     if (category):
         if (state):
             if (city):
                 projects = Project.query.filter(
                     Project.title.ilike('%' + inputs + '%')).filter_by(
-                        category=category, state=state,
+                        category_id=category.id, state=state,
                         city=city,
                 ).all()
                 return {

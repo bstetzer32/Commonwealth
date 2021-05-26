@@ -1,7 +1,8 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db
+from app.models import User, db, City, State
 from app.forms import LoginForm
 from app.forms import SignUpForm
+from app.utils.validate import validate_location
 from flask_login import current_user, login_user, logout_user, login_required
 
 auth_routes = Blueprint('auth', __name__)
@@ -55,17 +56,45 @@ def logout():
     return {'message': 'User logged out'}
 
 
-@auth_routes.route('/signup', methods=['POST'])
+@auth_routes.route('/sign-up', methods=['POST'])
 def sign_up():
     """
     Creates a new user and logs them in
     """
     form = SignUpForm()
+    print(form.data)
     form['csrf_token'].data = request.cookies['csrf_token']
+    location = {
+        'address_1': form.data['address_1'],
+        'address_2': form.data['address_2'],
+        'city': form.data['city'],
+        'state': form.data['st'],
+        'zipcode': form.data['zipcode']
+    }
+    validate_address = validate_location(location)
+    if 'Error' in validate_address:
+        return validate_address
+    else:
+        print("Setting Address ----------------", validate_address)
+        form.data['address_1'] = validate_address['Address1']
+        form.data['address_2'] = validate_address['Address2']
+        form.data['city'] = validate_address['City']
+
+        form.data['zipcode'] = validate_address['Zip5']
+    state = State.query.filter_by(name=form.data['st']).first()
+    city = City.query.filter_by(name=form.data['city']).first()
     if form.validate_on_submit():
         user = User(
             username=form.data['username'],
+            fullname = form.data['fullname'],
             email=form.data['email'],
+            address_1=form.data['address_1'],
+            address_2=form.data['address_2'],
+            city=form.data['city'],
+            state=form.data['st'],
+            zipcode=int(form.data['zipcode']),
+            state_id=state.id,
+            city_id=city.id,
             password=form.data['password']
         )
         db.session.add(user)

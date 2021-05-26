@@ -33,18 +33,18 @@ const RecomendedTile = ({project}) => {
   const classes = useStyles();
   const theme = useTheme();
     return (
-        <Box className={classes.root}>
+        <Box className={classes.root} my="2.5%">
             <Card>
             <CardActionArea className={classes.cardRoot}>
-            <CardMedia image={project.img} component="img" title='title' className={classes.image} />
+            <CardMedia image={project?.image_url} component="img" title='title' className={classes.image} />
             <CardContent>
-            <Link to={`/projects/${project.id}`}>
-                <Typography gutterBottom variant="h5" component="h1">{project.title}</Typography>
+            <Link to={`/projects/${project?.id}`}>
+                <Typography gutterBottom variant="h5" component="h1">{project?.title}</Typography>
             </Link>
-            <Typography variant="body2" color="textSecondary" component="p">{project.description}</Typography>
+            <Typography variant="body2" color="textSecondary" component="p">{project?.description}</Typography>
             <Box className={classes.info}>
-            <h4>by: {project.user.first_name} {project.user.last_name}</h4>
-            <h4>{project.amount_raised / project.goal * 100}% Funded</h4>
+            <h4>by: {project?.user}</h4>
+            <h4>{(project?.amount_raised / project?.goal * 100).toFixed(2)}% Funded</h4>
             </Box>
             </CardContent>
             </CardActionArea>

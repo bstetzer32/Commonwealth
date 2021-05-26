@@ -1,6 +1,7 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import ScrollTile from './ScrollTile'
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -19,7 +20,13 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const ScrollBanner = ({type}) => {
-  const classes = useStyles();
+    let feed = useSelector((state) => state.feed)
+    if (type === 'Fresh Favorites') {
+        feed = feed.new_projects
+    } else if (type === 'Home Stretch') {
+        feed = feed.old_projects
+    }
+    const classes = useStyles();
 
     const project = {
         id: 1,
@@ -39,12 +46,12 @@ const ScrollBanner = ({type}) => {
         <Typography gutterBottom variant="h6" component="h1">{type}</Typography>
         </Box>
         <Box className={classes.tiles}>
-            <ScrollTile project={project} />
-            <ScrollTile project={project} />
-            <ScrollTile project={project} />
-            <ScrollTile project={project} />
-            <ScrollTile project={project} />
-            <ScrollTile project={project} />
+            <ScrollTile project={feed[0]} />
+            <ScrollTile project={feed[1]} />
+            <ScrollTile project={feed[2]} />
+            <ScrollTile project={feed[3]} />
+            <ScrollTile project={feed[4]} />
+            <ScrollTile project={feed[5]} />
             
         </Box>
         </>

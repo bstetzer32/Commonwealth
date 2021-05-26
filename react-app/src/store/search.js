@@ -7,6 +7,7 @@ const searchResult = (result) => ({
 
 export const searching =
   (category, state, city, inputs) => async (dispatch) => {
+    console.log("------------- in store");
     const response = await fetch("/api/search/", {
       method: "POST",
       headers: {
@@ -21,6 +22,7 @@ export const searching =
     });
     const results = await response.json();
     console.log(results);
+    console.log("------------- in store");
     if (!results.ok) {
       dispatch(searchResult(results));
     }
