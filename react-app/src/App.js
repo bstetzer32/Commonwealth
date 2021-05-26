@@ -35,7 +35,13 @@ function App() {
       <NavBar />
       <Switch>
         <Route path="/" exact={true}>
-          <LandingPage pageType="home"/>
+          <LandingPage type="home"/>
+        </Route>
+        <Route path="/categories/:id">
+          <LandingPage type="category"/>
+        </Route>
+        <Route path="/regions/:id">
+          <LandingPage type="region"/>
         </Route>
         <Route path="/login" exact={true}>
           <LoginForm user={user} />
@@ -52,7 +58,7 @@ function App() {
         <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
         </ProtectedRoute>
-        <Route path="/project/:id">
+        <Route path="/project/:projectId">
           <ProjectPage />
         </Route>
       </Switch>

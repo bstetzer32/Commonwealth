@@ -41,7 +41,7 @@ const Discover = () => {
           },
         }}
       >
-        {Array.from(discovery).map(state => <MenuItem onClick={handleClose}>{state.name}</MenuItem>)}
+        {Array.from(discovery).map(state => <MenuItem onClick={handleClose} key={state.id}>{state.name}</MenuItem>)}
       </Menu>
     </>
   );

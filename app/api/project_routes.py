@@ -62,3 +62,9 @@ def create_project():
         return project.to_dict()
 
     return {'errors': validation_errors_to_error_messages(form.errors)}
+
+
+@project_routes.route('/<int:id>')
+def get_project(id):
+    project = Project.query.get(id)
+    return project.to_dict()
