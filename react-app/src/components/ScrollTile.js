@@ -27,7 +27,7 @@ const ScrollTile = ({ project }) => {
     <Box className={classes.root}>
       <Card>
         <CardActionArea>
-          <CardMedia image={project.img} component="img" title="title" />
+          <CardMedia image={project.image_url} component="img" title="title" />
           <CardContent>
             <Link to={`/projects/${project.id}`}>
               <Typography gutterBottom variant="h5" component="h1">
