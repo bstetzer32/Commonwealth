@@ -6,6 +6,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 from flask import request
 search_route = Blueprint('search', __name__)
 
+
 @search_route.route('/', methods=["GET", "POST"])
 def search():
     data = request.json
@@ -13,7 +14,7 @@ def search():
     category = data['category']
     print("--------------------", category)
     state = data['state']
-    city= data['city']
+    city = data['city']
     inputs = data['inputs']
 
     if (category):
