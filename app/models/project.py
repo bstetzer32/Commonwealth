@@ -47,6 +47,7 @@ class Project(db.Model):
             "zipcode": self.zipcode,
             "donations": self.donations,
             "user": self.user.to_simple_dictionary(),
+            'image_url': self.image_url
             # "state_relationship": self.state_relationship.to_dict(),
             # "city_relationship": self.city_relationship.to_dict(),
             # "category": self.category.to_dict()
