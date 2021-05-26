@@ -9,6 +9,7 @@ class Project(db.Model):
     category_id = db.Column(db.Integer, db.ForeignKey("categories.id"))
     state_id = db.Column(db.Integer, db.ForeignKey("states.id"))
     city_id = db.Column(db.Integer, db.ForeignKey("cities.id"))
+    image_url = db.Column(db.String)
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(2000), nullable=False)
     goal = db.Column(db.Integer, nullable=False)
@@ -27,6 +28,7 @@ class Project(db.Model):
     category = db.relationship("Category", back_populates="projects")
 
     def to_dict(self):
+
         return {
             "id": self.id,
             "user_id": self.user_id,
@@ -49,3 +51,4 @@ class Project(db.Model):
             # "city_relationship": self.city_relationship.to_dict(),
             # "category": self.category.to_dict()
         }
+
