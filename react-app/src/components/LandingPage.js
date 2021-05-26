@@ -25,7 +25,6 @@ const LandingPage = ({type}) => {
     return (<>
         <FeaturedRecommended />
         <ScrollBanner type='Fresh Favorites'/>
-        <ScrollBanner type='New & Noteworth'/>
         <ScrollBanner type='Home Stretch'/>
     </>)
 }

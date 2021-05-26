@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Box from '@material-ui/core/Box';
 import { flexbox } from '@material-ui/system';
 import { useDispatch, useSelector } from "react-redux";
@@ -11,6 +11,7 @@ import Filter3Icon from '@material-ui/icons/Filter3';
 import RecomendedTile from './RecommendedTile'
 import FeaturedTile from './FeaturedTile'
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -37,6 +38,8 @@ const useStyles = makeStyles((theme) => ({
 const FeaturedRecommended = () => {
     const feed = useSelector((state) => state.feed)
     const classes = useStyles();
+    const [tab, setTab] = useState(0);
+
 
     const project = {
         id: 1,
@@ -59,15 +62,31 @@ const FeaturedRecommended = () => {
             </Box>
             <Box className={classes.recommended}>
                 <Typography gutterBottom variant="h6" component="h1">Recomended Projects</Typography>
-                <RecomendedTile project={project}/>
-                <RecomendedTile project={project}/>
-                <RecomendedTile project={project}/>
+                {tab === 0 && (<><RecomendedTile project={feed.recommended_projects[0]} />
+                <RecomendedTile project={feed.recommended_projects[1]}/>
+                <RecomendedTile project={feed.recommended_projects[2]}/></>)}
+                {tab === 1 && (<><RecomendedTile project={feed.recommended_projects[3]} />
+                <RecomendedTile project={feed.recommended_projects[4]}/>
+                <RecomendedTile project={feed.recommended_projects[5]}/></>)}
+                {tab === 2 && (<><RecomendedTile project={feed.recommended_projects[6]} />
+                <RecomendedTile project={feed.recommended_projects[7]}/>
+                <RecomendedTile project={feed.recommended_projects[8]}/></>)}
                 <Box className={classes.arrows}>
-                    <ArrowBackIosIcon/>
-                    <Filter1Icon/>
-                    <Filter2Icon/>
-                    <Filter3Icon/>
-                    <ArrowForwardIosIcon/>
+                    <Button onClick={tab !== 0 ? () => setTab(prevTab => prevTab -1) : null}>
+                        <ArrowBackIosIcon/>
+                    </Button>
+                    <Button onClick={(e) => setTab(0)}>
+                        <Filter1Icon/>
+                    </Button>
+                    <Button onClick={(e) => setTab(1)}>
+                        <Filter2Icon/>
+                    </Button>
+                    <Button onClick={(e) => setTab(2)}>
+                        <Filter3Icon/>
+                    </Button>
+                    <Button onClick={tab !== 2 ? () => setTab(prevTab => prevTab +1) : null}>
+                        <ArrowForwardIosIcon/>
+                    </Button>
                 </Box>
             </Box>
         </Box>
