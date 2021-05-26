@@ -11,6 +11,7 @@ from .api.auth_routes import auth_routes
 from .api.category_routes import category_routes
 from .api.state_routes import state_routes
 from .api.city_routes import city_routes
+from .api.feed_routes import feed_routes
 from .api.discovery_routes import discovery_routes
 from .seeds import seed_commands
 
@@ -37,6 +38,7 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(category_routes, url_prefix='/api/category')
 app.register_blueprint(state_routes, url_prefix='/api/state')
 app.register_blueprint(city_routes, url_prefix='/api/city')
+app.register_blueprint(feed_routes, url_prefix='/api/feed')
 app.register_blueprint(discovery_routes, url_prefix='/api/discovery')
 db.init_app(app)
 Migrate(app, db)
