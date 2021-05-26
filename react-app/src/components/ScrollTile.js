@@ -49,7 +49,7 @@ const ScrollTile = ({ project }) => {
                         </CardContent>
                     </CardActionArea>
                 </Card>
-            </Box>
+             </Box>
   );
 };
 
