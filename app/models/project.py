@@ -51,4 +51,3 @@ class Project(db.Model):
             # "city_relationship": self.city_relationship.to_dict(),
             # "category": self.category.to_dict()
         }
-
