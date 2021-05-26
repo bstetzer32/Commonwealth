@@ -1,5 +1,5 @@
-from flask import Blueprint, jsonify
-from app.models import Project, db
+from flask import Blueprint, jsonify, request, session
+from app.models import Project, db, State, City, Category
 from app.forms import ProjectForm
 from app.utils.validate import validate_location
 
@@ -14,38 +14,51 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
-@project_routes.route('/', methods=['POST'])
+@project_routes.route('', methods=['POST'])
 def create_project():
     form = ProjectForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-
-    location = {'address_1': form.data['address_1'],
-                'address_2': form.data['address_2'],
-                'city': form.data['city'],
-                'state': form.data['state'],
-                'zipcode': form.data['zipcode']
-                }
+    print("data ----------------", form.data)
+    location = {
+        'address_1': form.data['address_1'],
+        'address_2': form.data['address_2'],
+        'city': form.data['city'],
+        'state': form.data['st'],
+        'zipcode': form.data['zipcode']
+    }
     validate_address = validate_location(location)
     if 'Error' in validate_address:
         return validate_address
     else:
-        form.data['address_1'] = validate_address['address_1']
-        form.data['address_2'] = validate_address['address_2']
-        form.data['city'] = validate_address['city']
-        form.data['state'] = validate_address['state']
-        form.data['zipcode'] = validate_address['zipcode']
+        print("Setting Address ----------------", validate_address)
+        form.data['address_1'] = validate_address['Address1']
+        form.data['address_2'] = validate_address['Address2']
+        form.data['city'] = validate_address['City']
+        # form.data['state'] = validate_address['State']
+        form.data['zipcode'] = validate_address['Zip5']
+
+    state = State.query.filter_by(name=form.data['st']).first()
+    category = Category.query.filter_by(name=form.data['category']).first()
+    city = City.query.filter_by(name=form.data['city']).first()
 
     if form.validate_on_submit():
         project = Project(
             title=form.data['title'],
             description=form.data['description'],
+            goal=int(form.data['goal']),
             address_1=form.data['address_1'],
             address_2=form.data['address_2'],
             city=form.data['city'],
-            state=form.data['state'],
-            zipcode=form.data['zipcode']
+            state=form.data['st'],
+            zipcode=int(form.data['zipcode']),
+            state_id=int(state.id),
+            city_id=city.id,
+            category_id=int(category.id),
+            user_id=int(form.data['user_id'])
+
         )
         db.session.add(project)
         db.session.commit()
         return project.to_dict()
+
     return {'errors': validation_errors_to_error_messages(form.errors)}
