@@ -27,7 +27,6 @@ export default function SearchPageBar() {
 
   const handleSearch = async (e) => {
     e.preventDefault();
-    console.log(category, st, city, input);
     dispatch(searching(category, st, city, input));
   };
 

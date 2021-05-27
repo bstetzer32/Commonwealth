@@ -13,7 +13,6 @@ export const addDonation = (donation) => async (dispatch) => {
     },
     body: JSON.stringify(donation),
   });
-  console.log("donation", donation);
   const data = await response.json();
   if (data.errors) {
     return;
