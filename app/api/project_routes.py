@@ -20,7 +20,6 @@ def contributor_formatter(c_list):
     count = 0
     ids = []
     for i in range(len(c_list)):
-        print(c_list[i])
         if(c_list[i]['user_id'] in ids):
             continue
         ids.append(c_list[i]['user_id'])

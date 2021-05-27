@@ -10,14 +10,11 @@ import { useHistory } from "react-router-dom";
 
 const SearchBar = () => {
   const [value, setValue] = useState("");
-  const [category, setCategory] = useState(null);
-  const [state, setState] = useState(null);
-  const [city, setCity] = useState(null);
   const dispatch = useDispatch();
   const history = useHistory();
 
   const handleSearch = () => {
-    dispatch(searching(category, state, city, value));
+    dispatch(searching(null, null, null, value));
     history.push("/search");
   };
 
@@ -30,8 +27,7 @@ const SearchBar = () => {
         setValue(e.target.value);
       }}
       value={value}
-      className="nav__element"
-      id="nav__element--searchBar"
+      className="nav__element nav__element--searchBar"
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">

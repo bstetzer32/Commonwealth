@@ -22,7 +22,6 @@ export default function UpdateProjectForm() {
   const updateImage = (e) => setImage(e.target.value);
 
 
-    const [project, setProject] = useState({});
     useEffect(() => {
         if (!projectId) {
             return
@@ -55,7 +54,7 @@ export default function UpdateProjectForm() {
       errors.description = "Description must be less than 2000 characters";
     }
     setErrors(errors);
-  }, [title, goal, description]);
+  }, [title, goal, description, tagline]);
 
 
   const user_id = useSelector((state) => {

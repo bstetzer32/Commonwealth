@@ -1,12 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@material-ui/core/Button";
-import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getDiscovery } from "../../../store/discovery";
-import ListItem from "@material-ui/core/ListItem";
 import DiscoverCities from "./DiscoverCities";
 
 const Discover = () => {
@@ -21,7 +18,7 @@ const Discover = () => {
   };
   useEffect(() => {
     dispatch(getDiscovery());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
@@ -53,29 +50,6 @@ const Discover = () => {
 
 export default Discover;
 
-{
-  /* This is a possible nested menu solution */
-}
-{
-  /* <Menu
-          elevation={0}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'center',
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'center',
-          }}
-          getContentAnchorEl={null}
-          keepMounted  anchorEl={anchorEl2} open={Boolean(anchorEl2)} onClose={handleClose}>
-          <MenuItem>Jonesboro</MenuItem>
-        </Menu> */
-}
 
-// const openMenu2 = (event) => {
-//   setAnchorEl2(event.currentTarget)
 
-// }
 
-// const [anchorEl2, setAnchorEl2] = useState(null)
