@@ -8,6 +8,7 @@ export default function SearchPage() {
     const projectList = Object.values(state.search);
     return projectList?.map((project) => (
       <SearchTile
+        key={project.id} 
         className="searchPage__project--scrollTile"
         project={project}
       />
