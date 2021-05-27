@@ -72,7 +72,7 @@ const SignUpForm = () => {
       errors.password = "Passwords must match"
     }
     setErrors(errors);
-  }, [username, fullname, address_1, city, st, zipcode]);const states = useSelector((state) => {
+  }, [username, fullname, address_1, city, st, zipcode, password, repeatPassword]);const states = useSelector((state) => {
     return Object.values(state.states);
   });
 

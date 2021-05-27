@@ -64,6 +64,17 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     objectFit: "cover",
   },
+    funded: {
+      
+    display: "flex",
+    justifyContent: "flex-end",
+    alignItems: "center",
+    flexDirection: "column",
+    margin: "0",
+    padding: ".25em",
+    fontSize: "1em",
+        color: "#19B419"
+    }
 }));
 
 const SearchTile = ({ project }) => {
@@ -96,7 +107,7 @@ const SearchTile = ({ project }) => {
         </CardActionArea>
         <div>
           <Box className={classes.info}>by: {project?.user.fullname}</Box>
-          <Box className={classes.info}>
+          <Box className={classes.funded}>
             {((project?.amount_raised / project?.goal) * 100).toFixed(2)}%
             Funded
           </Box>

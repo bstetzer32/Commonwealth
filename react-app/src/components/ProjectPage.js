@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
-import {useSelector, useDispatch} from 'react-redux'
+import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import DonationForm from "./forms/DonationForm";
-import {deleteProject} from '../store/project'
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import { Grid, Card, CardMedia, CardActionArea, Button } from "@material-ui/core";
+import { deleteProject } from "../store/project";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import {
+  Grid,
+  Card,
+  CardMedia,
+  CardActionArea,
+  Button,
+} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -45,16 +51,17 @@ const useStyles = makeStyles((theme) => ({
 
 const ProjectPage = () => {
 
-    const [project, setProject] = useState({});
-    const [goalAmount, setGoalAmount] = useState(null);
-    const [donatedAmount, setDonatedAmount] = useState(null);
-    const [contributors, setContributors] = useState(0);
-    const [open, setOpen] = useState(false);
-    const dispatch = useDispatch()
-    const history = useHistory()
-    const user = useSelector((state) => state.session.user)
-    const { projectId } = useParams();
-    const classes = useStyles();
+  const [project, setProject] = useState({});
+  const [goalAmount, setGoalAmount] = useState(null);
+  const [donatedAmount, setDonatedAmount] = useState(null);
+  const [contributors, setContributors] = useState(0);
+  const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const user = useSelector((state) => state.session.user);
+  const { projectId } = useParams();
+  const classes = useStyles();
+
 
   const formatNumber = (num) => {
     const value = num.toString();
@@ -81,30 +88,27 @@ const ProjectPage = () => {
     (async () => {
       const response = await fetch(`/api/project/${projectId}`);
       const proj = await response.json();
-      console.log(proj);
       setProject(proj);
       setGoalAmount(formatNumber(proj.goal));
       setDonatedAmount(formatNumber(proj.amount_raised));
       const res = await fetch(`/api/project/${projectId}/donations`);
       const donators = await res.json();
-      console.log(donators);
       setContributors(donators.number);
     })();
   }, [projectId]);
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
-    const handleClickOpen = () => {
-      setOpen(true);
-    };
-
-    const handleClose = () => {
-      setOpen(false);
-    };
-    const deleteAProject = async () => {
-        await dispatch(deleteProject(projectId))
-        history.push('/')
-    }
-    if (!project) {
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const deleteAProject = async () => {
+    await dispatch(deleteProject(projectId));
+    history.push("/");
+  };
+  if (!project) {
     return null;
   }
   return (
@@ -249,7 +253,7 @@ const ProjectPage = () => {
           <div className="projectPage__button--container">
             <DonationForm project_id={projectId} />
           </div>
-          {project?.user_id == user?.id && (
+          {project?.user_id === user?.id && (
             <div className="projectPage__updateButton">
               <Link id="update__link" to={`/projects/${project.id}/update`}>
                 <Button id="projectPage__update">Update</Button>
@@ -257,29 +261,44 @@ const ProjectPage = () => {
             </div>
           )}
           <div>
-             {project?.user_id == user?.id && <> <Button variant="outlined" color="primary" onClick={handleClickOpen}> Delete Project</Button>
-                             <Dialog
-                                    open={open}
-                                    onClose={handleClose}
-                                    aria-labelledby="alert-dialog-title"
-                                    aria-describedby="alert-dialog-description"
-                                >
-                                    <DialogTitle id="alert-dialog-title">{"Delete your project?"}</DialogTitle>
-                                    <DialogContent>
-                                    <DialogContentText id="alert-dialog-description">
-                                        Are you sure you want to delete your project? All donated funds will be returned to the donaters. This process is irreversible.
-                                    </DialogContentText>
-                                    </DialogContent>
-                                    <DialogActions>
-                                    <Button onClick={handleClose} color="primary">
-                                        Cancel
-                                    </Button>
-                                    <Button onClick={deleteAProject} color="primary" autoFocus>
-                                        Delete
-                                    </Button>
-                                    </DialogActions>
-                                </Dialog>
-                                </>}
+            {project?.user_id === user?.id && (
+              <>
+                {" "}
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  onClick={handleClickOpen}
+                >
+                  {" "}
+                  Delete Project
+                </Button>
+                <Dialog
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="alert-dialog-title"
+                  aria-describedby="alert-dialog-description"
+                >
+                  <DialogTitle id="alert-dialog-title">
+                    {"Delete your project?"}
+                  </DialogTitle>
+                  <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                      Are you sure you want to delete your project? All donated
+                      funds will be returned to the donaters. This process is
+                      irreversible.
+                    </DialogContentText>
+                  </DialogContent>
+                  <DialogActions>
+                    <Button onClick={handleClose} color="primary">
+                      Cancel
+                    </Button>
+                    <Button onClick={deleteAProject} color="primary" autoFocus>
+                      Delete
+                    </Button>
+                  </DialogActions>
+                </Dialog>
+              </>
+            )}
           </div>
 
 

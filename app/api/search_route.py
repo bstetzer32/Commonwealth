@@ -10,9 +10,6 @@ search_route = Blueprint('search', __name__)
 @search_route.route('/', methods=["GET", "POST"])
 def search():
     data = request.json
-    print("------------------", data)
-    # category = data['category']
-    # print("--------------------", category)
     state = data['state']
     city = data['city']
     inputs = data['inputs']
@@ -66,6 +63,4 @@ def search():
     projects = Project.query.filter(
         Project.title.ilike('%' + inputs + '%')
     ).all()
-    # return {"Finished": projects}
-    print("------------------", [project.to_dict() for project in projects])
     return {'projects': [project.to_dict() for project in projects]}

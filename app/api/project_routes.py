@@ -20,7 +20,6 @@ def contributor_formatter(c_list):
     count = 0
     ids = []
     for i in range(len(c_list)):
-        print(c_list[i])
         if(c_list[i]['user_id'] in ids):
             continue
         ids.append(c_list[i]['user_id'])
@@ -32,7 +31,6 @@ def contributor_formatter(c_list):
 def create_project():
     form = ProjectForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print("data ----------------", form.data)
     location = {
         'address_1': form.data['address_1'],
         'address_2': form.data['address_2'],
@@ -44,11 +42,9 @@ def create_project():
     if 'Error' in validate_address:
         return validate_address
     else:
-        print("Setting Address ----------------", validate_address)
         form.data['address_1'] = validate_address['Address1']
         form.data['address_2'] = validate_address['Address2']
         form.data['city'] = validate_address['City']
-        # form.data['state'] = validate_address['State']
         form.data['zipcode'] = validate_address['Zip5']
 
     state = State.query.filter_by(name=form.data['st']).first()
@@ -81,11 +77,11 @@ def create_project():
     return {'errors': validation_errors_to_error_messages(form.errors)}
 
 
-
 @project_routes.route('/<int:id>')
 def get_project(id):
     project = Project.query.get(id)
     return project.to_dict()
+
 
 @project_routes.route('', methods=['PUT'])
 def update_project():
@@ -103,12 +99,14 @@ def update_project():
         db.session.commit()
     return project.to_dict()
 
+
 @project_routes.route('/<int:id>', methods=["DELETE"])
 def delete_project(id):
     project = Project.query.get(id)
     db.session.delete(project)
     db.session.commit()
     return {}
+
 
 @project_routes.route('/<int:id>/donations')
 def get_project_donations(id):
