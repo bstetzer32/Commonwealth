@@ -76,7 +76,7 @@ const ProjectPage = () => {
             const donators = await res.json();
             setContributors(donators)
         })();
-    }, [projectId]);
+    }, [projectId, ]);
 
     if (!project) {
         return null

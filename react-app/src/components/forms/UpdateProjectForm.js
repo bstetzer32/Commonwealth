@@ -76,7 +76,7 @@ export default function UpdateProjectForm() {
       image_url,
       user_id,
     };
-    dispatch(updateProject(project));
+    await dispatch(updateProject(project));
     history.push(`/projects/${projectId}`);
   };
 
