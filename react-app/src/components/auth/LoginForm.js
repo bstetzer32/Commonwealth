@@ -31,13 +31,14 @@ const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={onLogin}>
+    <form onSubmit={onLogin} className="loginForm">
+      <fieldset>
       <div>
         {errors.map((error) => (
           <div>{error}</div>
         ))}
       </div>
-      <div>
+      <div className="loginForm__input--email loginForm__input">
         <label htmlFor="email">Email</label>
         <input
           name="email"
@@ -48,7 +49,7 @@ const LoginForm = () => {
         />
       </div>
       <div>
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password" className="loginForm__input--password loginForm__input">Password</label>
         <input
           name="password"
           type="password"
@@ -58,6 +59,7 @@ const LoginForm = () => {
         />
         <button type="submit">Login</button>
       </div>
+      </fieldset>
     </form>
   );
 };

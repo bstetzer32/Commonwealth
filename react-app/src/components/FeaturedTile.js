@@ -30,7 +30,7 @@ const FeaturedTile = ({project}) => {
     return (
         <Card className={classes.root}>
             <CardActionArea>
-                <CardMedia image="https://ksr-static.imgix.net/21-05-04Oven_Steel_Lifestyle_Veggie_Chicken1368-4257a65.jpg?ixlib=rb-4.0.2&auto=compress%2Cformat&w=1000&fit=min&s=f81c8fec64231267b46beb06d29bc9c5" component="img" title='title'/>
+                <CardMedia image={project?.image_url}component="img" title='title'/>
                 <CardContent>
                 <Link to={`/projects/${project?.id}`} className={classes.link}>
                     <Typography gutterBottom variant="h5" component="h1">{project?.title}</Typography>

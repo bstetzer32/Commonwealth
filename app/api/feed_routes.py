@@ -36,7 +36,7 @@ def feed():
     elif (len(projects) == 1):
         featured_project = projects
     else:
-        featured_project = {}
+        featured_project = None
     if (len(projects) > 1):
         recommended_projects = sorted(projects, key=featured)[1:9]
         recommended_projects = [{
