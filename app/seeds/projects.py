@@ -407,7 +407,7 @@ def seed_projects():
         category_id=2,
         state_id=23,
         city_id=42,
-        image_url='https://commonwealthprojectpictures.s3.ca-central-1.amazonaws.com/Two"s+company.jpg',
+        image_url="https://commonwealthprojectpictures.s3.ca-central-1.amazonaws.com/Two's+company.jpg",
         title='Two’s Company',
         tagline='Three is a crowd.',
         description='Praesent sodales arcu ultrices nisl consectetur, nec ultrices lacus congue. Vivamus sit amet libero eu diam bibendum viverra. Morbi sed mi lectus. Sed eget justo sed est rutrum accumsan. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus id eros dapibus, vestibulum urna in, laoreet turpis. Sed ut suscipit tortor.',
