@@ -1,6 +1,7 @@
 const LOAD = "project/LOAD";
 const ADD_ONE = "project/ADD_ONE";
 
+
 const load = (projects) => ({
   type: LOAD,
   projects,
@@ -10,6 +11,8 @@ const create = (project) => ({
   type: ADD_ONE,
   project,
 });
+
+
 
 export const getProjects = () => async (dispatch) => {
   const response = await fetch("/api/project", {
@@ -56,6 +59,16 @@ export const updateProject = (project) => async (dispatch) => {
   dispatch(create(data));
 };
 
+export const deleteProject = (id) => async () => {
+    await fetch(`/api/project/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    }
+  })
+
+}
+
 const initialState = {};
 
 const projectReducer = (state = initialState, action) => {
@@ -74,7 +87,6 @@ const projectReducer = (state = initialState, action) => {
         [action.project.id]: action.project,
       };
     }
-
     default:
       return state;
   }
