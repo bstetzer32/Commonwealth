@@ -40,10 +40,10 @@ const ScrollTile = ({ project }) => {
             <Box className={classes.root}>
                 <Card className={classes.card}>
                     <CardActionArea>
-                        <CardMedia image={project.image_url} component="img" title='title' className={classes.image}/>
+                        <CardMedia image={project?.image_url} component="img" title='title' className={classes.image}/>
                         <CardContent>
                             <Link to={`/projects/${project?.id}`} className={classes.link}>
-                                <Typography gutterBottom variant="h5" component="h1">{project.title}</Typography>
+                                <Typography gutterBottom variant="h5" component="h1">{project?.title}</Typography>
                             </Link>
                             <Typography variant="body2" color="textSecondary" component="p">{project?.description}</Typography>
                             <Box  className={classes.info}>
