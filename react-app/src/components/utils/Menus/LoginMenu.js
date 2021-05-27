@@ -34,7 +34,8 @@ const LoginMenu = () => {
       <>
         <Button onClick={openMenu}><DehazeIcon /></Button>
         <Menu keepMounted anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
-          <MenuItem>
+          <MenuItem onClick={()=> {setLoggedIn(false);
+            setAnchorEl(null)}}>
             <LogoutButton/>
           </MenuItem>
         </Menu>
@@ -48,17 +49,16 @@ const LoginMenu = () => {
       <Menu keepMounted anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
         <MenuItem>
           <NavLink to="/login" exact={true} activeClassName="active">
+            <Button>
             Login
+            </Button>
           </NavLink>
         </MenuItem>
         <MenuItem>
           <NavLink to="/sign-up" exact={true} activeClassName="active">
+            <Button>
             Sign Up
-          </NavLink>
-        </MenuItem>
-        <MenuItem>
-          <NavLink exact={true} activeClassName="active" to="/users">
-            <Button variant="contained">Users</Button>
+            </Button>
           </NavLink>
         </MenuItem>
       </Menu>

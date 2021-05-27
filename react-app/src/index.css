@@ -18,8 +18,7 @@
   text-decoration: none;
   padding: 10%;
   height: 100%;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
   font-size: 2em;
 }
 
@@ -51,8 +50,7 @@
   margin: 10px auto;
   padding: 20px;
   border-radius: 8px;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }
 
 .projectForm fieldset {
@@ -70,11 +68,8 @@
   margin-bottom: 8px;
 }
 
-.projectForm input,
-.projectForm textarea,
-.projectForm select {
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+.projectForm input, .projectForm textarea, .projectForm select {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
   background: rgba(255, 255, 255, 0.1);
   border: none;
   border-radius: 4px;
@@ -90,9 +85,7 @@
   margin-bottom: 30px;
 }
 
-.projectForm input:focus,
-.projectForm textarea:focus,
-.projectForm select:focus {
+.projectForm input:focus, .projectForm textarea:focus, .projectForm select:focus {
   background: #d2d9dd;
 }
 
@@ -137,8 +130,7 @@
   margin: 10px auto;
   padding: 20px;
   border-radius: 8px;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }
 
 .signupForm fieldset {
@@ -156,11 +148,8 @@
   margin-bottom: 8px;
 }
 
-.signupForm input,
-.signupForm textarea,
-.signupForm select {
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+.signupForm input, .signupForm textarea, .signupForm select {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
   background: rgba(255, 255, 255, 0.1);
   border: none;
   border-radius: 4px;
@@ -176,9 +165,7 @@
   margin-bottom: 30px;
 }
 
-.signupForm input:focus,
-.signupForm textarea:focus,
-.signupForm select:focus {
+.signupForm input:focus, .signupForm textarea:focus, .signupForm select:focus {
   background: #d2d9dd;
 }
 
@@ -214,11 +201,92 @@
   margin: 0.5em;
 }
 
+/* login form styling  */
+
+.loginForm {
+  max-width: 500px;
+  padding: 10px 20px;
+  background: #f4f7f8;
+  margin: 10px auto;
+  padding: 20px;
+  border-radius: 8px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+}
+
+.loginForm fieldset {
+  border: none;
+}
+
+.loginForm legend {
+  font-size: 1.4em;
+  margin-bottom: 1.5em;
+  text-align: center;
+}
+
+.loginForm label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.loginForm input, .loginForm textarea, .loginForm select {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 4px;
+  font-size: 15px;
+  margin: 0;
+  outline: 0;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #e8eeef;
+  color: #8a97a0;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+  margin-bottom: 30px;
+}
+
+.loginForm input:focus, .loginForm textarea:focus, .loginForm select:focus {
+  background: #d2d9dd;
+}
+
+.loginForm select {
+  height: 35px;
+}
+
+.loginForm__submit {
+  position: relative;
+  display: block;
+  padding: 19px 39px 18px 39px;
+  color: #fff;
+  margin: 0 auto;
+  background: #5581ee;
+  font-size: 1.5em;
+  text-align: center;
+  font-style: normal;
+  width: 75%;
+  border-width: 1px;
+  border-style: outset;
+  border-color: #4b73da;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  margin-bottom: auto;
+}
+
+.loginForm button:hover {
+  background: #3a59a7;
+}
+
+.loginForm__error {
+  color: red;
+  font-size: 0.75em;
+  margin: 0.5em;
+}
+
 input[type="number"] {
   text-align: right;
 }
 
 /* Search Page Styling*/
+
 .searchPage__form {
   box-shadow: 0.15em 0.15em 0.15em rgba(0, 0, 0, 0.25);
   height: 5em;
@@ -233,15 +301,12 @@ input[type="number"] {
   color: black;
   text-decoration: none;
   padding: 0.25em;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
   font-size: 1.25em;
 }
 
-.searchPage__bar--element input,
-.searchPage__bar--element select {
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+.searchPage__bar--element input, .searchPage__bar--element select {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
   background: rgba(255, 255, 255, 0.1);
   border: none;
   border-radius: 4px;
@@ -278,12 +343,14 @@ input[type="number"] {
 }
 
 /*Search Page */
+
 .searchPage__projects--container {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
 }
+
 .searchPage__project--scrollTile {
   flex: 1 0 35%;
 }
@@ -299,7 +366,7 @@ input[type="number"] {
   margin-top: 20px;
 }
 
-#projectInfoGrid{
+#projectInfoGrid {
   display: flex;
   align-items: flex-start;
 }
