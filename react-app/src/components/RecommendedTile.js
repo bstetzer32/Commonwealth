@@ -48,7 +48,7 @@ const RecomendedTile = ({project}) => {
         <Box className={classes.root} my="2.5%">
             <Card>
             <CardActionArea className={classes.cardRoot}>
-            <CardMedia image={project?.image_url} component="img" title='title' className={classes.image}/>
+            <CardMedia src={project?.image_url} component="img" title='title' className={classes.image}/>
             <CardContent>
             <Link to={`/projects/${project?.id}`} className={classes.link}>
                 <Typography gutterBottom variant="h5" component="h1">{project?.title}</Typography>
