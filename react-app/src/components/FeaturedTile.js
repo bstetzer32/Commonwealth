@@ -16,9 +16,13 @@ const useStyles = makeStyles((theme) => ({
         margin: '5%'
     },
     info: {
-         display:"flex", 
+         display:"flex",
          justifyContent:"space-between"
-    }
+    },
+    link: {
+        textDecoration: 'none',
+        color: "#0088ff"
+       }
 }))
 
 const FeaturedTile = ({project}) => {
@@ -26,15 +30,15 @@ const FeaturedTile = ({project}) => {
     return (
         <Card className={classes.root}>
             <CardActionArea>
-                <CardMedia image="https://ksr-static.imgix.net/21-05-04Oven_Steel_Lifestyle_Veggie_Chicken1368-4257a65.jpg?ixlib=rb-4.0.2&auto=compress%2Cformat&w=1000&fit=min&s=f81c8fec64231267b46beb06d29bc9c5" component="img" title='title'/>
+                <CardMedia image={project?.image_url}component="img" title='title'/>
                 <CardContent>
-                <Link to={`/projects/${project?.id}`}>
+                <Link to={`/projects/${project?.id}`} className={classes.link}>
                     <Typography gutterBottom variant="h5" component="h1">{project?.title}</Typography>
                 </Link>
                 <Typography variant="body2" color="textSecondary" component="p">{project?.description}</Typography>
                 <Box className={classes.info}>
                 <h3>by: {project?.user}</h3>
-                <h3>{project?.amount_raised / project?.goal * 100}% Funded</h3>
+                <h3>{((project?.amount_raised / project?.goal) * 100).toFixed(2)}% Funded</h3>
                 </Box>
                 </CardContent>
             </CardActionArea>

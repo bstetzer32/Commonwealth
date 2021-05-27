@@ -85,7 +85,7 @@ const SignUpForm = () => {
   }
 
   return (
-    <div className="projectForm">
+    <div className="signupForm">
       <form onSubmit={onSignUp}>
         <fieldset>
           <legend>Create an Account</legend>

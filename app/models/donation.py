@@ -32,3 +32,4 @@ class Donation(db.Model):
             "amount": self.amount,
             "tier": self.tier,
         }
+

@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, session
-from app.models import Project, db, State, City, Category
+from app.models import Project, db, State, City, Category, Donation
 from app.forms import ProjectForm
 from app.utils.validate import validate_location
 from datetime import date
@@ -71,3 +71,11 @@ def create_project():
 def get_project(id):
     project = Project.query.get(id)
     return project.to_dict()
+
+
+@project_routes.route('/<int:id>/donations')
+def get_project_donations(id):
+    contributors = Donation.query(Donation.user_id.distinct()).filter_by(
+        project_id=id
+    )
+    return len(contributors)

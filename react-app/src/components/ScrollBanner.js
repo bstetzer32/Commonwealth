@@ -46,12 +46,7 @@ const ScrollBanner = ({type}) => {
         <Typography gutterBottom variant="h6" component="h1">{type}</Typography>
         </Box>
         <Box className={classes.tiles}>
-            <ScrollTile project={feed[0]} />
-            <ScrollTile project={feed[1]} />
-            <ScrollTile project={feed[2]} />
-            <ScrollTile project={feed[3]} />
-            <ScrollTile project={feed[4]} />
-            <ScrollTile project={feed[5]} />
+            {feed.map(project=><ScrollTile project={project} />)}
             
         </Box>
         </>
