@@ -251,7 +251,7 @@ const ProjectPage = () => {
           <div className="projectPage__button--container">
             <DonationForm project_id={projectId} />
           </div>
-          {project?.user_id == user?.id && (
+          {project?.user_id === user?.id && (
             <div className="projectPage__updateButton">
               <Link id="update__link" to={`/projects/${project.id}/update`}>
                 <Button id="projectPage__update">Update</Button>
@@ -259,7 +259,7 @@ const ProjectPage = () => {
             </div>
           )}
           <div>
-            {project?.user_id == user?.id && (
+            {project?.user_id === user?.id && (
               <>
                 {" "}
                 <Button

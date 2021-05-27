@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import Box from '@material-ui/core/Box';
-import { flexbox } from '@material-ui/system';
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
@@ -45,18 +44,7 @@ const FeaturedRecommended = () => {
     const [tab, setTab] = useState(0);
 
 
-    const project = {
-        id: 1,
-        img: "https://ksr-static.imgix.net/21-05-04Oven_Steel_Lifestyle_Veggie_Chicken1368-4257a65.jpg?ixlib=rb-4.0.2&auto=compress%2Cformat&w=1000&fit=min&s=f81c8fec64231267b46beb06d29bc9c5",
-        title: 'The Misen Oven Steel',
-        description: 'Misen wants to make roasting, braising, boiling and searing easier and more delicious with this oven-enhancer.',
-        amount_raised: 32,
-        goal: 100,
-        user: {
-            first_name: 'Misen',
-            last_name: ''
-        }
-    }
+
 
     return (
         <Box className={classes.root}>

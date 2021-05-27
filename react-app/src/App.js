@@ -10,8 +10,6 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import LandingPage from "./components/LandingPage";
 import ProjectPage from "./components/ProjectPage";
-import FeaturedRecommended from "./components/FeaturedRecommended";
-import ScrollBanner from "./components/ScrollBanner";
 import { authenticate } from "./store/session";
 import SearchPage from "./components/SearchPage";
 import UpdateProjectForm from './components/forms/UpdateProjectForm'
@@ -26,7 +24,7 @@ function App() {
       await dispatch(authenticate());
       setLoaded(true);
     })();
-  }, []);
+  }, [dispatch]);
 
   if (!loaded) {
     return null;
