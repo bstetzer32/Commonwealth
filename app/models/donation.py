@@ -33,3 +33,8 @@ class Donation(db.Model):
             "tier": self.tier,
         }
 
+    def to_super_simple_dict(self):
+        return{
+            "user_id": self.user_id,
+            # "amount": self.amount
+        }

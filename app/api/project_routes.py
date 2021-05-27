@@ -16,6 +16,18 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
+def contributor_formatter(c_list):
+    count = 0
+    ids = []
+    for i in range(len(c_list)):
+        print(c_list[i])
+        if(c_list[i]['user_id'] in ids):
+            continue
+        ids.append(c_list[i]['user_id'])
+        count += 1
+    return count
+
+
 @project_routes.route('', methods=['POST'])
 def create_project():
     form = ProjectForm()
@@ -100,7 +112,7 @@ def delete_project(id):
 
 @project_routes.route('/<int:id>/donations')
 def get_project_donations(id):
-    contributors = Donation.query(Donation.user_id.distinct()).filter_by(
-        project_id=id
-    )
-    return len(contributors)
+    contributors = Donation.query.filter_by(project_id=id).all()
+    c_list = [
+        contributor.to_super_simple_dict() for contributor in contributors]
+    return {'number': contributor_formatter(c_list)}

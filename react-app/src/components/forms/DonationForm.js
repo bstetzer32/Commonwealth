@@ -21,6 +21,7 @@ export default function DonationForm({ project_id }) {
   const handleClickOpen = () => {
     setOpen(true);
   };
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -48,10 +49,8 @@ export default function DonationForm({ project_id }) {
   };
 
   return (
-    <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Donate
-      </Button>
+    <>
+      <Button id='projectDonateButton' onClick={handleClickOpen}>Support this project</Button>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -127,6 +126,6 @@ export default function DonationForm({ project_id }) {
           </button>
         </DialogActions>
       </Dialog>
-    </div>
+    </>
   );
 }
