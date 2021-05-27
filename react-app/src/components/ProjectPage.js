@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ProjectPage = () => {
-  
+
     const [project, setProject] = useState({});
     const [goalAmount, setGoalAmount] = useState(null);
     const [donatedAmount, setDonatedAmount] = useState(null);
@@ -281,8 +281,8 @@ const ProjectPage = () => {
                                 </Dialog>
                                 </>}
           </div>
-          
-          
+
+
           {/* </Grid> */}
           <Grid container item spacing={2} className={classes.grid} xs={12}>
             <Grid

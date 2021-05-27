@@ -13,14 +13,21 @@
 
 .nav__element {
   color: black;
-  /* display: flex;
-  align-items: center; */
+  /* display: flex; */
+  /* align-items: center; */
   text-decoration: none;
   padding: 10%;
   height: 100%;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   font-size: 2em;
+}
+.nav__element--create{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 1em;
+  max-width: auto;
 }
 
 #nav__logo {
@@ -433,6 +440,7 @@ input[type="number"] {
   display: flex;
   align-items: flex-start;
   margin-top: 12px;
+  margin-bottom: 4em
 }
 
 #projectLocation {
