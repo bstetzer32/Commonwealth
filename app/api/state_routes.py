@@ -4,7 +4,7 @@ from app.models import db, State
 state_routes = Blueprint('states', __name__)
 
 
-@state_routes.route('/')
+@state_routes.route('')
 def all_states():
     states = State.query.all()
     state_info = [state.to_dict() for state in states]
