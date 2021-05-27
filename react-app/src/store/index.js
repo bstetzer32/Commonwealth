@@ -5,7 +5,8 @@ import states from "./state";
 import search from "./search";
 import discovery from "./discovery";
 import projectReducer from "./project";
-import feed from './feed'
+import feed from "./feed";
+import donationReducer from "./donation";
 
 const rootReducer = combineReducers({
   session,
@@ -14,7 +15,7 @@ const rootReducer = combineReducers({
   states,
   feed,
   projectReducer,
-
+  donationReducer,
 });
 
 let enhancer;

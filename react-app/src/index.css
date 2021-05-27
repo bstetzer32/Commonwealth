@@ -18,7 +18,8 @@
   text-decoration: none;
   padding: 10%;
   height: 100%;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   font-size: 2em;
 }
 
@@ -50,7 +51,8 @@
   margin: 10px auto;
   padding: 20px;
   border-radius: 8px;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
 .projectForm fieldset {
@@ -68,8 +70,11 @@
   margin-bottom: 8px;
 }
 
-.projectForm input, .projectForm textarea, .projectForm select {
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+.projectForm input,
+.projectForm textarea,
+.projectForm select {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   background: rgba(255, 255, 255, 0.1);
   border: none;
   border-radius: 4px;
@@ -85,7 +90,9 @@
   margin-bottom: 30px;
 }
 
-.projectForm input:focus, .projectForm textarea:focus, .projectForm select:focus {
+.projectForm input:focus,
+.projectForm textarea:focus,
+.projectForm select:focus {
   background: #d2d9dd;
 }
 
@@ -130,7 +137,8 @@
   margin: 10px auto;
   padding: 20px;
   border-radius: 8px;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
 .signupForm fieldset {
@@ -148,8 +156,11 @@
   margin-bottom: 8px;
 }
 
-.signupForm input, .signupForm textarea, .signupForm select {
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+.signupForm input,
+.signupForm textarea,
+.signupForm select {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   background: rgba(255, 255, 255, 0.1);
   border: none;
   border-radius: 4px;
@@ -165,7 +176,9 @@
   margin-bottom: 30px;
 }
 
-.signupForm input:focus, .signupForm textarea:focus, .signupForm select:focus {
+.signupForm input:focus,
+.signupForm textarea:focus,
+.signupForm select:focus {
   background: #d2d9dd;
 }
 
@@ -203,7 +216,6 @@
 
 input[type="number"] {
   text-align: right;
-
 }
 
 /* Search Page Styling*/
@@ -287,7 +299,7 @@ input[type="number"] {
   margin-top: 20px;
 }
 
-#projectInfoGrid{
+#projectInfoGrid {
   display: flex;
   align-items: flex-start;
 }
@@ -303,21 +315,21 @@ input[type="number"] {
   justify-content: flex-start;
   font-size: 22px;
   font-weight: 700;
-  color: rgb(27, 185, 27)
+  color: rgb(27, 185, 27);
 }
 
 #projectNumbers {
   display: flex;
   justify-content: flex-start;
   font-size: 22px;
-  font-weight: 700
+  font-weight: 700;
 }
 
 #projectNumbersRelations {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  font-size: 18px
+  font-size: 18px;
 }
 
 #projectTagline {
@@ -336,4 +348,86 @@ input[type="number"] {
 
 #projectTitleGrid {
   margin-bottom: 8px;
+}
+
+/* Donation Form Styling */
+
+.donationForm {
+  max-width: 300px;
+  padding: 5px 10px;
+  background: #f4f7f8;
+  margin: 5px auto;
+  padding: 10px;
+  border-radius: 8px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.donationForm fieldset {
+  border: none;
+}
+
+.donationForm legend {
+  font-size: 1.5em;
+  margin-bottom: 0.75em;
+  text-align: center;
+}
+
+.donationForm label {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.donationForm input {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  margin: 0;
+  outline: 0;
+  padding: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #e8eeef;
+  color: #8a97a0;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+  margin-bottom: 15px;
+}
+
+.donationForm input:focus {
+  background: #d2d9dd;
+}
+
+.donationForm__button {
+  position: relative;
+  display: block;
+  padding: 10px 20px 10px 20px;
+  color: #fff;
+  margin: 0 auto;
+  background: #5581ee;
+  font-size: 1em;
+  text-align: center;
+  font-style: normal;
+  width: 75%;
+  border-width: 1px;
+  border-style: outset;
+  border-color: #4b73da;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  margin-bottom: auto;
+}
+
+.donationForm__button:hover {
+  background: #3a59a7;
+}
+
+.donationForm__input--half {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.donationForm__label {
+  margin-right: 1.5em;
 }

@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
+import { addDonation } from "../../store/donation";
 
-export default function DonationForm() {
+export default function DonationForm({ project_id }) {
   const [amount, setAmount] = useState(0);
+  const [fullName, setFullName] = useState("");
+  const [creditCardNumber, setCreditCardNumber] = useState("");
+  const [expDate, setExpDate] = useState("");
+  const [cvc, setCVC] = useState("");
   const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -17,6 +24,11 @@ export default function DonationForm() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const updateFullName = (e) => setFullName(e.target.value);
+  const updateCreditCardNumber = (e) => setCreditCardNumber(e.target.value);
+  const updateCVC = (e) => setCVC(e.target.value);
+  const updateExpDate = (e) => setExpDate(e.target.value);
 
   const updateAmount = (e) => setAmount(e.target.value);
 
@@ -30,7 +42,8 @@ export default function DonationForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const donation = { user_id, amount };
+    const donation = { user_id, amount, project_id };
+    dispatch(addDonation(donation));
     handleClose();
   };
 
@@ -44,73 +57,74 @@ export default function DonationForm() {
         onClose={handleClose}
         aria-labelledby="donate-form-title"
       >
-        <DialogTitle id="donate-form-title">Support This Project</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            To donate, please fill out the form and submit.
-          </DialogContentText>
-          <form className="donationForm">
-            <div className="donationForm__amount donationForm__input">
-              <label>
-                Donation Amount
-                <input
-                  type="number"
-                  value={amount}
-                  placeholder="10"
-                  onChange={updateAmount}
-                  required
-                >
-                  $
-                </input>
-              </label>
-            </div>
-            <div className="donationForm__credit donationForm__input">
+          <div className="donationForm">
+            <form onSubmit={handleSubmit} className="donationForm">
               <fieldset>
-                <legend>Name on Card</legend>
-                <input
-                  type="text"
-                  value={fullName}
-                  placeholder="John Smith"
-                  onChange={updateFullName}
-                />
+                <legend>Support This Project</legend>
+                <div className="donationForm__amount donationForm__input">
+                  <label>
+                    Amount
+                    <input
+                      type="number"
+                      value={amount}
+                      placeholder="10"
+                      onChange={updateAmount}
+                      required
+                    />
+                  </label>
+                </div>
+                <div className="donationForm__credit donationForm__input">
+                  <label>
+                    Name on Card
+                    <input
+                      type="text"
+                      value={fullName}
+                      placeholder="John Smith"
+                      onChange={updateFullName}
+                    />
+                  </label>
+                  <label>
+                    Card Number
+                    <input
+                      type="text"
+                      value={creditCardNumber}
+                      placeholder="xxxx-xxxx-xxxx-xxxx"
+                      onChange={updateCreditCardNumber}
+                    />
+                  </label>
+                  <div className="donationForm__input--half">
+                    <label className="donationForm__label">
+                      EXP
+                      <input
+                        type="text"
+                        value={expDate}
+                        placeholder="MM/YY"
+                        onChange={updateExpDate}
+                      />
+                    </label>
+                    <label>
+                      CVC
+                      <input
+                        type="number"
+                        value={cvc}
+                        placeholder="xxxx"
+                        onChange={updateCVC}
+                      />
+                    </label>
+                  </div>
+                </div>
               </fieldset>
-              <label>
-                Card Number
-                <input
-                  type="number"
-                  value={creditCardNumber}
-                  placeholder="xxxx - xxxx - xxxx - xxxx"
-                  onChange={updateCreditCardNumber}
-                />
-              </label>
-              <fieldset>
-                <legend>EXP</legend>
-                <input
-                  type="text"
-                  value={expDate}
-                  placeholder="MM/YY"
-                  onChange={updateExpDate}
-                />
-              </fieldset>
-              <fieldset>
-                <legend>CVC</legend>
-                <input
-                  type="number"
-                  value={cvc}
-                  placeholder="xxxx"
-                  onChange={updateCVC}
-                />
-              </fieldset>
-            </div>
-          </form>
+            </form>
+          </div>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <button className="donationForm__button" onClick={handleClose}>
             Cancel
-          </Button>
-          <Button onClick={handleSubmit} color="primary">
+          </button>
+          <button className="donationForm__button" onClick={handleSubmit}>
             Donate
-          </Button>
+          </button>
         </DialogActions>
       </Dialog>
     </div>

@@ -16,6 +16,7 @@ from .api.project_routes import project_routes
 from .api.discovery_routes import discovery_routes
 from .seeds import seed_commands
 from .api.search_route import search_route
+from .api.donation_routes import donation_routes
 from .config import Config
 
 app = Flask(__name__)
@@ -43,6 +44,7 @@ app.register_blueprint(feed_routes, url_prefix='/api/feed')
 app.register_blueprint(project_routes, url_prefix='/api/project')
 app.register_blueprint(search_route, url_prefix='/api/search')
 app.register_blueprint(discovery_routes, url_prefix='/api/discovery')
+app.register_blueprint(donation_routes, url_prefix='/api/donation')
 db.init_app(app)
 Migrate(app, db)
 
