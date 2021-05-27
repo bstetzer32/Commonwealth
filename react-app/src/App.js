@@ -14,6 +14,7 @@ import FeaturedRecommended from "./components/FeaturedRecommended";
 import ScrollBanner from "./components/ScrollBanner";
 import { authenticate } from "./store/session";
 import SearchPage from "./components/SearchPage";
+import UpdateProjectForm from './components/forms/UpdateProjectForm'
 
 function App() {
   const user = useSelector((state) => state.session.user);
@@ -59,6 +60,9 @@ function App() {
         <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
         </ProtectedRoute>
+        <Route path="/projects/:projectId/update">
+          <UpdateProjectForm/>
+        </Route>
         <Route path="/projects/:projectId">
           <ProjectPage />
         </Route>

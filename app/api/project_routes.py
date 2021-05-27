@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request, session
 from app.models import Project, db, State, City, Category, Donation
-from app.forms import ProjectForm
+from app.forms import ProjectForm, UpdateProjectForm
 from app.utils.validate import validate_location
 from datetime import date
 from dateutil.relativedelta import relativedelta
@@ -46,6 +46,8 @@ def create_project():
     if form.validate_on_submit():
         project = Project(
             title=form.data['title'],
+            tagline=form.data['tagline'],
+            image_url=form.data['image_url'],
             description=form.data['description'],
             goal=int(form.data['goal']),
             address_1=form.data['address_1'],
@@ -67,9 +69,26 @@ def create_project():
     return {'errors': validation_errors_to_error_messages(form.errors)}
 
 
+
 @project_routes.route('/<int:id>')
 def get_project(id):
     project = Project.query.get(id)
+    return project.to_dict()
+
+@project_routes.route('', methods=['PUT'])
+def update_project():
+    form = UpdateProjectForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    data = request.json
+    project = Project.query.get(int(data['id']))
+    if form.validate_on_submit() and project.user_id == int(data['user_id']):
+        project.image_url = form.data['image_url']  
+        project.title = form.data['title']
+        project.tagline = form.data['tagline']
+        project.description = form.data['description']
+        project.goal = int(form.data['goal'])
+        db.session.add(project)
+        db.session.commit()
     return project.to_dict()
 
 
