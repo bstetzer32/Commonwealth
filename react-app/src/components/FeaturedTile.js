@@ -22,7 +22,10 @@ const useStyles = makeStyles((theme) => ({
     link: {
         textDecoration: 'none',
         color: "#0088ff"
-       }
+       },
+    funded: {
+        color: "#19B419"
+    }
 }))
 
 const FeaturedTile = ({project}) => {
@@ -38,7 +41,7 @@ const FeaturedTile = ({project}) => {
                 <Typography variant="body2" color="textSecondary" component="p">{project?.tagline}</Typography>
                 <Box className={classes.info}>
                 <h3>by: {project?.user}</h3>
-                <h3>{((project?.amount_raised / project?.goal) * 100).toFixed(2)}% Funded</h3>
+                <h3 className={classes.funded}>{((project?.amount_raised / project?.goal) * 100).toFixed(2)}% Funded</h3>
                 </Box>
                 </CardContent>
             </CardActionArea>
