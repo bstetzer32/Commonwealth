@@ -3,6 +3,7 @@ from app.models import db, Project, City
 
 feed_routes = Blueprint('feed', __name__)
 
+
 @feed_routes.route('/', methods=['POST'])
 def feed():
     data = request.json
@@ -16,6 +17,7 @@ def feed():
     elif type == 'region':
         projects = Project.query.filter(Project.state_id == id)
     projects = [project.to_dict() for project in projects]
+
     def featured(project):
         return project['amount_raised']
 
@@ -82,4 +84,4 @@ def feed():
         "status": project['status'],
         "user": project['user']['fullname'],
     } for project in old_projects]
-    return jsonify({'featured_project':featured_project, 'recommended_projects':recommended_projects, 'new_projects':new_projects, 'old_projects':old_projects})
+    return jsonify({'featured_project': featured_project, 'recommended_projects': recommended_projects, 'new_projects': new_projects, 'old_projects': old_projects})

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import DonationForm from "./forms/DonationForm";
-import { Grid, Button } from "@material-ui/core";
+import { Grid, Card, CardMedia, CardActionArea } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     title: {
@@ -44,13 +44,15 @@ const ProjectPage = () => {
     const { projectId } = useParams();
     const classes = useStyles();
 
-  const formatNumber = (goal) => {
-    const goalAmount = goal.toString();
+  const formatNumber = (num) => {
+    const value = num.toString();
     let count = 1;
     let result = [];
-    for (let i = goalAmount.length - 1; i >= 0; i--) {
-      console.log(goalAmount[i]);
-      result.unshift(goalAmount[i]);
+    for (let i = value.length - 1; i >= 0; i--) {
+      result.unshift(value[i]);
+      if (i === 0) {
+        continue
+      }
       if (count === 3) {
         result.unshift(",");
         count = 0;
@@ -67,72 +69,78 @@ const ProjectPage = () => {
         (async () => {
             const response = await fetch(`/api/project/${projectId}`);
             const proj = await response.json();
+            console.log(proj)
             setProject(proj);
             setGoalAmount(formatNumber(proj.goal));
             setDonatedAmount(formatNumber(proj.amount_raised))
             const res = await fetch(`/api/project/${projectId}/donations`);
             const donators = await res.json();
-            setContributors(donators)
+            console.log(donators)
+            setContributors(donators.number)
         })();
     }, [projectId]);
 
     if (!project) {
         return null
     }
-    
+
     return (
         <>
             <Grid container spacing={2} className={classes.grid} id='projectTitleGrid'>
                 <Grid item xs={12} className={classes.title} id='projectTitle'>{project.title}
                 </Grid>
-                <Grid item xs={12} className={classes.tagline} id='projectTagline'>This ish is super hot fire
+                <Grid item xs={12} className={classes.tagline} id='projectTagline'>{project.tagline}
                 </Grid>
             </Grid>
             <Grid container spacing={0} className={classes.grid} id='projectInfoGrid'>
-                <Grid item xs={false} md={3}></Grid>
-                <Grid container item spacing={1} xs={12} md={6} id='projectDescriptionGrid'>
+                <Grid item xs={false} lg={3}></Grid>
+                <Grid container item spacing={1} xs={12} lg={6} id='projectDescriptionGrid'>
                     <h3 className={classes.location} id='projectLocation'>Location: {project.city}, {project.state}</h3>
-                    <p className={classes.info} id='projectDescription'>{project.description}</p>
+                    <Card id='projectImage'>
+                        <CardActionArea>
+                            <CardMedia title='title' image={project.image_url} component='img'></CardMedia>
+                        </CardActionArea>
+                    </Card>
+                    <div className={classes.info} id='projectDescription'>{project.description}</div>
                 </Grid>
-                <Grid container item spacing={2} className={classes.grid} xs={12} md={3}>
+                <Grid container item spacing={2} className={classes.grid} xs={12} lg={3}>
                     <Grid container item spacing={2} className={classes.grid} xs={12} id='projectNumbersContainer'>
-                        <Grid container item spacing={2} className={classes.grid} xs={4} md={12} id='projectNumbersGrid'>
+                        <Grid container item spacing={2} className={classes.grid} xs={4} lg={12} id='projectNumbersGrid'>
                             <Grid item xs={12} className={classes.tagline} id='projectNumbersGreen'>${donatedAmount}</Grid>
-                             <DonationForm project_id={projectId} />
                             <Grid item xs={12} className={classes.tagline} id='projectNumbersRelations'>donated of ${goalAmount} goal</Grid>
                         </Grid>
-                        <Grid container item spacing={2} className={classes.grid} xs={4} md={12} id='projectNumbersGrid'>
+                        <Grid container item spacing={2} className={classes.grid} xs={4} lg={12} id='projectNumbersGrid'>
                             <Grid item xs={12} className={classes.tagline} id='projectNumbers'>{contributors}</Grid>
                             <Grid item xs={12} className={classes.tagline} id='projectNumbersRelations'>contributors</Grid>
                         </Grid>
-                        <Grid container item spacing={2} className={classes.grid} xs={4} md={12} id='projectNumbersGrid'>
+                        <Grid container item spacing={2} className={classes.grid} xs={4} lg={12} id='projectNumbersGrid'>
                             <Grid item xs={12} className={classes.tagline} id='projectNumbers'>{donatedAmount}</Grid>
                             <Grid item xs={12} className={classes.tagline} id='projectNumbersRelations'>days left</Grid>
                         </Grid>
                     </Grid>
                     {/* <Grid item xs={12}> */}
-                    <Button id='projectDonateButton'>Support this project</Button>
+                    <DonationForm project_id={projectId}/>
                     {/* </Grid> */}
                     <Grid container item spacing={2} className={classes.grid} xs={12}>
-                        <Grid container item spacing={2} className={classes.grid} xs={12} md={12} id='projectNumbersGrid'>
+                        <Grid container item spacing={2} className={classes.grid} xs={12} lg={12} id='projectNumbersGrid'>
                             <Grid item xs={12} className={classes.tagline} id='projectDonatorsHeader'>Top Contributors</Grid>
                         </Grid>
-                        <Grid container item spacing={2} className={classes.grid} xs={12} md={12} id='projectNumbersGrid'>
+                        <Grid container item spacing={2} className={classes.grid} xs={12} lg={12} id='projectNumbersGrid'>
                             <Grid item xs={12} className={classes.tagline} id='projectNumbers'>James</Grid>
                             <Grid item xs={12} className={classes.tagline} id='projectNumbersRelations'>$2,000</Grid>
                         </Grid>
-                        <Grid container item spacing={2} className={classes.grid} xs={12} md={12} id='projectNumbersGrid'>
+                        <Grid container item spacing={2} className={classes.grid} xs={12} lg={12} id='projectNumbersGrid'>
                             <Grid item xs={12} className={classes.tagline} id='projectNumbers'>James</Grid>
                             <Grid item xs={12} className={classes.tagline} id='projectNumbersRelations'>$2,000</Grid>
                         </Grid>
-                        <Grid container item spacing={2} className={classes.grid} xs={12} md={12} id='projectNumbersGrid'>
+                        <Grid container item spacing={2} className={classes.grid} xs={12} lg={12} id='projectNumbersGrid'>
                             <Grid item xs={12} className={classes.tagline} id='projectNumbers'>James</Grid>
                             <Grid item xs={12} className={classes.tagline} id='projectNumbersRelations'>$2,000</Grid>
                         </Grid>
                     </Grid>
                 </Grid>
                 <Grid container>
-                  
+
                 </Grid>
           </Grid>
     </>
