@@ -50,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ProjectPage = () => {
+
   const [project, setProject] = useState({});
   const [goalAmount, setGoalAmount] = useState(null);
   const [donatedAmount, setDonatedAmount] = useState(null);
@@ -60,6 +61,7 @@ const ProjectPage = () => {
   const user = useSelector((state) => state.session.user);
   const { projectId } = useParams();
   const classes = useStyles();
+
 
   const formatNumber = (num) => {
     const value = num.toString();
@@ -298,6 +300,7 @@ const ProjectPage = () => {
               </>
             )}
           </div>
+
 
           {/* </Grid> */}
           <Grid container item spacing={2} className={classes.grid} xs={12}>
