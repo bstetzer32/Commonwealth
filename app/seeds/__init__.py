@@ -4,6 +4,7 @@ from .states import seed_states, undo_states
 from .categories import seed_categories, undo_categories
 from .projects import seed_projects, undo_projects
 from .cities import seed_cities, undo_cities
+from .donations import seed_donations, undo_donations
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
 seed_commands = AppGroup('seed')
@@ -16,6 +17,7 @@ def seed():
     seed_users()
     seed_categories()
     seed_projects()
+    seed_donations()
     # Add other seed functions here
 
 # Creates the `flask seed undo` command
@@ -26,4 +28,5 @@ def undo():
     undo_categories()
     undo_projects()
     undo_cities()
+    undo_donations()
     # Add other undo functions here
