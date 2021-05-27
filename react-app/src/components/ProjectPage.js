@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import {useSelector} from 'react-redux'
 import { makeStyles } from "@material-ui/core/styles";
 import DonationForm from "./forms/DonationForm";
 import { Grid, Button } from "@material-ui/core";
@@ -41,6 +42,7 @@ const ProjectPage = () => {
     const [goalAmount, setGoalAmount] = useState(null);
     const [donatedAmount, setDonatedAmount] = useState(null);
     const [contributors, setContributors] = useState(0);
+    const user = useSelector((state) => state.session.user)
     const { projectId } = useParams();
     const classes = useStyles();
 
@@ -98,7 +100,8 @@ const ProjectPage = () => {
                     <Grid container item spacing={2} className={classes.grid} xs={12} id='projectNumbersContainer'>
                         <Grid container item spacing={2} className={classes.grid} xs={4} md={12} id='projectNumbersGrid'>
                             <Grid item xs={12} className={classes.tagline} id='projectNumbersGreen'>${donatedAmount}</Grid>
-                             <DonationForm project_id={projectId} />
+                             <DonationForm project_id={projectId} /><br/>
+                             {project?.user_id == user?.id && <Button>Update</Button>}
                             <Grid item xs={12} className={classes.tagline} id='projectNumbersRelations'>donated of ${goalAmount} goal</Grid>
                         </Grid>
                         <Grid container item spacing={2} className={classes.grid} xs={4} md={12} id='projectNumbersGrid'>

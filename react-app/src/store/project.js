@@ -40,6 +40,22 @@ export const createProject = (project) => async (dispatch) => {
   dispatch(create(data));
 };
 
+export const updateProject = (project) => async (dispatch) => {
+  const response = await fetch("/api/project", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(project),
+  });
+
+  const data = await response.json();
+  if (data.errors) {
+    return;
+  }
+  dispatch(create(data));
+};
+
 const initialState = {};
 
 const projectReducer = (state = initialState, action) => {

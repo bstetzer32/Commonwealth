@@ -9,19 +9,21 @@ export default function ProjectForm() {
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [goal, setGoal] = useState("");
-  const [image, setImage] = useState("");
+  const [image_url, setImage] = useState("");
   const [address_1, setAddress_1] = useState("");
   const [address_2, setAddress_2] = useState("");
   const [city, setCity] = useState("");
   const [st, setSt] = useState("");
   const [zipcode, setZipcode] = useState("");
   const [errors, setErrors] = useState({});
+  const [tagline, setTagline] = useState("");
 
   const dispatch = useDispatch();
   const history = useHistory();
 
   const updateTitle = (e) => setTitle(e.target.value);
   const updateCategory = (e) => setCategory(e.target.value);
+  const updateTagline = (e) => setTagline(e.target.value);
   const updateDescription = (e) => setDescription(e.target.value);
   const updateGoal = (e) => setGoal(e.target.value);
   const updateImage = (e) => setImage(e.target.value);
@@ -81,9 +83,10 @@ export default function ProjectForm() {
     const project = {
       title,
       category,
+      tagline,
       description,
       goal,
-      // image,
+      image_url,
       address_1,
       address_2,
       city,
@@ -124,6 +127,15 @@ export default function ProjectForm() {
           </div>
           <div className="projectForm__input--description projectForm__input">
             <label>
+              Tagline
+              {errors.description && (
+                <div className="projectForm__error">{errors.tagline}</div>
+              )}
+              <input value={tagline} onChange={updateTagline} />
+            </label>
+          </div>
+          <div className="projectForm__input--description projectForm__input">
+            <label>
               Description
               {errors.description && (
                 <div className="projectForm__error">{errors.description}</div>
@@ -149,7 +161,7 @@ export default function ProjectForm() {
           <div className="projectForm__input--image projectForm__input">
             <label>
               Image URL
-              <input value={image} onChange={updateImage} />
+              <input value={image_url} onChange={updateImage} />
             </label>
           </div>
           <div className="projectForm__input--address_1 projectForm__input">
@@ -220,3 +232,7 @@ export default function ProjectForm() {
     </div>
   );
 }
+
+
+
+  

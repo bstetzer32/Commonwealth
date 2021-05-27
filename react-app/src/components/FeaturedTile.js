@@ -35,7 +35,7 @@ const FeaturedTile = ({project}) => {
                 <Link to={`/projects/${project?.id}`} className={classes.link}>
                     <Typography gutterBottom variant="h5" component="h1">{project?.title}</Typography>
                 </Link>
-                <Typography variant="body2" color="textSecondary" component="p">{project?.description}</Typography>
+                <Typography variant="body2" color="textSecondary" component="p">{project?.tagline}</Typography>
                 <Box className={classes.info}>
                 <h3>by: {project?.user}</h3>
                 <h3>{((project?.amount_raised / project?.goal) * 100).toFixed(2)}% Funded</h3>
