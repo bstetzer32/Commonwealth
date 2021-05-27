@@ -5,13 +5,12 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@material-ui/core/Button";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {getDiscovery} from '../../../store/discovery'
-import ListItem from '@material-ui/core/ListItem'
-import DiscoverCities from './DiscoverCities'
+import { getDiscovery } from "../../../store/discovery";
+import ListItem from "@material-ui/core/ListItem";
+import DiscoverCities from "./DiscoverCities";
 
 const Discover = () => {
   const discovery = useSelector((state) => state.discovery);
-  console.log(discovery)
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState(null);
   const openMenu = (event) => {
@@ -20,9 +19,9 @@ const Discover = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  useEffect(()=>{
-    dispatch(getDiscovery())
-  }, [])
+  useEffect(() => {
+    dispatch(getDiscovery());
+  }, []);
 
   return (
     <>
@@ -38,11 +37,15 @@ const Discover = () => {
         PaperProps={{
           style: {
             maxHeight: 48 * 4.5,
-            width: '20ch',
+            width: "20ch",
           },
         }}
       >
-        {Array.from(discovery).map(state => <span key={state.id}><DiscoverCities  state={state}/></span>)}
+        {Array.from(discovery).map((state) => (
+          <span key={state.id}>
+            <DiscoverCities state={state} />
+          </span>
+        ))}
       </Menu>
     </>
   );

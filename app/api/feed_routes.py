@@ -7,7 +7,6 @@ feed_routes = Blueprint('feed', __name__)
 @feed_routes.route('/', methods=['POST'])
 def feed():
     data = request.json
-    print(request.json)
     type = data['type']
     id = int(data['id'])
     if type == 'home':

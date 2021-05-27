@@ -17,7 +17,6 @@ def validation_errors_to_error_messages(validation_errors):
 def add_donation():
     form = DonationForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print("---------------", form.data)
     amount = int(form.data['amount'])
 
     tier = 1
