@@ -18,7 +18,8 @@
   text-decoration: none;
   padding: 10%;
   height: 100%;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   font-size: 2em;
 }
 
@@ -50,7 +51,8 @@
   margin: 10px auto;
   padding: 20px;
   border-radius: 8px;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
 .projectForm fieldset {
@@ -68,8 +70,11 @@
   margin-bottom: 8px;
 }
 
-.projectForm input, .projectForm textarea, .projectForm select {
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+.projectForm input,
+.projectForm textarea,
+.projectForm select {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   background: rgba(255, 255, 255, 0.1);
   border: none;
   border-radius: 4px;
@@ -85,7 +90,9 @@
   margin-bottom: 30px;
 }
 
-.projectForm input:focus, .projectForm textarea:focus, .projectForm select:focus {
+.projectForm input:focus,
+.projectForm textarea:focus,
+.projectForm select:focus {
   background: #d2d9dd;
 }
 
@@ -130,7 +137,8 @@
   margin: 10px auto;
   padding: 20px;
   border-radius: 8px;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
 .signupForm fieldset {
@@ -148,8 +156,11 @@
   margin-bottom: 8px;
 }
 
-.signupForm input, .signupForm textarea, .signupForm select {
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+.signupForm input,
+.signupForm textarea,
+.signupForm select {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   background: rgba(255, 255, 255, 0.1);
   border: none;
   border-radius: 4px;
@@ -165,7 +176,9 @@
   margin-bottom: 30px;
 }
 
-.signupForm input:focus, .signupForm textarea:focus, .signupForm select:focus {
+.signupForm input:focus,
+.signupForm textarea:focus,
+.signupForm select:focus {
   background: #d2d9dd;
 }
 
@@ -203,7 +216,6 @@
 
 input[type="number"] {
   text-align: right;
-
 }
 
 /* Search Page Styling*/
@@ -273,7 +285,7 @@ input[type="number"] {
   justify-content: center;
 }
 .searchPage__project--scrollTile {
-  flex: 1 0 33%;
+  flex: 1 0 35%;
 }
 
 #projectDescription {
