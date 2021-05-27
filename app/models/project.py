@@ -11,6 +11,7 @@ class Project(db.Model):
     city_id = db.Column(db.Integer, db.ForeignKey("cities.id"))
     image_url = db.Column(db.String)
     title = db.Column(db.String(100), nullable=False)
+    tagline = db.Column(db.String)
     description = db.Column(db.String(2000), nullable=False)
     goal = db.Column(db.Integer, nullable=False)
     amount_raised = db.Column(db.Integer, default=0)
@@ -37,6 +38,7 @@ class Project(db.Model):
             "state_id": self.state_id,
             "city_id": self.city_id,
             "title": self.title,
+            "tagline": self.tagline,
             "description": self.description,
             "goal": self.goal,
             "amount_raised": self.amount_raised,
