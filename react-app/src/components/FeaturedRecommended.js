@@ -15,24 +15,28 @@ import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        display:"flex", 
+        display:"flex",
         width:"100%"
     },
     featured: {
-        width:"45%",  
+        width:"45%",
         margin:"5%"
     },
     recommended: {
-        width:"35%", 
+        width:"35%",
         margin:"5%" ,
-        display:"flex", 
+        display:"flex",
         flexDirection:"column"
     },
     arrows: {
-        display:"flex", 
-        justifyContent:"center", 
+        display:"flex",
+        justifyContent:"center",
         margin:"5%"
-    }
+    },
+    link: {
+        textDecoration: 'none',
+        color: "#0088ff"
+       }
 }))
 
 const FeaturedRecommended = () => {
@@ -61,7 +65,7 @@ const FeaturedRecommended = () => {
                 <FeaturedTile project={feed.featured_project}/>
             </Box>
             <Box className={classes.recommended}>
-                <Typography gutterBottom variant="h6" component="h1">Recomended Projects</Typography>
+                <Typography gutterBottom variant="h6" component="h1">Recommended Projects</Typography>
                 {tab === 0 && (<><RecomendedTile project={feed.recommended_projects[0]} />
                 <RecomendedTile project={feed.recommended_projects[1]}/>
                 <RecomendedTile project={feed.recommended_projects[2]}/></>)}
@@ -73,19 +77,19 @@ const FeaturedRecommended = () => {
                 <RecomendedTile project={feed.recommended_projects[8]}/></>)}
                 <Box className={classes.arrows}>
                     <Button onClick={tab !== 0 ? () => setTab(prevTab => prevTab -1) : null}>
-                        <ArrowBackIosIcon/>
+                        <ArrowBackIosIcon className={classes.link}/>
                     </Button>
                     <Button onClick={(e) => setTab(0)}>
-                        <Filter1Icon/>
+                        <Filter1Icon className={classes.link}/>
                     </Button>
                     <Button onClick={(e) => setTab(1)}>
-                        <Filter2Icon/>
+                        <Filter2Icon className={classes.link}/>
                     </Button>
                     <Button onClick={(e) => setTab(2)}>
-                        <Filter3Icon/>
+                        <Filter3Icon className={classes.link}/>
                     </Button>
                     <Button onClick={tab !== 2 ? () => setTab(prevTab => prevTab +1) : null}>
-                        <ArrowForwardIosIcon/>
+                        <ArrowForwardIosIcon className={classes.link}/>
                     </Button>
                 </Box>
             </Box>

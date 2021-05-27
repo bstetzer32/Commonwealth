@@ -288,16 +288,64 @@ input[type="number"] {
   flex: 1 0 35%;
 }
 
-/*Project Page */
+#projectDescription {
+  display: flex;
+  align-content: flex-start;
+  justify-content: center;
+  font-size: 18px;
+}
 
-#projectTitle {
+#projectDescriptionGrid {
+  margin-top: 20px;
+}
+
+#projectInfoGrid{
+  display: flex;
+  align-items: flex-start;
+}
+
+#projectLocation {
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  font-size: 20px;
+}
+
+#projectNumbersBig {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 22px;
+  font-weight: 700;
+  color: rgb(27, 185, 27)
+}
+
+#projectNumbers {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 22px;
+  font-weight: 700
+}
+
+#projectNumbersRelations {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  font-size: 18px
 }
 
 #projectTagline {
   display: flex;
   justify-content: center;
   font-size: 20px;
+}
+
+#projectTitle {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+#projectTitleGrid {
+  margin-bottom: 8px;
 }

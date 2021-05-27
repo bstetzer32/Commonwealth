@@ -6,11 +6,12 @@ import Button from "@material-ui/core/Button";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {getDiscovery} from '../../../store/discovery'
-
-
+import ListItem from '@material-ui/core/ListItem'
+import DiscoverCities from './DiscoverCities'
 
 const Discover = () => {
   const discovery = useSelector((state) => state.discovery);
+  console.log(discovery)
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState(null);
   const openMenu = (event) => {
@@ -41,7 +42,7 @@ const Discover = () => {
           },
         }}
       >
-        {Array.from(discovery).map(state => <MenuItem onClick={handleClose} key={state.id}>{state.name}</MenuItem>)}
+        {Array.from(discovery).map(state => <span key={state.id}><DiscoverCities  state={state}/></span>)}
       </Menu>
     </>
   );
