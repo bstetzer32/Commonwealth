@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
+import DonationForm from "./forms/DonationForm";
 import { Grid, Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -43,21 +44,21 @@ const ProjectPage = () => {
     const { projectId } = useParams();
     const classes = useStyles();
 
-    const formatNumber = (goal) => {
-        const goalAmount = goal.toString()
-        let count = 1;
-        let result = [];
-        for(let i = goalAmount.length -1; i >=0; i--) {
-            console.log(goalAmount[i])
-            result.unshift(goalAmount[i]);
-            if(count === 3) {
-                result.unshift(',');
-                count = 0;
-            }
-            count ++
-        }
-        return result.join('');
+  const formatNumber = (goal) => {
+    const goalAmount = goal.toString();
+    let count = 1;
+    let result = [];
+    for (let i = goalAmount.length - 1; i >= 0; i--) {
+      console.log(goalAmount[i]);
+      result.unshift(goalAmount[i]);
+      if (count === 3) {
+        result.unshift(",");
+        count = 0;
+      }
+      count++;
     }
+    return result.join("");
+  };
 
     useEffect(() => {
         if (!projectId) {
@@ -76,9 +77,9 @@ const ProjectPage = () => {
     }, [projectId]);
 
     if (!project) {
-        return null;
+        return null
     }
-
+    
     return (
         <>
             <Grid container spacing={2} className={classes.grid} id='projectTitleGrid'>
@@ -97,6 +98,7 @@ const ProjectPage = () => {
                     <Grid container item spacing={2} className={classes.grid} xs={12} id='projectNumbersContainer'>
                         <Grid container item spacing={2} className={classes.grid} xs={4} md={12} id='projectNumbersGrid'>
                             <Grid item xs={12} className={classes.tagline} id='projectNumbersGreen'>${donatedAmount}</Grid>
+                             <DonationForm project_id={projectId} />
                             <Grid item xs={12} className={classes.tagline} id='projectNumbersRelations'>donated of ${goalAmount} goal</Grid>
                         </Grid>
                         <Grid container item spacing={2} className={classes.grid} xs={4} md={12} id='projectNumbersGrid'>
@@ -130,11 +132,11 @@ const ProjectPage = () => {
                     </Grid>
                 </Grid>
                 <Grid container>
-
+                  
                 </Grid>
-            </Grid>
-        </>
-    );
-}
+          </Grid>
+    </>
+  );
+};
 
-export default ProjectPage
+export default ProjectPage;

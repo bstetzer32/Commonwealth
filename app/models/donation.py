@@ -23,3 +23,13 @@ class Donation(db.Model):
             "user": self.user,
             "project": self.project
         }
+
+    def to_simple_dict(self):
+        return{
+            "id": self.id,
+            "user_id": self.user_id,
+            "project_id": self.project_id,
+            "amount": self.amount,
+            "tier": self.tier,
+        }
+
