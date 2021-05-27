@@ -82,7 +82,7 @@ def update_project():
     data = request.json
     project = Project.query.get(int(data['id']))
     if form.validate_on_submit() and project.user_id == int(data['user_id']):
-        project.image_url = form.data['image_url']  
+        project.image_url = form.data['image_url']
         project.title = form.data['title']
         project.tagline = form.data['tagline']
         project.description = form.data['description']
@@ -91,6 +91,12 @@ def update_project():
         db.session.commit()
     return project.to_dict()
 
+@project_routes.route('/<int:id>', methods=["DELETE"])
+def delete_project(id):
+    project = Project.query.get(id)
+    db.session.delete(project)
+    db.session.commit()
+    return {}
 
 @project_routes.route('/<int:id>/donations')
 def get_project_donations(id):

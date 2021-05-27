@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import {useSelector} from 'react-redux'
+import { useParams, useHistory, Link } from "react-router-dom";
+import {useSelector, useDispatch} from 'react-redux'
 import { makeStyles } from "@material-ui/core/styles";
 import DonationForm from "./forms/DonationForm";
 import { Grid, Button } from "@material-ui/core";
+import {deleteProject} from '../store/project'
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 const useStyles = makeStyles((theme) => ({
     title: {
@@ -42,6 +48,9 @@ const ProjectPage = () => {
     const [goalAmount, setGoalAmount] = useState(null);
     const [donatedAmount, setDonatedAmount] = useState(null);
     const [contributors, setContributors] = useState(0);
+    const [open, setOpen] = useState(false);
+    const dispatch = useDispatch()
+    const history = useHistory()
     const user = useSelector((state) => state.session.user)
     const { projectId } = useParams();
     const classes = useStyles();
@@ -81,7 +90,19 @@ const ProjectPage = () => {
     if (!project) {
         return null
     }
-    
+
+
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+
+    const handleClose = () => {
+      setOpen(false);
+    };
+    const deleteAProject = async () => {
+        await dispatch(deleteProject(projectId))
+        history.push('/')
+    }
     return (
         <>
             <Grid container spacing={2} className={classes.grid} id='projectTitleGrid'>
@@ -101,7 +122,31 @@ const ProjectPage = () => {
                         <Grid container item spacing={2} className={classes.grid} xs={4} md={12} id='projectNumbersGrid'>
                             <Grid item xs={12} className={classes.tagline} id='projectNumbersGreen'>${donatedAmount}</Grid>
                              <DonationForm project_id={projectId} /><br/>
-                             {project?.user_id == user?.id && <Button>Update</Button>}
+                             {project?.user_id == user?.id && <Link to={`/projects/${project.id}/update`}><Button>Update</Button></Link>}
+                             {project?.user_id == user?.id && <> <Button variant="outlined" color="primary" onClick={handleClickOpen}> Delete Project</Button>
+                             <Dialog
+                                    open={open}
+                                    onClose={handleClose}
+                                    aria-labelledby="alert-dialog-title"
+                                    aria-describedby="alert-dialog-description"
+                                >
+                                    <DialogTitle id="alert-dialog-title">{"Delete your project?"}</DialogTitle>
+                                    <DialogContent>
+                                    <DialogContentText id="alert-dialog-description">
+                                        Are you sure you want to delete your project? All donated funds will be returned to the donaters. This process is irreversible.
+                                    </DialogContentText>
+                                    </DialogContent>
+                                    <DialogActions>
+                                    <Button onClick={handleClose} color="primary">
+                                        Cancel
+                                    </Button>
+                                    <Button onClick={deleteAProject} color="primary" autoFocus>
+                                        Delete
+                                    </Button>
+                                    </DialogActions>
+                                </Dialog>
+                                </>}
+
                             <Grid item xs={12} className={classes.tagline} id='projectNumbersRelations'>donated of ${goalAmount} goal</Grid>
                         </Grid>
                         <Grid container item spacing={2} className={classes.grid} xs={4} md={12} id='projectNumbersGrid'>
@@ -135,7 +180,7 @@ const ProjectPage = () => {
                     </Grid>
                 </Grid>
                 <Grid container>
-                  
+
                 </Grid>
           </Grid>
     </>
