@@ -55,13 +55,13 @@ us_state_abbrev = {
     'WY': 'Wyoming',
 }
 def addresses():
-    f = open("/Users/bstetzer/Desktop/Group Project/app/utils/addresses.json", "r")
+    f = open("/home/chuks/Group-Project/app/utils/addresses.json", "r")
     data = json.load(f)
     locations = []
     # for location in data["addresses"][1:XXX]:
     for location in data["addresses"]:
         if "city" in location.keys():
-            if location['state'] is not 'DC':
+            if location['state'] != 'DC':
                 x = {
                     "address_1": location['address1'],
                     "address_2": location['address2'],
