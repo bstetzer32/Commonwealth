@@ -17,8 +17,8 @@ def feed():
             Project.created_at.desc()
         ).offset(10).limit(20)
         projects_old = Project.query.order_by(
-            Project.created_at
-        ).offset(10).limit(20)
+            Project.created_at.asc()
+        ).limit(20)
     elif type == 'category':
         projects = Project.query.filter(Project.category_id == id).order_by(
             Project.amount_raised.desc()
@@ -27,18 +27,18 @@ def feed():
             Project.created_at.desc()
         ).offset(10).limit(20)
         projects_old = Project.query.filter(Project.category_id == id).order_by(
-            Project.created_at
-        ).offset(10).limit(20)
+            Project.created_at.asc()
+        ).limit(20)
     elif type == 'region':
         projects = Project.query.filter(Project.city_id == id).order_by(
             Project.amount_raised.desc()
         ).limit(10)
         projects_new = Project.query.filter(Project.city_id == id).order_by(
             Project.created_at.desc()
-        ).offset(10).limit(20)
+        ).limit(20)
         projects_old = Project.query.filter(Project.city_id == id).order_by(
-            Project.created_at
-        ).offset(10).limit(20)
+            Project.created_at.asc()
+        ).limit(20)
     projects = [project.to_dict() for project in projects]
     projects_new = [project.to_dict() for project in projects_new]
     projects_old = [project.to_dict() for project in projects_old]
