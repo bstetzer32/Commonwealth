@@ -1,70 +1,101 @@
-import React, { useEffect, useState} from 'react'
+import React, { useEffect, useState } from "react";
 import LogoutButton from "../../auth/LogoutButton";
-import DehazeIcon from '@material-ui/icons/Dehaze';
-import Menu from "@material-ui/core/Menu"
-import MenuItem from '@material-ui/core/MenuItem'
+import DehazeIcon from "@material-ui/icons/Dehaze";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@material-ui/core/Button";
 import { NavLink } from "react-router-dom";
-import { authenticate } from "../../../services/auth.js"
+import { authenticate } from "../../../services/auth.js";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  button: {
+    textDecoration: "none",
+    color: "#fff",
+  },
+}));
 
 const LoginMenu = () => {
-  const [loggedIn, setLoggedIn] = useState(null)
-  const [anchorEl, setAnchorEl] = useState(null)
-
-  const openMenu = event => {
-    setAnchorEl(event.currentTarget)
-  }
+  const [loggedIn, setLoggedIn] = useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const classes = useStyles();
+  const openMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
 
   const handleClose = () => {
-    setAnchorEl(null)
-  }
+    setAnchorEl(null);
+  };
 
   useEffect(() => {
     let res;
     (async () => {
       res = await authenticate();
-      if(res.id) {
-        setLoggedIn(true)
+      if (res.id) {
+        setLoggedIn(true);
       }
     })();
-  })
+  });
 
   if (loggedIn) {
     return (
       <>
-        <Button onClick={openMenu}><DehazeIcon /></Button>
-        <Menu keepMounted anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
-          <MenuItem onClick={()=> {setLoggedIn(false);
-            setAnchorEl(null)}}>
-            <LogoutButton/>
+        <Button onClick={openMenu}>
+          <DehazeIcon />
+        </Button>
+        <Menu
+          keepMounted
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+        >
+          <MenuItem
+            onClick={() => {
+              setLoggedIn(false);
+              setAnchorEl(null);
+            }}
+          >
+            <LogoutButton />
           </MenuItem>
         </Menu>
       </>
-    )
+    );
   }
 
   return (
     <>
-      <Button onClick={openMenu}><DehazeIcon /></Button>
-      <Menu keepMounted anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
+      <Button onClick={openMenu}>
+        <DehazeIcon />
+      </Button>
+      <Menu
+        keepMounted
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
         <MenuItem>
-          <NavLink to="/login" exact={true} activeClassName="active">
-            <Button>
-            Login
-            </Button>
+          <NavLink
+            to="/login"
+            exact={true}
+            activeClassName="active"
+            className="login__button"
+          >
+            <Button className={classes.button}>Login</Button>
           </NavLink>
         </MenuItem>
         <MenuItem>
-          <NavLink to="/sign-up" exact={true} activeClassName="active">
-            <Button>
-            Sign Up
-            </Button>
+          <NavLink
+            to="/sign-up"
+            exact={true}
+            activeClassName="active"
+            className="signup__button"
+          >
+            <Button className={classes.button}>Sign Up</Button>
           </NavLink>
         </MenuItem>
       </Menu>
     </>
-  )
-}
+  );
+};
 
-
-export default LoginMenu
+export default LoginMenu;
