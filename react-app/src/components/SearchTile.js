@@ -64,8 +64,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     objectFit: "cover",
   },
-    funded: {
-      
+  funded: {
     display: "flex",
     justifyContent: "flex-end",
     alignItems: "center",
@@ -73,8 +72,8 @@ const useStyles = makeStyles((theme) => ({
     margin: "0",
     padding: ".25em",
     fontSize: "1em",
-        color: "#19B419"
-    }
+    color: "#19B419",
+  },
 }));
 
 const SearchTile = ({ project }) => {
@@ -101,7 +100,7 @@ const SearchTile = ({ project }) => {
               color="textSecondary"
               component="p"
             >
-              Tagline!
+              {project.tagline}
             </Typography>
           </CardContent>
         </CardActionArea>
