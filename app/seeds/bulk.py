@@ -66,3 +66,4 @@ def undo_bulk():
     db.session.execute('TRUNCATE cities RESTART IDENTITY CASCADE;')
     db.session.execute('TRUNCATE users RESTART IDENTITY CASCADE;')
     db.session.execute('TRUNCATE projects RESTART IDENTITY CASCADE;')
+    db.session.commit()
