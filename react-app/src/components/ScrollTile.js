@@ -65,7 +65,7 @@ const ScrollTile = ({ project }) => {
                             </Link>
                             <Typography variant="body2" color="textSecondary" component="p">{project?.tagline}</Typography>
                             <Box  className={classes.info}>
-                                <h3>by: {project?.user}</h3>
+                                <h3>by: {project?.user.fullname}</h3>
                                 <h3 className={classes.funded}>{((project?.amount_raised / project?.goal) * 100).toFixed(2)}% Funded</h3>
                             </Box>
                         </CardContent>
