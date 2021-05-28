@@ -28,6 +28,7 @@ class Donation(db.Model):
         return{
             "id": self.id,
             "user_id": self.user_id,
+            "user_fullname": self.user.fullname,
             "project_id": self.project_id,
             "amount": self.amount,
             "tier": self.tier,
