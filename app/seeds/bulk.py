@@ -175,7 +175,7 @@ def seed_bulk():
                 username=(users[i]['username'] + str(j))).first()
             project = Project(
                 user_id=user.id,
-                category_id=(i % 3) + 1,
+                category_id=(i % 9) + 1,
                 state_id=states[addresses[j]['state']]['id'],
                 city_id=cities[addresses[j]['city']]['id'],
                 image_url=projects[i]['image_url'],
@@ -217,9 +217,14 @@ def seed_bulk():
                 elif amount > 500:
                     tier = 6
 
+                project_dict = project_id.to_dict()
+                newAmount = int(project_dict['amount_raised']) + amount
+                project_id.amount_raised = newAmount
+                db.session.add(project_id)
+
                 donation = Donation(
                     user_id=random.randint(1, userCount),
-                    project_id=project_id,
+                    project_id=project_id.id,
                     amount=amount,
                     tier=tier
                 )

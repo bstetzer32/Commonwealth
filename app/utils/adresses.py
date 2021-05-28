@@ -54,8 +54,10 @@ us_state_abbrev = {
     'WI': 'Wisconsin',
     'WY': 'Wyoming',
 }
+
+
 def addresses():
-    f = open("/home/chuks/Group-Project/app/utils/addresses.json", "r")
+    f = open("/Users/Josh/Desktop/App_Academy/Module-6/group-project-commonwealth/Commonwealth/app/utils/addresses.json", "r")
     data = json.load(f)
     locations = []
     # for location in data["addresses"][1:XXX]:
@@ -74,6 +76,8 @@ def addresses():
                 if x not in locations:
                     locations.append(x)
     return locations
+
+
 print(addresses())
 
 # locations = [{
