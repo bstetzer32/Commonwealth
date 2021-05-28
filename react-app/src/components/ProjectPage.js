@@ -254,13 +254,13 @@ const ProjectPage = () => {
             <DonationForm project_id={projectId} />
           </div>
           {project?.user_id === user?.id && (
-            <div className="projectPage__updateButton">
+            <div className="projectPage__update">
               <Link id="update__link" to={`/projects/${project.id}/update`}>
-                <Button id="projectPage__update">Update</Button>
+                <Button id="projectPage__updateButton">Update</Button>
               </Link>
             </div>
           )}
-          <div>
+          <div className="projectPage__delete">
             {project?.user_id === user?.id && (
               <>
                 {" "}
@@ -268,6 +268,7 @@ const ProjectPage = () => {
                   variant="outlined"
                   color="primary"
                   onClick={handleClickOpen}
+                  id="projectPage__deleteButton"
                 >
                   {" "}
                   Delete Project
