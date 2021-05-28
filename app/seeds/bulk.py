@@ -54,7 +54,9 @@ def seed_bulk():
                 address_2=address['address_2'],
                 city=address['city'],
                 state=address['state'],
-                zipcode=address['zipcode']
+                zipcode=address['zipcode'],
+                # lat=address['lat'],
+                # lng=address['lng'],
             )
             db.session.add(project)
     db.session.commit()
