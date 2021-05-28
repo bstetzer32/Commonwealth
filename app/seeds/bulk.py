@@ -1,5 +1,7 @@
-from ..models import db, Project, Category, City, State, User
+from ..models import db, Project, Category, City, State, User, Donation
 from ..utils.adresses import addresses as read_addresses
+import random
+
 addresses = read_addresses()
 users = [
     {
@@ -52,7 +54,7 @@ users = [
         "email": "email10@email.com",
         "fullname": "Brad Simpson",
         "password": "password10"},
-    ]
+]
 projects = [
     {
         'image_url': 'https://i.imgur.com/sahOuiB.jpg',
@@ -138,7 +140,7 @@ projects = [
 
 def seed_bulk():
     states = State.query.all()
-    states = {state.name:state.to_dict() for state in states}
+    states = {state.name: state.to_dict() for state in states}
     cities = []
     for city in addresses:
         if city['city'] not in cities:
@@ -151,7 +153,7 @@ def seed_bulk():
             db.session.add(city)
     db.session.commit()
     cities = City.query.all()
-    cities = {city.name:city.to_dict() for city in cities}
+    cities = {city.name: city.to_dict() for city in cities}
     for j in range(len(addresses)):
         for i in range(10):
             user = User(
@@ -173,7 +175,7 @@ def seed_bulk():
                 username=(users[i]['username'] + str(j))).first()
             project = Project(
                 user_id=user.id,
-                category_id=(i%3) + 1,
+                category_id=(i % 3) + 1,
                 state_id=states[addresses[j]['state']]['id'],
                 city_id=cities[addresses[j]['city']]['id'],
                 image_url=projects[i]['image_url'],
@@ -194,7 +196,37 @@ def seed_bulk():
                 # lng=address['lng'],
             )
             db.session.add(project)
-            db.session.commit() 
+            db.session.commit()
+
+            userCount = User.query.count()
+            project_id = Project.query.order_by(Project.id.desc()).first()
+
+            i = 0
+            while i < 3:
+
+                amount = random.randint(1, 1000)
+                tier = 1
+                if amount > 10 and amount < 20:
+                    tier = 2
+                elif amount > 20 and amount < 50:
+                    tier = 3
+                elif amount > 50 and amount < 100:
+                    tier = 4
+                elif amount > 100 and amount < 500:
+                    tier = 5
+                elif amount > 500:
+                    tier = 6
+
+                donation = Donation(
+                    user_id=random.randint(1, userCount),
+                    project_id=project_id,
+                    amount=amount,
+                    tier=tier
+                )
+                db.session.add(donation)
+                db.session.commit()
+
+                i += 1
 
 
 def undo_bulk():
