@@ -1,8 +1,20 @@
+from faker import Faker
+fake = Faker()
+Faker.seed(0)
 from werkzeug.security import generate_password_hash
 from app.models import db, User
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
+
+    for _ in range(100):
+        address = fake.address()
+        location = {
+            "address_1": address.split("\n")[0],
+            "city": address.split("\n")[1].split(', ')[0],
+            "state": address.split(', ')[1].split()[0],
+            "zipcode": address.split(', ')[1].split()[1]
+            }
 
     demo = User(
         username='Demo',
