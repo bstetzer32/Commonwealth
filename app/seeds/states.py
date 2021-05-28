@@ -9,7 +9,7 @@ def seed_states():
   Colorado = State(name="Colorado")
   Connecticut = State(name="Connecticut")
   Delaware = State(name="Delaware")
-  DistrictOfColumbia = State(name="District of Columbia (Capitol)")
+  DistrictOfColumbia = State(name="District of Columbia")
   Florida = State(name="Florida")
   Georgia = State(name="Georgia")
   Hawaii = State(name="Hawaii")

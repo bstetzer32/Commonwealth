@@ -360,6 +360,7 @@ def seed_users():
     db.session.add(Caroline)
     db.session.add(Dalton)
     db.session.add(Ricky)
+    db.session.add(Rachel)
     db.session.add(Wai)
     db.session.add(Deloise)
     db.session.add(Britany)

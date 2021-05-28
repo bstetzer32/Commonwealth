@@ -1,46 +1,181 @@
 from ..models import db, Project, Category, City, State, User
 from ..utils.adresses import addresses as read_addresses
 addresses = read_addresses()
-projects = []
-users = []
+users = [
+    {
+        "username": "username1",
+        "email": "email1@email.com",
+        "fullname": "Bob Barker",
+        "password": "password1"},
+    {
+        "username": "username2",
+        "email": "email2@email.com",
+        "fullname": "Payton Manning",
+        "password": "password2"},
+    {
+        "username": "username3",
+        "email": "email3@email.com",
+        "fullname": "Tim Tebow",
+        "password": "password3"},
+    {
+        "username": "username4",
+        "email": "email4@email.com",
+        "fullname": "Kevin Durant",
+        "password": "password4"},
+    {
+        "username": "username5",
+        "email": "email5@email.com",
+        "fullname": "Lionel Messi",
+        "password": "password5"},
+    {
+        "username": "username6",
+        "email": "email6@email.com",
+        "fullname": "Kristen Stewart",
+        "password": "password6"},
+    {
+        "username": "username7",
+        "email": "email7@email.com",
+        "fullname": "Kanye West",
+        "password": "password7"},
+    {
+        "username": "username8",
+        "email": "email8@email.com",
+        "fullname": "Joey Diaz",
+        "password": "password8"},
+    {
+        "username": "username9",
+        "email": "email9@email.com",
+        "fullname": "Adam West",
+        "password": "password9"},
+    {
+        "username": "username10",
+        "email": "email10@email.com",
+        "fullname": "Brad Simpson",
+        "password": "password10"},
+    ]
+projects = [
+    {
+        'image_url': 'https://i.imgur.com/sahOuiB.jpg',
+        'title': 'Test Test Test',
+        'tagline': 'Would not it be great if this worked?',
+        'description': 'Would not it be great if this worked? Would not it be great if this worked? Would not it be great if this worked? Would not it be great if this worked?',
+        'goal': 10000,
+        'amount_raised': 1000,
+    },
+    {
+        'image_url': 'https://i.imgur.com/sahOuiB.jpg',
+        'title': 'Test Test Test',
+        'tagline': 'Would not it be great if this worked?',
+        'description': 'Would not it be great if this worked? Would not it be great if this worked? Would not it be great if this worked? Would not it be great if this worked?',
+        'goal': 10000,
+        'amount_raised': 1000,
+    },
+    {
+        'image_url': 'https://i.imgur.com/sahOuiB.jpg',
+        'title': 'Test Test Test',
+        'tagline': 'Would not it be great if this worked?',
+        'description': 'Would not it be great if this worked? Would not it be great if this worked? Would not it be great if this worked? Would not it be great if this worked?',
+        'goal': 10000,
+        'amount_raised': 1000,
+    },
+    {
+        'image_url': 'https://i.imgur.com/sahOuiB.jpg',
+        'title': 'Test Test Test',
+        'tagline': 'Would not it be great if this worked?',
+        'description': 'Would not it be great if this worked? Would not it be great if this worked? Would not it be great if this worked? Would not it be great if this worked?',
+        'goal': 10000,
+        'amount_raised': 1000,
+    },
+    {
+        'image_url': 'https://i.imgur.com/sahOuiB.jpg',
+        'title': 'Test Test Test',
+        'tagline': 'Would not it be great if this worked?',
+        'description': 'Would not it be great if this worked? Would not it be great if this worked? Would not it be great if this worked? Would not it be great if this worked?',
+        'goal': 10000,
+        'amount_raised': 1000,
+    },
+    {
+        'image_url': 'https://i.imgur.com/sahOuiB.jpg',
+        'title': 'Test Test Test',
+        'tagline': 'Would not it be great if this worked?',
+        'description': 'Would not it be great if this worked? Would not it be great if this worked? Would not it be great if this worked? Would not it be great if this worked?',
+        'goal': 10000,
+        'amount_raised': 1000,
+    },
+    {
+        'image_url': 'https://i.imgur.com/sahOuiB.jpg',
+        'title': 'Test Test Test',
+        'tagline': 'Would not it be great if this worked?',
+        'description': 'Would not it be great if this worked? Would not it be great if this worked? Would not it be great if this worked? Would not it be great if this worked?',
+        'goal': 10000,
+        'amount_raised': 1000,
+    },
+    {
+        'image_url': 'https://i.imgur.com/sahOuiB.jpg',
+        'title': 'Test Test Test',
+        'tagline': 'Would not it be great if this worked?',
+        'description': 'Would not it be great if this worked? Would not it be great if this worked? Would not it be great if this worked? Would not it be great if this worked?',
+        'goal': 10000,
+        'amount_raised': 1000,
+    },
+    {
+        'image_url': 'https://i.imgur.com/sahOuiB.jpg',
+        'title': 'Test Test Test',
+        'tagline': 'Would not it be great if this worked?',
+        'description': 'Would not it be great if this worked? Would not it be great if this worked? Would not it be great if this worked? Would not it be great if this worked?',
+        'goal': 10000,
+        'amount_raised': 1000,
+    },
+    {
+        'image_url': 'https://i.imgur.com/sahOuiB.jpg',
+        'title': 'Test Test Test',
+        'tagline': 'Would not it be great if this worked?',
+        'description': 'Would not it be great if this worked? Would not it be great if this worked? Would not it be great if this worked? Would not it be great if this worked?',
+        'goal': 10000,
+        'amount_raised': 1000,
+    }]
+
 
 def seed_bulk():
     states = State.query.all()
+    states = {state.name:state.to_dict() for state in states}
     cities = []
     for city in addresses:
         if city['city'] not in cities:
+            # state = states.
             cities.append(city['city'])
             city = City(
                 name=city['city'],
-                state_id=states[city['state']].id,
+                state_id=states[city['state']]['id'],
             )
             db.session.add(city)
-    db.session.commit
+    db.session.commit()
     cities = City.query.all()
-    for address, j in addresses:
-        for i in range(9):
+    cities = {city.name:city.to_dict() for city in cities}
+    for j in range(len(addresses)):
+        for i in range(10):
             user = User(
-                username=users[i]['username'] + j,
-                email=users[i]['email'],
+                username=users[i]['username'] + str(j),
+                email=str(j) + users[i]['email'],
                 fullname=users[i]['fullname'],
                 password=users[i]['password'],
-                address_1=address['address_1'],
-                address_2=address['address_2'],
-                city=address['city'],
-                state=address['state'],
-                zipcode=address['zipcode'],
-                city_id=cities[address['city']].id,
-                state_id=states[address['state']].id,
+                address_1=addresses[j]['address_1'],
+                address_2=addresses[j]['address_2'],
+                city=addresses[j]['city'],
+                state=addresses[j]['state'],
+                zipcode=addresses[j]['zipcode'],
+                city_id=cities[addresses[j]['city']]['id'],
+                state_id=states[addresses[j]['state']]['id'],
             )
             db.session.add(user)
             db.session.commit()
             user = User.query.filter_by(
-                User.username == (users[i]['username'] + j))
+                username=(users[i]['username'] + str(j))).first()
             project = Project(
                 user_id=user.id,
-                category_id=i%3,
-                state_id=states[address['state']].id,
-                city_id=cities[address['city']].id,
+                category_id=(i%3) + 1,
+                state_id=states[addresses[j]['state']]['id'],
+                city_id=cities[addresses[j]['city']]['id'],
                 image_url=projects[i]['image_url'],
                 title=projects[i]['title'],
                 tagline=projects[i]['tagline'],
@@ -50,16 +185,16 @@ def seed_bulk():
                 amount_raised=projects[i]['amount_raised'],
                 # amount_raised=(j % 1000) * (10 * i),
                 status="Not completed",
-                address_1=address['address_1'],
-                address_2=address['address_2'],
-                city=address['city'],
-                state=address['state'],
-                zipcode=address['zipcode'],
+                address_1=addresses[j]['address_1'],
+                address_2=addresses[j]['address_2'],
+                city=addresses[j]['city'],
+                state=addresses[j]['state'],
+                zipcode=addresses[j]['zipcode'],
                 # lat=address['lat'],
                 # lng=address['lng'],
             )
             db.session.add(project)
-    db.session.commit()
+            db.session.commit() 
 
 
 def undo_bulk():
