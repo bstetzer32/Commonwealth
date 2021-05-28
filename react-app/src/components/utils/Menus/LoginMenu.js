@@ -7,6 +7,8 @@ import Button from "@material-ui/core/Button";
 import { NavLink } from "react-router-dom";
 import { authenticate } from "../../../services/auth.js";
 import { makeStyles } from "@material-ui/core/styles";
+import { login } from "../../../store/session";
+import { useDispatch } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -18,13 +20,22 @@ const useStyles = makeStyles((theme) => ({
 const LoginMenu = () => {
   const [loggedIn, setLoggedIn] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
+  const dispatch = useDispatch();
   const classes = useStyles();
+
   const openMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleDemo = async (e) => {
+    e.preventDefault();
+    let email = "demo@aa.io";
+    let password = "password";
+    await dispatch(login(email, password));
   };
 
   useEffect(() => {
@@ -61,7 +72,6 @@ const LoginMenu = () => {
       </>
     );
   }
-
   return (
     <>
       <Button onClick={openMenu}>
@@ -91,6 +101,23 @@ const LoginMenu = () => {
             className="signup__button"
           >
             <Button className={classes.button}>Sign Up</Button>
+          </NavLink>
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            setLoggedIn(false);
+            setAnchorEl(null);
+          }}
+        >
+          <NavLink
+            to="/"
+            exact={true}
+            activeClassName="active"
+            className="signup__button"
+          >
+            <Button className={classes.button} onClick={handleDemo}>
+              Demo
+            </Button>
           </NavLink>
         </MenuItem>
       </Menu>
