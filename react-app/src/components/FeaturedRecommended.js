@@ -11,11 +11,28 @@ import RecomendedTile from './RecommendedTile'
 import FeaturedTile from './FeaturedTile'
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import json2mq from 'json2mq';
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 const useStyles = makeStyles((theme) => ({
     root: {
         display:"flex",
         width:"100%"
+    },
+    rootMobile: {
+        display: "flex",
+        flexDirection: "column",
+        width: "100%"
+    },
+    featuredMobile: {
+        width:"90%",
+        margin:"5%"
+    },
+    recommendedMobile: {
+        width:"90%",
+        margin:"5%" ,
+        display:"flex",
+        flexDirection:"column"
     },
     featured: {
         width:"45%",
@@ -35,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     link: {
         textDecoration: 'none',
         color: "#0088ff"
-       }
+    }
 }))
 
 const FeaturedRecommended = () => {
@@ -43,16 +60,19 @@ const FeaturedRecommended = () => {
     const classes = useStyles();
     const [tab, setTab] = useState(0);
 
-
-
+    const matches = useMediaQuery(
+        json2mq({
+          minWidth: 800,
+        }),
+    );
 
     return (
-        <Box className={classes.root}>
-            <Box className={classes.featured}>
+        <Box className={matches ? classes.root : classes.rootMobile}>
+            <Box className={matches ? classes.featured : classes.featuredMobile}>
                 <Typography gutterBottom variant="h6" component="h1">Featured Project</Typography>
                 {feed.featured_project && <FeaturedTile project={feed.featured_project}/>}
             </Box>
-            <Box className={classes.recommended}>
+            <Box className={matches ? classes.recommended : classes.recommendedMobile}>
                 <Typography gutterBottom variant="h6" component="h1">Recommended Projects</Typography>
                 {tab === 0 && (<>{feed.recommended_projects[0] && <RecomendedTile project={feed.recommended_projects[0]} />}
                 {feed.recommended_projects[1] && <RecomendedTile project={feed.recommended_projects[1]}/>}

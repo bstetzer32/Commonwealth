@@ -7,6 +7,8 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
+import json2mq from 'json2mq';
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -15,12 +17,18 @@ const useStyles = makeStyles((theme) => ({
         maxHeight:"100%",
         margin:"2.5%"
     },
+    rootMobile: {
+        minWidth:"60%",
+        maxWidth:"60%",
+        maxHeight:"100%",
+        margin:"2.5%"
+    },
     card: {
         minHeight:"100%",
         maxHeight:"100%",
     },
     info: {
-        display:"flex", 
+        display:"flex",
         justifyContent:"space-between"
     },
     image: {
@@ -39,8 +47,15 @@ const useStyles = makeStyles((theme) => ({
 
 const ScrollTile = ({ project }) => {
   const classes = useStyles();
+
+  const matches = useMediaQuery(
+    json2mq({
+      minWidth: 800,
+    }),
+);
+
     return (
-            <Box className={classes.root}>
+            <Box className={matches ? classes.root : classes.rootMobile}>
                 <Card className={classes.card}>
                     <CardActionArea>
                         <CardMedia image={project?.image_url} component="img" title='title' className={classes.image}/>
