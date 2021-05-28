@@ -30,7 +30,7 @@ Live Site: [commonwealth](https://github.com/bstetzer32/Commonwealth/wiki)
 
 ## Backend Query to search database conditionally by category, and/or city, and/or state, and/or title
 
-        ```
+```
             if (category):
         if (state):
             if (city):
@@ -63,11 +63,11 @@ Live Site: [commonwealth](https://github.com/bstetzer32/Commonwealth/wiki)
             ).all()
             return {'projects': [project.to_dict() for project in projects]}
 
-        ```
+```
 
 ### Utilizing USPS API to verify address when creating project, and if city isn't in the database, will add it
 
-        ```
+```
         def create_project():
     form = ProjectForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -91,7 +91,7 @@ Live Site: [commonwealth](https://github.com/bstetzer32/Commonwealth/wiki)
     category = Category.query.filter_by(name=form.data['category']).first()
     city = City.query.filter_by(name=form.data['city']).first()
 
-        ```
+```
 
 ![demo-gif](https://i.gyazo.com/1e5130a31889654c65e3bfcdfd92b5f5.gif)
 
