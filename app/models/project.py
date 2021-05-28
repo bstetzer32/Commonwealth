@@ -56,3 +56,15 @@ class Project(db.Model):
             # "city_relationship": self.city_relationship.to_dict(),
             # "category": self.category.to_dict()
         }
+
+    def to_simple_dict(self):
+        return{
+            "id": self.id,
+            "title": self.title,
+            "description": self.description,
+            "goal": self.goal,
+            "address_1": self.address_1,
+            "city": self.city,
+            "state": self.state,
+            "amount_raised": self.amount_raised
+        }
