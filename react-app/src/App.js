@@ -12,7 +12,8 @@ import LandingPage from "./components/LandingPage";
 import ProjectPage from "./components/ProjectPage";
 import { authenticate } from "./store/session";
 import SearchPage from "./components/SearchPage";
-import UpdateProjectForm from './components/forms/UpdateProjectForm'
+import UpdateProjectForm from "./components/forms/UpdateProjectForm";
+import Footer from "./components/Footer";
 
 function App() {
   const user = useSelector((state) => state.session.user);
@@ -59,7 +60,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <Route path="/projects/:projectId/update">
-          <UpdateProjectForm/>
+          <UpdateProjectForm />
         </Route>
         <Route path="/projects/:projectId">
           <ProjectPage />
@@ -68,6 +69,7 @@ function App() {
           <SearchPage />
         </Route>
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }

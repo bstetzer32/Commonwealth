@@ -22,7 +22,7 @@
     "Lucida Sans", Arial, sans-serif;
   font-size: 2em;
 }
-.nav__element--create{
+.nav__element--create {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -141,7 +141,7 @@
   max-width: 500px;
   padding: 10px 20px;
   background: #f4f7f8;
-  margin: 10px auto;
+  margin: 2em auto;
   padding: 20px;
   border-radius: 8px;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
@@ -449,7 +449,7 @@ input[type="number"] {
   align-items: flex-start;
   justify-content: center;
   margin-top: 12px;
-  margin-bottom: 4em
+  margin-bottom: 4em;
 }
 
 #projectLocation {
@@ -639,4 +639,169 @@ input[type="number"] {
 
 .donationForm__label {
   margin-right: 1.5em;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-content: space-between;
+  background-color: rgb(0, 136, 255);
+  color: #f4f7f8;
+  width: 100%;
+  max-width: 100%;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  font-family: "Titillium Web", sans-serif;
+}
+
+.footer__names--container {
+  display: flex;
+  flex: column;
+  justify-content: space-between;
+}
+.footer__icons a {
+  padding: 0 0.5em;
+}
+.footer__icons {
+  display: flex;
+  justify-content: center;
+}
+
+.footer__icons a,
+.footer__icons i {
+  text-decoration: none;
+  color: #d2d9dd;
+}
+
+.footer__name {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: space-between;
+  padding: 0 5em;
+}
+
+.logout__button {
+  position: relative;
+  display: block;
+  padding: 0.5em;
+  color: #fff;
+  margin: 0 auto;
+  background: #5581ee;
+  font-size: 1em;
+  text-align: center;
+  font-style: normal;
+  width: 100%;
+  border-width: 1px;
+  border-style: outset;
+  border-color: #4b73da;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  margin-bottom: auto;
+}
+
+.logout__button:hover {
+  background: #3a59a7;
+  cursor: pointer;
+}
+
+.login__button {
+  position: relative;
+  display: block;
+  padding: 0.25em;
+  color: #fff;
+  margin: 0 auto;
+  background: #5581ee;
+  font-size: 1em;
+  text-align: center;
+  font-style: normal;
+  width: 100%;
+  border-width: 1px;
+  border-style: outset;
+  border-color: #4b73da;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  margin-bottom: auto;
+  text-decoration: none;
+}
+
+.button {
+  text-decoration: none;
+  color: #fff;
+}
+
+.login__button:hover {
+  background: #3a59a7;
+  cursor: pointer;
+}
+
+.signup__button {
+  position: relative;
+  display: block;
+  padding: 0.25em;
+  color: #fff;
+  margin: 0 auto;
+  background: #5581ee;
+  font-size: 1em;
+  text-align: center;
+  font-style: normal;
+  width: 100%;
+  border-width: 1px;
+  border-style: outset;
+  border-color: #4b73da;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  margin-bottom: auto;
+  text-decoration: none;
+}
+
+.signup__button:hover {
+  background: #3a59a7;
+  cursor: pointer;
+}
+
+.signup__form--button {
+  position: relative;
+  display: block;
+  padding: 19px 39px 18px 39px;
+  color: #fff;
+  margin: 0 auto;
+  background: #5581ee;
+  font-size: 1.25em;
+  text-align: center;
+  font-style: normal;
+  width: 75%;
+  border-width: 1px;
+  border-style: outset;
+  border-color: #4b73da;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  margin-bottom: auto;
+}
+
+.signup__form--button:hover {
+  background: #3a59a7;
+  cursor: pointer;
+}
+
+.loginForm__button {
+  position: relative;
+  display: block;
+  padding: 0.5em 1em;
+  color: #fff;
+  margin: 0 auto;
+  background: #5581ee;
+  font-size: 1.25em;
+  text-align: center;
+  font-style: normal;
+  width: 75%;
+  border-width: 1px;
+  border-style: outset;
+  border-color: #4b73da;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  margin-bottom: auto;
+}
+
+.loginForm__button:hover {
+  background: #3a59a7;
+  cursor: pointer;
 }

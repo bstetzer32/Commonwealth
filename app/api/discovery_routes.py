@@ -13,4 +13,5 @@ def discovery():
     list = [{'id': info['id'], 'name': info['name'], 'cities':[
         city.to_simple_dict() for city in info['cities']]} for info in state_info]
     # print('-----------------', list)
+    print('discovery list ----------------------', list)
     return jsonify(list)

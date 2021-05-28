@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux"
-import { Redirect } from 'react-router-dom';
+import { useSelector, useDispatch } from "react-redux";
+import { Redirect } from "react-router-dom";
 import { getStates } from "../../store/state";
-import { signUp } from '../../store/session';
+import { signUp } from "../../store/session";
 
 const SignUpForm = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [fullname, setFullname] = useState("")
+  const [fullname, setFullname] = useState("");
   const [address_1, setAddress_1] = useState("");
   const [address_2, setAddress_2] = useState("");
   const [city, setCity] = useState("");
@@ -16,13 +16,25 @@ const SignUpForm = () => {
   const [errors, setErrors] = useState({});
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
-  const user = useSelector(state => state.session.user);
+  const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      await dispatch(signUp(username, fullname, email, address_1, address_2, city, st, zipcode, password));
+      await dispatch(
+        signUp(
+          username,
+          fullname,
+          email,
+          address_1,
+          address_2,
+          city,
+          st,
+          zipcode,
+          password
+        )
+      );
     }
   };
 
@@ -41,13 +53,13 @@ const SignUpForm = () => {
   const updateRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
   };
-  const updateFullname = (e) => setFullname(e.target.value)
+  const updateFullname = (e) => setFullname(e.target.value);
   const updateAddress_1 = (e) => setAddress_1(e.target.value);
   const updateAddress_2 = (e) => setAddress_2(e.target.value);
   const updateCity = (e) => setCity(e.target.value);
   const updateSt = (e) => setSt(e.target.value);
   const updateZipcode = (e) => setZipcode(e.target.value);
-  
+
   useEffect(() => {
     let errors = {};
     if (!username) {
@@ -69,10 +81,20 @@ const SignUpForm = () => {
       errors.zipcode = "Zipcode must be 5 numbers";
     }
     if (password !== repeatPassword) {
-      errors.password = "Passwords must match"
+      errors.password = "Passwords must match";
     }
     setErrors(errors);
-  }, [username, fullname, address_1, city, st, zipcode, password, repeatPassword]);const states = useSelector((state) => {
+  }, [
+    username,
+    fullname,
+    address_1,
+    city,
+    st,
+    zipcode,
+    password,
+    repeatPassword,
+  ]);
+  const states = useSelector((state) => {
     return Object.values(state.states);
   });
 
@@ -90,7 +112,8 @@ const SignUpForm = () => {
         <fieldset>
           <legend>Create an Account</legend>
           <div className="signupForm__input--username signupForm__input">
-            <label>User Name
+            <label>
+              User Name
               {errors.username && (
                 <div className="signupForm__error">{errors.username}</div>
               )}
@@ -103,7 +126,8 @@ const SignUpForm = () => {
             ></input>
           </div>
           <div className="signupForm__input--email signupForm__input">
-            <label>Email
+            <label>
+              Email
               {errors.email && (
                 <div className="signupForm__error">{errors.email}</div>
               )}
@@ -116,7 +140,8 @@ const SignUpForm = () => {
             ></input>
           </div>
           <div className="signupForm__input--fullname signupForm__input">
-            <label>Full Name
+            <label>
+              Full Name
               {errors.fullname && (
                 <div className="signupForm__error">{errors.fullname}</div>
               )}
@@ -129,10 +154,12 @@ const SignUpForm = () => {
             ></input>
           </div>
           <div className="signupForm__input--address_1 signupForm__input">
-            <label>Address Line 1
+            <label>
+              Address Line 1
               {errors.address_1 && (
                 <div className="signupForm__error">{errors.address_1}</div>
-              )}</label>
+              )}
+            </label>
             <input
               type="text"
               name="address_1"
@@ -141,7 +168,8 @@ const SignUpForm = () => {
             ></input>
           </div>
           <div className="signupForm__input--address_2 signupForm__input">
-            <label>Address Line 2
+            <label>
+              Address Line 2
               {errors.address_2 && (
                 <div className="signupForm__error">{errors.address_2}</div>
               )}
@@ -154,7 +182,8 @@ const SignUpForm = () => {
             ></input>
           </div>
           <div className="signupForm__input--city signupForm__input">
-            <label>City
+            <label>
+              City
               {errors.city && (
                 <div className="signupForm__error">{errors.city}</div>
               )}
@@ -172,7 +201,7 @@ const SignUpForm = () => {
               {errors.state && (
                 <div className="signupForm__error">{errors.state}</div>
               )}
-            <select value={st} onChange={updateSt} required>
+              <select value={st} onChange={updateSt} required>
                 {states?.map((state) => (
                   <option key={state.id} value={state.name}>
                     {state.name}
@@ -182,7 +211,8 @@ const SignUpForm = () => {
             </label>
           </div>
           <div className="signupForm__input--zipcode signupForm__input">
-            <label>Zip Code
+            <label>
+              Zip Code
               {errors.zipcode && (
                 <div className="signupForm__error">{errors.zipcode}</div>
               )}
@@ -204,7 +234,8 @@ const SignUpForm = () => {
             ></input>
           </div>
           <div className="signupForm__input--password signupForm__input">
-            <label>Repeat Password
+            <label>
+              Repeat Password
               {errors.password && (
                 <div className="signupForm__error">{errors.password}</div>
               )}
@@ -217,7 +248,9 @@ const SignUpForm = () => {
               required={true}
             ></input>
           </div>
-          <button type="submit">Sign Up</button>
+          <button className="signup__form--button" type="submit">
+            Sign Up
+          </button>
         </fieldset>
       </form>
     </div>

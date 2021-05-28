@@ -122,6 +122,15 @@ export default function ProjectForm() {
                 <option value={""}>--------</option>
                 <option value={"Education"}>Education</option>
                 <option value={"Sports"}>Sports</option>
+                <option value={"Transportation"}>Transportation</option>
+                <option value={"Music"}>Music</option>
+                <option value={"Housing"}>Housing</option>
+                <option value={"Volunteer"}>Volunteer</option>
+                <option value={"Events"}>Events</option>
+                <option value={"Clean Up Initiatives"}>
+                  Clean Up Initiatives
+                </option>
+                <option value={"Elderly Care"}>Elderly Care</option>
               </select>
             </label>
           </div>
@@ -232,7 +241,3 @@ export default function ProjectForm() {
     </div>
   );
 }
-
-
-
-  
