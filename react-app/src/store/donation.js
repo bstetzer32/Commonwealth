@@ -5,13 +5,13 @@ const add = (donation) => ({
   donation,
 });
 
-export const addDonation = (donation) => async (dispatch) => {
+export const addDonation = (donation, id) => async (dispatch) => {
   const response = await fetch("/api/donation", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(donation),
+    body: JSON.stringify(donation, id),
   });
   const data = await response.json();
   if (data.errors) {

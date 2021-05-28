@@ -9,6 +9,8 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import {getOneProject} from '../store/project'
+
 import {
   Grid,
   Card,
@@ -82,23 +84,31 @@ const ProjectPage = () => {
     return result.join("");
   };
 
+  useEffect(()=>{
+    dispatch(getOneProject(projectId))
+  }, [dispatch])
+
+  const projectTest = useSelector(state=> state.projectReducer)
+
+  const proyecto = projectTest[projectId]
+
   useEffect(() => {
     if (!projectId) {
-      return;
-    }
-    (async () => {
-      const response = await fetch(`/api/project/${projectId}`);
-      const proj = await response.json();
-      setProject(proj);
-      setGoalAmount(formatNumber(proj.goal));
-      setDonatedAmount(formatNumber(proj.amount_raised));
+        return;
+      }
+      (async()=>{
+      setProject(proyecto);
+      const temp = proyecto?.goal
+      setGoalAmount(temp)
+      const temp1 = proyecto?.amount_raised
+      setDonatedAmount(temp1)
       const res = await fetch(`/api/project/${projectId}/donations`);
       const donators = await res.json();
       setContributors(donators.number);
       setTopContributors(donators.topContributors)
     })();
-  }, [projectId]);
-
+  },[proyecto, donatedAmount]);
+ 
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -173,6 +183,7 @@ const ProjectPage = () => {
         >
           <div id="projectNumbersContainerDiv">
             <Card id="projectNumbersCard">
+
               <Grid
                 container
                 item
@@ -205,7 +216,7 @@ const ProjectPage = () => {
                     className={classes.tagline}
                     id="projectNumbersRelations"
                   >
-                    donated of ${goalAmount} goal
+                    donated of ${goalAmount? formatNumber(goalAmount) : 0} goal
                   </Grid>
                 </Grid>
                 <Grid
