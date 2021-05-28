@@ -207,7 +207,7 @@ const ProjectPage = () => {
                     className={classes.tagline}
                     id="projectNumbersGreen"
                   >
-                    ${donatedAmount}
+                    ${fromateNumber(donatedAmount)}
                   </Grid>
                   <br />
                   <Grid
@@ -260,7 +260,7 @@ const ProjectPage = () => {
                     className={classes.tagline}
                     id="projectNumbers"
                   >
-                    {Math.ceil(Math.random()*182).toString()} 
+                    {Math.ceil(Math.random()*182).toString()}
                   </Grid>
                   <Grid
                     item
