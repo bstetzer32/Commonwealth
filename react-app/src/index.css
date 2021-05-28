@@ -393,13 +393,21 @@ input[type="number"] {
   font-size: 18px;
   padding: 0px 3em;
   height: 100%;
+  width: 90%;
+}
+
+#projectDescriptionGrid {
+  display: flex;
+  justify-content: center;
 }
 
 #project__side--grid {
   width: 100%;
   margin: 0;
-  padding-left: 4em;
+  /* padding-left: 4em; */
   padding-top: 2em;
+  display: flex;
+  justify-content: center;
 }
 
 #projectDonateButton {
@@ -431,7 +439,7 @@ input[type="number"] {
 #projectImage {
   display: flex;
   justify-content: center;
-  width: 100%;
+  width: 90%;
   max-width: 100%;
   /* padding: 0px 3em; */
   margin-bottom: 1.5em;
@@ -439,6 +447,7 @@ input[type="number"] {
 #projectInfoGrid {
   display: flex;
   align-items: flex-start;
+  justify-content: center;
   margin-top: 12px;
   margin-bottom: 4em
 }
@@ -449,6 +458,12 @@ input[type="number"] {
   font-size: 22px;
   font-weight: 600;
   padding: 0px 12px;
+  width: 90%;
+}
+
+#projectLocationContainer {
+  display: flex;
+  justify-content: center;
 }
 
 #projectNumbers {
@@ -491,7 +506,31 @@ input[type="number"] {
   margin-bottom: 8px;
 }
 
-.projectPage__updateButton {
+.projectPage__delete {
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  max-width: 100%;
+  height: 50%;
+  margin-top: 5%;
+}
+
+#projectPage__deleteButton {
+  color: white;
+  background-color: rgb(20, 144, 20);
+  width: 100%;
+  text-decoration: none;
+  height: 50%;
+}
+
+#projectPage__deleteButton:hover {
+  background-color: rgb(12, 109, 12);
+  box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.6);
+  letter-spacing: 1px;
+  height: 50%;
+}
+
+.projectPage__update {
   display: flex;
   justify-content: center;
   width: 90%;
@@ -499,22 +538,22 @@ input[type="number"] {
   height: 50%;
 }
 
-.projectPage__updateButton:hover {
+#projectPage__updateButton:hover {
   background-color: rgb(12, 109, 12);
   box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.6);
   letter-spacing: 1px;
   height: 50%;
 }
+
 #update__link {
   text-decoration: none;
   width: 100%;
   height: 100%;
 }
 
-#projectPage__update {
+#projectPage__updateButton {
   color: white;
   background-color: rgb(20, 144, 20);
-
   width: 100%;
   text-decoration: none;
   height: 50%;
