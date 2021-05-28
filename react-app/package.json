@@ -9,6 +9,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "http-proxy-middleware": "^1.0.5",
+    "json2mq": "^0.2.0",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-horizontal-scrolling-menu": "^0.7.10",

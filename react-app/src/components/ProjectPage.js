@@ -55,6 +55,7 @@ const ProjectPage = () => {
   const [goalAmount, setGoalAmount] = useState(null);
   const [donatedAmount, setDonatedAmount] = useState(null);
   const [contributors, setContributors] = useState(0);
+  const [topContributors, setTopContributors] = useState({})
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -94,6 +95,7 @@ const ProjectPage = () => {
       const res = await fetch(`/api/project/${projectId}/donations`);
       const donators = await res.json();
       setContributors(donators.number);
+      setTopContributors(donators.topContributors)
     })();
   }, [projectId]);
 
@@ -338,7 +340,7 @@ const ProjectPage = () => {
                 className={classes.tagline}
                 id="projectNumbers"
               >
-                James
+                {topContributors[0] && topContributors[0].user_fullname}
               </Grid>
               <Grid
                 item
@@ -346,7 +348,7 @@ const ProjectPage = () => {
                 className={classes.tagline}
                 id="projectNumbersRelations"
               >
-                $2,000
+                ${topContributors[0] && formatNumber(topContributors[0].amount)}
               </Grid>
             </Grid>
             <Grid
@@ -364,7 +366,7 @@ const ProjectPage = () => {
                 className={classes.tagline}
                 id="projectNumbers"
               >
-                James
+                  {topContributors[1] && topContributors[1].user_fullname}
               </Grid>
               <Grid
                 item
@@ -372,7 +374,7 @@ const ProjectPage = () => {
                 className={classes.tagline}
                 id="projectNumbersRelations"
               >
-                $2,000
+                ${topContributors[1] && formatNumber(topContributors[1].amount)}
               </Grid>
             </Grid>
             <Grid
@@ -390,7 +392,7 @@ const ProjectPage = () => {
                 className={classes.tagline}
                 id="projectNumbers"
               >
-                James
+                {topContributors[2] && topContributors[2].user_fullname}
               </Grid>
               <Grid
                 item
@@ -398,7 +400,7 @@ const ProjectPage = () => {
                 className={classes.tagline}
                 id="projectNumbersRelations"
               >
-                $2,000
+                  ${topContributors[2] && formatNumber(topContributors[2].amount)}
               </Grid>
             </Grid>
           </Grid>

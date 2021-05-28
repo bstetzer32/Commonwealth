@@ -113,4 +113,10 @@ def get_project_donations(id):
     contributors = Donation.query.filter_by(project_id=id).all()
     c_list = [
         contributor.to_super_simple_dict() for contributor in contributors]
-    return {'number': contributor_formatter(c_list)}
+    topContributors = Donation.query.filter_by(project_id=id).order_by(
+        Donation.amount.desc()).limit(3)
+    tc_list = [
+        contributor.to_simple_dict() for contributor in topContributors
+    ]
+    return {'number': contributor_formatter(c_list),
+            'topContributors': tc_list}
