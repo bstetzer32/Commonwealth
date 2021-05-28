@@ -108,7 +108,7 @@ const ProjectPage = () => {
       setTopContributors(donators.topContributors)
     })();
   },[proyecto, donatedAmount]);
- 
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -268,7 +268,7 @@ const ProjectPage = () => {
                     className={classes.tagline}
                     id="projectNumbersRelations"
                   >
-                    days left
+                    {Math.ceil(Math.random()*182).toString()} days left
                   </Grid>
                 </Grid>
               </Grid>
