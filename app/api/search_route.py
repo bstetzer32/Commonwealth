@@ -22,7 +22,7 @@ def search():
                     Project.title.ilike('%' + inputs + '%')).filter_by(
                         category_id=category.id, state=state,
                         city=city,
-                ).all()
+                ).limit(20)
                 return {
                     'projects': [project.to_dict() for project in projects]
                 }
@@ -30,13 +30,13 @@ def search():
             projects = Project.query.filter(
                 Project.title.ilike('%' + inputs + '%')).filter_by(
                     category=category, state=state,
-            )
+            ).limit(20)
             return {'projects': [project.to_dict() for project in projects]}
 
         projects = Project.query.filter(
             Project.title.ilike('%' + inputs + '%')).filter_by(
                 category=category,
-        )
+        ).limit(20)
         return {'projects': [project.to_dict() for project in projects]}
 
     elif (state):
@@ -44,23 +44,23 @@ def search():
             projects = Project.query.filter(
                 Project.title.ilike('%' + inputs + '%')).filter_by(
                     state=state, city=city,
-            ).all()
+            ).limit(20)
             return {'projects': [project.to_dict() for project in projects]}
 
         projects = Project.query.filter(
             Project.title.ilike('%' + inputs + '%')).filter_by(
                 state=state,
-        ).all()
+        ).limit(20)
         return {'projects': [project.to_dict() for project in projects]}
 
     elif (city):
         projects = Project.query.filter(
             Project.title.ilike('%' + inputs + '%')).filter_by(
                 city=city,
-        ).all()
+        ).limit(20)
         return {'projects': [project.to_dict() for project in projects]}
 
     projects = Project.query.filter(
         Project.title.ilike('%' + inputs + '%')
-    ).all()
+    ).limit(20)
     return {'projects': [project.to_dict() for project in projects]}
