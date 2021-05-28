@@ -1,98 +1,113 @@
-# Flask React Project
+# Commonwealth
 
-This is the backend for the Flask React project.
+A community initiative crowdfunding site, influenced by Kickstarter
 
-## Getting started
+Live Site: [commonwealth](https://github.com/bstetzer32/Commonwealth/wiki)
 
-1. Clone this repository (only this branch)
+## Technologies Used:
 
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
+    * Python
+    * Flask
+    * SQLAlchemy
+    * HTML
+    * CSS
+    * Javascript
+    * React
+    * Redux
+    * Postgres
 
-2. Install dependencies
+## Features and Functionality:
 
-      ```bash
-      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
-      ```
+    * User Authentication - Users are able to securely sign-up, log-in, or use demo to test functionality.
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
+    * Projects - A user may create, edit, or delete a project they have created.
 
-5. Get into your pipenv, migrate your database, seed your database, and run your flask app
+    * Donations - A user may make a donation to a specific project.
 
-   ```bash
-   pipenv shell
-   ```
+    * Categories - All projects can be sorted and searched by their tagged category.
 
-   ```bash
-   flask db upgrade
-   ```
+    * Search - All project can be searched by title, city, state, and or category.
 
-   ```bash
-   flask seed all
-   ```
+## Backend Query to search database conditionally by category, and/or city, and/or state, and/or title
 
-   ```bash
-   flask run
-   ```
+```
+            if (category):
+        if (state):
+            if (city):
+                projects = Project.query.filter(
+                    Project.title.ilike('%' + inputs + '%')).filter_by(
+                        category_id=category.id, state=state,
+                        city=city,
+                ).all()
+                return {
+                    'projects': [project.to_dict() for project in projects]
+                }
 
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+            projects = Project.query.filter(
+                Project.title.ilike('%' + inputs + '%')).filter_by(
+                    category=category, state=state,
+            )
+            return {'projects': [project.to_dict() for project in projects]}
 
-***
-*IMPORTANT!*
-   If you add any python dependencies to your pipfiles, you'll need to regenerate your requirements.txt before deployment.
-   You can do this by running:
+        projects = Project.query.filter(
+            Project.title.ilike('%' + inputs + '%')).filter_by(
+                category=category,
+        )
+        return {'projects': [project.to_dict() for project in projects]}
 
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
+    elif (state):
+        if(city):
+            projects = Project.query.filter(
+                Project.title.ilike('%' + inputs + '%')).filter_by(
+                    state=state, city=city,
+            ).all()
+            return {'projects': [project.to_dict() for project in projects]}
 
-*ALSO IMPORTANT!*
-   psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
-   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
-***
+```
 
-## Deploy to Heroku
+### Utilizing USPS API to verify address when creating project, and if city isn't in the database, will add it
 
-1. Create a new project on Heroku
-2. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres"
-3. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
-4. Run
+```
+        def create_project():
+    form = ProjectForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    location = {
+        'address_1': form.data['address_1'],
+        'address_2': form.data['address_2'],
+        'city': form.data['city'],
+        'state': form.data['st'],
+        'zipcode': form.data['zipcode']
+    }
+    validate_address = validate_location(location)
+    if 'Error' in validate_address:
+        return validate_address
+    else:
+        form.data['address_1'] = validate_address['Address1']
+        form.data['address_2'] = validate_address['Address2']
+        form.data['city'] = validate_address['City']
+        form.data['zipcode'] = validate_address['Zip5']
 
-   ```bash
-   heroku login
-   ```
+    state = State.query.filter_by(name=form.data['st']).first()
+    category = Category.query.filter_by(name=form.data['category']).first()
+    city = City.query.filter_by(name=form.data['city']).first()
 
-5. Login to the heroku container registry
+```
 
-   ```bash
-   heroku container:login
-   ```
+![demo-gif](https://i.gyazo.com/1e5130a31889654c65e3bfcdfd92b5f5.gif)
 
-6. Update the `REACT_APP_BASE_URL` variable in the Dockerfile.
-   This should be the full URL of your Heroku app: i.e. "https://flask-react-aa.herokuapp.com"
-7. Push your docker container to heroku from the root directory of your project.
-   This will build the dockerfile and push the image to your heroku container registry
+## Challenges Faced:
 
-   ```bash
-   heroku container:push web -a {NAME_OF_HEROKU_APP}
-   ```
+        *
+        *
 
-8. Release your docker container to heroku
+## Future Features:
 
-   ```bash
-   heroku container:release web -a {NAME_OF_HEROKU_APP}
-   ```
+    * Likes - A user may like a project adding another filterable query based on popularity.
 
-9. set up your database:
+    * Credit Card Payments - Add a validation of payment form and ability to run the info.
 
-   ```bash
-   heroku run -a {NAME_OF_HEROKU_APP} flask db upgrade
-   heroku run -a {NAME_OF_HEROKU_APP} flask seed all
-   ```
+    * Account - A user may view their account info and add to a balance.
 
-10. Under Settings find "Config Vars" and add any additional/secret .env variables.
+    * Contact Link - A user will be able to get in communication with a projects creator.
 
-11. profit
+### Please see wiki pages for further documentation

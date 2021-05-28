@@ -21,6 +21,8 @@ class Project(db.Model):
     city = db.Column(db.String(100), nullable=False)
     state = db.Column(db.String(50), nullable=False)
     zipcode = db.Column(db.Integer)
+    # lat = db.Column(db.Integer)
+    # lng = db.Column(db.Integer)
     created_at = db.Column(db.DateTime())
     expiration_date = db.Column(db.DateTime())
     donations = db.relationship("Donation", back_populates="project")
@@ -48,6 +50,8 @@ class Project(db.Model):
             "city": self.city,
             "state": self.state,
             "zipcode": self.zipcode,
+            # "lat":self.lat,
+            # "lng":self.lng,
             "donations": [
                 donation.to_simple_dict() for donation in self.donations],
             "user": self.user.to_simple_dictionary(),
