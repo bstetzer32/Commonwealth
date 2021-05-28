@@ -57,7 +57,7 @@ us_state_abbrev = {
 
 
 def addresses():
-    f = open("/Users/Josh/Desktop/App_Academy/Module-6/group-project-commonwealth/Commonwealth/app/utils/addresses.json", "r")
+    f = open("app/utils/addresses.json", "r")
     data = json.load(f)
     locations = []
     # for location in data["addresses"][1:XXX]:
