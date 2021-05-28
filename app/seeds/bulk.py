@@ -293,20 +293,21 @@ def seed_bulk():
     cities = {city.name: city.to_dict() for city in cities}
     for j in range(len(addresses)):
         for i in range(27):
-            user = User(
-                username=users[i % 10]['username'] + str(j),
-                email=str(j) + users[i % 10]['email'],
-                fullname=users[i % 10]['fullname'],
-                password=users[i % 10]['password'],
-                address_1=addresses[j]['address_1'],
-                address_2=addresses[j]['address_2'],
-                city=addresses[j]['city'],
-                state=addresses[j]['state'],
-                zipcode=addresses[j]['zipcode'],
-                city_id=cities[addresses[j]['city']]['id'],
-                state_id=states[addresses[j]['state']]['id'],
-            )
-            db.session.add(user)
+            if i < 10:
+                user = User(
+                    username=users[i % 10]['username'] + str(j),
+                    email=str(j) + users[i % 10]['email'],
+                    fullname=users[i % 10]['fullname'],
+                    password=users[i % 10]['password'],
+                    address_1=addresses[j]['address_1'],
+                    address_2=addresses[j]['address_2'],
+                    city=addresses[j]['city'],
+                    state=addresses[j]['state'],
+                    zipcode=addresses[j]['zipcode'],
+                    city_id=cities[addresses[j]['city']]['id'],
+                    state_id=states[addresses[j]['state']]['id'],
+                )
+                db.session.add(user)
             db.session.commit()
             user = User.query.filter_by(
                 username=(users[i % 10]['username'] + str(j))).first()
