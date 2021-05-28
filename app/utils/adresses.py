@@ -54,13 +54,16 @@ us_state_abbrev = {
     'WI': 'Wisconsin',
     'WY': 'Wyoming',
 }
+
+
 def addresses():
-    f = open("/Users/bstetzer/Desktop/Group Project/app/utils/addresses.json", "r")
+    f = open("app/utils/addresses.json", "r")
     data = json.load(f)
     locations = []
     # for location in data["addresses"][1:XXX]:
     for location in data["addresses"]:
         if "city" in location.keys():
+
             x = {
                 "address_1": location['address1'],
                 "address_2": location['address2'],
@@ -74,11 +77,6 @@ def addresses():
                 locations.append(x)
     return locations
 
-
-address_str = str(addresses())
-f = open('address.txt', 'x')
-f.write(address_str)
-f.close()
 
 # locations = [{
 #     "address_1":location['address1'],

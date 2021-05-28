@@ -1,6 +1,6 @@
 const LOAD = "project/LOAD";
 const ADD_ONE = "project/ADD_ONE";
-
+const LOAD_ONE = 'projects/LOAD_ONE'
 
 const load = (projects) => ({
   type: LOAD,
@@ -12,7 +12,23 @@ const create = (project) => ({
   project,
 });
 
+const load_one = (project) => ({
+  type: LOAD_ONE,
+  project
+})
 
+export const getOneProject = (id) => async (dispatch) => {
+  const res = await fetch(`/api/project/${id}`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+  let project = await res.json()
+  if (project.errors){
+    return
+  }
+  dispatch(load_one(project))
+}
 
 export const getProjects = () => async (dispatch) => {
   const response = await fetch("/api/project", {
@@ -86,6 +102,12 @@ const projectReducer = (state = initialState, action) => {
         ...state,
         [action.project.id]: action.project,
       };
+    }
+    case LOAD_ONE: {
+      return {
+        ...state,
+        [action.project.id]: action.project
+      }
     }
     default:
       return state;

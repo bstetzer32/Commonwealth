@@ -9,6 +9,8 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import {getOneProject} from '../store/project'
+
 import {
   Grid,
   Card,
@@ -82,23 +84,31 @@ const ProjectPage = () => {
     return result.join("");
   };
 
+  useEffect(()=>{
+    dispatch(getOneProject(projectId))
+  }, [dispatch])
+
+  const projectTest = useSelector(state=> state.projectReducer)
+
+  const proyecto = projectTest[projectId]
+
   useEffect(() => {
     if (!projectId) {
-      return;
-    }
-    (async () => {
-      const response = await fetch(`/api/project/${projectId}`);
-      const proj = await response.json();
-      setProject(proj);
-      setGoalAmount(formatNumber(proj.goal));
-      setDonatedAmount(formatNumber(proj.amount_raised));
+        return;
+      }
+      (async()=>{
+      setProject(proyecto);
+      const temp = proyecto?.goal
+      setGoalAmount(temp)
+      const temp1 = proyecto?.amount_raised
+      setDonatedAmount(temp1)
       const res = await fetch(`/api/project/${projectId}/donations`);
       const donators = await res.json();
       setContributors(donators.number);
       setTopContributors(donators.topContributors)
     })();
-  }, [projectId]);
-
+  },[proyecto, donatedAmount]);
+ 
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -138,21 +148,29 @@ const ProjectPage = () => {
           lg={6}
           id="projectDescriptionGrid"
         >
-          <h3 className={classes.location} id="projectLocation">
-            Location: {project.city}, {project.state}
-          </h3>
-          <Card id="projectImage">
-            <CardActionArea>
-              <CardMedia
-                title="title"
-                image={project.image_url}
-                component="img"
-              ></CardMedia>
-            </CardActionArea>
+          <Card id='projectDesciptionGridCard'>
+            <div id="projectLocationDiv">
+              <h3 id="projectLocation">
+                Location: {project.city}, {project.state}
+              </h3>
+            </div>
+            <div id="projectImageDiv">
+              <Card id="projectImage">
+                <CardActionArea>
+                  <CardMedia
+                    title="title"
+                    image={project.image_url}
+                    component="img"
+                  ></CardMedia>
+                </CardActionArea>
+              </Card>
+            </div>
+            <div id="projectDescriptionDiv">
+              <div className={classes.info} id="projectDescription">
+                {project.description}
+              </div>
+            </div>
           </Card>
-          <div className={classes.info} id="projectDescription">
-            {project.description}
-          </div>
         </Grid>
         <Grid
           container
@@ -163,94 +181,99 @@ const ProjectPage = () => {
           lg={3}
           id="project__side--grid"
         >
-          <Grid
-            container
-            item
-            spacing={2}
-            className={classes.grid}
-            xs={12}
-            id="projectNumbersContainer"
-          >
-            <Grid
-              container
-              item
-              spacing={2}
-              className={classes.grid}
-              xs={4}
-              lg={12}
-              id="projectNumbersGrid"
-            >
+          <div id="projectNumbersContainerDiv">
+            <Card id="projectNumbersCard">
+
               <Grid
+                container
                 item
+                spacing={2}
+                className={classes.grid}
                 xs={12}
-                className={classes.tagline}
-                id="projectNumbersGreen"
+                id="projectNumbersContainer"
               >
-                ${donatedAmount}
+                <Grid
+                  container
+                  item
+                  spacing={2}
+                  className={classes.grid}
+                  xs={4}
+                  lg={12}
+                  id="projectNumbersGrid"
+                >
+                  <Grid
+                    item
+                    xs={12}
+                    className={classes.tagline}
+                    id="projectNumbersGreen"
+                  >
+                    ${donatedAmount}
+                  </Grid>
+                  <br />
+                  <Grid
+                    item
+                    xs={12}
+                    className={classes.tagline}
+                    id="projectNumbersRelations"
+                  >
+                    donated of ${goalAmount? formatNumber(goalAmount) : 0} goal
+                  </Grid>
+                </Grid>
+                <Grid
+                  container
+                  item
+                  spacing={2}
+                  className={classes.grid}
+                  xs={4}
+                  lg={12}
+                  id="projectNumbersGrid"
+                >
+                  <Grid
+                    item
+                    xs={12}
+                    className={classes.tagline}
+                    id="projectNumbers"
+                  >
+                    {contributors}
+                  </Grid>
+                  <Grid
+                    item
+                    xs={12}
+                    className={classes.tagline}
+                    id="projectNumbersRelations"
+                  >
+                    contributors
+                  </Grid>
+                </Grid>
+                <Grid
+                  container
+                  item
+                  spacing={2}
+                  className={classes.grid}
+                  xs={4}
+                  lg={12}
+                  id="projectNumbersGrid"
+                >
+                  <Grid
+                    item
+                    xs={12}
+                    className={classes.tagline}
+                    id="projectNumbers"
+                  >
+                    {donatedAmount}
+                  </Grid>
+                  <Grid
+                    item
+                    xs={12}
+                    className={classes.tagline}
+                    id="projectNumbersRelations"
+                  >
+                    days left
+                  </Grid>
+                </Grid>
               </Grid>
-              <br />
-              <Grid
-                item
-                xs={12}
-                className={classes.tagline}
-                id="projectNumbersRelations"
-              >
-                donated of ${goalAmount} goal
-              </Grid>
-            </Grid>
-            <Grid
-              container
-              item
-              spacing={2}
-              className={classes.grid}
-              xs={4}
-              lg={12}
-              id="projectNumbersGrid"
-            >
-              <Grid
-                item
-                xs={12}
-                className={classes.tagline}
-                id="projectNumbers"
-              >
-                {contributors}
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                className={classes.tagline}
-                id="projectNumbersRelations"
-              >
-                contributors
-              </Grid>
-            </Grid>
-            <Grid
-              container
-              item
-              spacing={2}
-              className={classes.grid}
-              xs={4}
-              lg={12}
-              id="projectNumbersGrid"
-            >
-              <Grid
-                item
-                xs={12}
-                className={classes.tagline}
-                id="projectNumbers"
-              >
-                {donatedAmount}
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                className={classes.tagline}
-                id="projectNumbersRelations"
-              >
-                days left
-              </Grid>
-            </Grid>
-          </Grid>
+            </Card>
+          </div>
           {/* <Grid item xs={12}> */}
           <div className="projectPage__button--container">
             <DonationForm project_id={projectId} />
@@ -304,108 +327,109 @@ const ProjectPage = () => {
             )}
           </div>
 
-
-          {/* </Grid> */}
-          <Grid container item spacing={2} className={classes.grid} xs={12}>
-            <Grid
-              container
-              item
-              spacing={2}
-              className={classes.grid}
-              xs={12}
-              lg={12}
-              id="projectNumbersGrid"
-            >
-              <Grid
-                item
-                xs={12}
-                className={classes.tagline}
-                id="projectDonatorsHeader"
-              >
-                Top Contributors
+          <div id="projectTopContributorsDiv">
+            <Card id="projectTopContributorsCard">
+              <Grid container item spacing={2} className={classes.grid} xs={12}>
+                <Grid
+                  container
+                  item
+                  spacing={2}
+                  className={classes.grid}
+                  xs={12}
+                  lg={12}
+                  id="projectNumbersGrid"
+                >
+                  <Grid
+                    item
+                    xs={12}
+                    className={classes.tagline}
+                    id="projectDonatorsHeader"
+                  >
+                    Top Contributors
+                  </Grid>
+                </Grid>
+                <Grid
+                  container
+                  item
+                  spacing={2}
+                  className={classes.grid}
+                  xs={12}
+                  lg={12}
+                  id="projectNumbersGrid"
+                >
+                  <Grid
+                    item
+                    xs={12}
+                    className={classes.tagline}
+                    id="projectNumbers"
+                  >
+                    {topContributors[0] && topContributors[0].user_fullname}
+                  </Grid>
+                  <Grid
+                    item
+                    xs={12}
+                    className={classes.tagline}
+                    id="projectNumbersRelations"
+                  >
+                    ${topContributors[0] && formatNumber(topContributors[0].amount)}
+                  </Grid>
+                </Grid>
+                <Grid
+                  container
+                  item
+                  spacing={2}
+                  className={classes.grid}
+                  xs={12}
+                  lg={12}
+                  id="projectNumbersGrid"
+                >
+                  <Grid
+                    item
+                    xs={12}
+                    className={classes.tagline}
+                    id="projectNumbers"
+                  >
+                      {topContributors[1] && topContributors[1].user_fullname}
+                  </Grid>
+                  <Grid
+                    item
+                    xs={12}
+                    className={classes.tagline}
+                    id="projectNumbersRelations"
+                  >
+                    ${topContributors[1] && formatNumber(topContributors[1].amount)}
+                  </Grid>
+                </Grid>
+                <Grid
+                  container
+                  item
+                  spacing={2}
+                  className={classes.grid}
+                  xs={12}
+                  lg={12}
+                  id="projectNumbersGrid"
+                >
+                  <Grid
+                    item
+                    xs={12}
+                    className={classes.tagline}
+                    id="projectNumbers"
+                  >
+                    {topContributors[2] && topContributors[2].user_fullname}
+                  </Grid>
+                  <Grid
+                    item
+                    xs={12}
+                    className={classes.tagline}
+                    id="projectNumbersRelations"
+                  >
+                      ${topContributors[2] && formatNumber(topContributors[2].amount)}
+                  </Grid>
+                </Grid>
               </Grid>
-            </Grid>
-            <Grid
-              container
-              item
-              spacing={2}
-              className={classes.grid}
-              xs={12}
-              lg={12}
-              id="projectNumbersGrid"
-            >
-              <Grid
-                item
-                xs={12}
-                className={classes.tagline}
-                id="projectNumbers"
-              >
-                {topContributors[0] && topContributors[0].user_fullname}
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                className={classes.tagline}
-                id="projectNumbersRelations"
-              >
-                ${topContributors[0] && formatNumber(topContributors[0].amount)}
-              </Grid>
-            </Grid>
-            <Grid
-              container
-              item
-              spacing={2}
-              className={classes.grid}
-              xs={12}
-              lg={12}
-              id="projectNumbersGrid"
-            >
-              <Grid
-                item
-                xs={12}
-                className={classes.tagline}
-                id="projectNumbers"
-              >
-                  {topContributors[1] && topContributors[1].user_fullname}
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                className={classes.tagline}
-                id="projectNumbersRelations"
-              >
-                ${topContributors[1] && formatNumber(topContributors[1].amount)}
-              </Grid>
-            </Grid>
-            <Grid
-              container
-              item
-              spacing={2}
-              className={classes.grid}
-              xs={12}
-              lg={12}
-              id="projectNumbersGrid"
-            >
-              <Grid
-                item
-                xs={12}
-                className={classes.tagline}
-                id="projectNumbers"
-              >
-                {topContributors[2] && topContributors[2].user_fullname}
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                className={classes.tagline}
-                id="projectNumbersRelations"
-              >
-                  ${topContributors[2] && formatNumber(topContributors[2].amount)}
-              </Grid>
-            </Grid>
-          </Grid>
+            </Card>
+          </div>
         </Grid>
-        <Grid container></Grid>
       </Grid>
     </>
   );
