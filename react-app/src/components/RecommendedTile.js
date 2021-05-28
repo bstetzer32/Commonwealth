@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
     },
     info: {
          display:"flex",
+         flexDirection: "column",
          justifyContent:"space-between"
     },
     link: {

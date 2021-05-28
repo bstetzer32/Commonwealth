@@ -251,7 +251,7 @@ def seed_projects():
         title='Bread and Bounty',
         tagline='There is not a thing that is more positive than bread.',
         description='Donec consequat maximus ipsum mollis luctus. Curabitur sem magna, consequat nec orci id, tristique tristique nibh. Nullam nibh felis, convallis sit amet lacus at, imperdiet gravida sapien. Morbi arcu lacus, iaculis sit amet odio non, vulputate vestibulum massa. Nulla diam lectus, aliquet malesuada odio id, ultricies efficitur dolor.',
-        goal=4499177,
+        goal=4450000,
         amount_raised=1301887,
         address_1='  289 Cedar Rd.',
         city='Rancho Cucamonga',

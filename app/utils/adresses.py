@@ -61,20 +61,24 @@ def addresses():
     # for location in data["addresses"][1:XXX]:
     for location in data["addresses"]:
         if "city" in location.keys():
-            if location['state'] is not 'DC':
-                x = {
-                    "address_1": location['address1'],
-                    "address_2": location['address2'],
-                    "city": location['city'],
-                    "state": us_state_abbrev[location['state']],
-                    "zipcode": location['postalCode'],
-                    "lat": location['coordinates']['lat'],
-                    "lng": location['coordinates']['lng']
-                }
-                if x not in locations:
-                    locations.append(x)
+            x = {
+                "address_1": location['address1'],
+                "address_2": location['address2'],
+                "city": location['city'],
+                "state": us_state_abbrev[location['state']],
+                "zipcode": location['postalCode'],
+                "lat": location['coordinates']['lat'],
+                "lng": location['coordinates']['lng']
+            }
+            if x not in locations:
+                locations.append(x)
     return locations
-print(addresses())
+
+
+address_str = str(addresses())
+f = open('address.txt', 'x')
+f.write(address_str)
+f.close()
 
 # locations = [{
 #     "address_1":location['address1'],
