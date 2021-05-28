@@ -65,7 +65,40 @@ Live Site: [commonwealth](https://github.com/bstetzer32/Commonwealth/wiki)
 
         ```
 
+### Utilizing USPS API to verify address when creating project, and if city isn't in the database, will add it
+
+        ```
+        def create_project():
+    form = ProjectForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    location = {
+        'address_1': form.data['address_1'],
+        'address_2': form.data['address_2'],
+        'city': form.data['city'],
+        'state': form.data['st'],
+        'zipcode': form.data['zipcode']
+    }
+    validate_address = validate_location(location)
+    if 'Error' in validate_address:
+        return validate_address
+    else:
+        form.data['address_1'] = validate_address['Address1']
+        form.data['address_2'] = validate_address['Address2']
+        form.data['city'] = validate_address['City']
+        form.data['zipcode'] = validate_address['Zip5']
+
+    state = State.query.filter_by(name=form.data['st']).first()
+    category = Category.query.filter_by(name=form.data['category']).first()
+    city = City.query.filter_by(name=form.data['city']).first()
+
+        ```
+
 ![demo-gif](https://i.gyazo.com/1e5130a31889654c65e3bfcdfd92b5f5.gif)
+
+## Challenges Faced:
+
+        *
+        *
 
 ## Future Features:
 
