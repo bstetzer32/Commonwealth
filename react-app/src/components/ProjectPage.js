@@ -9,7 +9,8 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import {getOneProject} from '../store/project'
+import { getOneProject } from "../store/project";
+import { loadDonations } from "../store/donation";
 
 import {
   Grid,
@@ -52,19 +53,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ProjectPage = () => {
-
   const [project, setProject] = useState({});
   const [goalAmount, setGoalAmount] = useState(null);
   const [donatedAmount, setDonatedAmount] = useState(null);
   const [contributors, setContributors] = useState(0);
-  const [topContributors, setTopContributors] = useState({})
+  const [topContributors, setTopContributors] = useState({});
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((state) => state.session.user);
   const { projectId } = useParams();
   const classes = useStyles();
-
 
   const formatNumber = (num) => {
     const value = num.toString();
@@ -84,30 +83,31 @@ const ProjectPage = () => {
     return result.join("");
   };
 
-  useEffect(()=>{
-    dispatch(getOneProject(projectId))
-  }, [dispatch])
+  useEffect(() => {
+    dispatch(getOneProject(projectId));
+    dispatch(loadDonations(projectId));
+  }, [dispatch]);
 
-  const projectTest = useSelector(state=> state.projectReducer)
+  const projectTest = useSelector((state) => state.projectReducer);
+  const donatorObj = useSelector((state) => state.donationReducer.donations);
 
-  const proyecto = projectTest[projectId]
+  const proyecto = projectTest[projectId];
 
   useEffect(() => {
     if (!projectId) {
-        return;
-      }
-      (async()=>{
-      setProject(proyecto);
-      const temp = proyecto?.goal
-      setGoalAmount(temp)
-      const temp1 = proyecto?.amount_raised
-      setDonatedAmount(temp1)
-      const res = await fetch(`/api/project/${projectId}/donations`);
-      const donators = await res.json();
-      setContributors(donators.number);
-      setTopContributors(donators.topContributors)
-    })();
-  },[proyecto, donatedAmount]);
+      return;
+    }
+    setProject(proyecto);
+    const temp = proyecto?.goal;
+    setGoalAmount(temp);
+    const temp1 = proyecto?.amount_raised;
+    setDonatedAmount(temp1);
+  }, [proyecto, donatedAmount]);
+
+  useEffect(() => {
+    setContributors(donatorObj?.number);
+    setTopContributors(donatorObj?.topContributors);
+  }, [proyecto]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -148,7 +148,7 @@ const ProjectPage = () => {
           lg={6}
           id="projectDescriptionGrid"
         >
-          <Card id='projectDesciptionGridCard'>
+          <Card id="projectDesciptionGridCard">
             <div id="projectLocationDiv">
               <h3 id="projectLocation">
                 Location: {project.city}, {project.state}
@@ -183,7 +183,6 @@ const ProjectPage = () => {
         >
           <div id="projectNumbersContainerDiv">
             <Card id="projectNumbersCard">
-
               <Grid
                 container
                 item
@@ -207,7 +206,7 @@ const ProjectPage = () => {
                     className={classes.tagline}
                     id="projectNumbersGreen"
                   >
-                    ${donatedAmount? formatNumber(donatedAmount) : 0}
+                    ${donatedAmount ? formatNumber(donatedAmount) : 0}
                   </Grid>
                   <br />
                   <Grid
@@ -216,7 +215,7 @@ const ProjectPage = () => {
                     className={classes.tagline}
                     id="projectNumbersRelations"
                   >
-                    donated of ${goalAmount? formatNumber(goalAmount) : 0} goal
+                    donated of ${goalAmount ? formatNumber(goalAmount) : 0} goal
                   </Grid>
                 </Grid>
                 <Grid
@@ -260,7 +259,7 @@ const ProjectPage = () => {
                     className={classes.tagline}
                     id="projectNumbers"
                   >
-                    {Math.ceil(Math.random()*182).toString()}
+                    {Math.ceil(Math.random() * 182).toString()}
                   </Grid>
                   <Grid
                     item
@@ -371,7 +370,9 @@ const ProjectPage = () => {
                     className={classes.tagline}
                     id="projectNumbersRelations"
                   >
-                    ${topContributors[0] && formatNumber(topContributors[0].amount)}
+                    $
+                    {topContributors[0] &&
+                      formatNumber(topContributors[0].amount)}
                   </Grid>
                 </Grid>
                 <Grid
@@ -389,7 +390,7 @@ const ProjectPage = () => {
                     className={classes.tagline}
                     id="projectNumbers"
                   >
-                      {topContributors[1] && topContributors[1].user_fullname}
+                    {topContributors[1] && topContributors[1].user_fullname}
                   </Grid>
                   <Grid
                     item
@@ -397,7 +398,9 @@ const ProjectPage = () => {
                     className={classes.tagline}
                     id="projectNumbersRelations"
                   >
-                    ${topContributors[1] && formatNumber(topContributors[1].amount)}
+                    $
+                    {topContributors[1] &&
+                      formatNumber(topContributors[1].amount)}
                   </Grid>
                 </Grid>
                 <Grid
@@ -423,7 +426,9 @@ const ProjectPage = () => {
                     className={classes.tagline}
                     id="projectNumbersRelations"
                   >
-                      ${topContributors[2] && formatNumber(topContributors[2].amount)}
+                    $
+                    {topContributors[2] &&
+                      formatNumber(topContributors[2].amount)}
                   </Grid>
                 </Grid>
               </Grid>
