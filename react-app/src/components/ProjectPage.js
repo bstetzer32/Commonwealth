@@ -207,7 +207,7 @@ const ProjectPage = () => {
                     className={classes.tagline}
                     id="projectNumbersGreen"
                   >
-                    ${formatNumber(donatedAmount)}
+                    ${donatedAmount? formatNumber(donatedAmount) : 0}
                   </Grid>
                   <br />
                   <Grid
