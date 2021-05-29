@@ -31,7 +31,6 @@ def add_donation():
 
     db.session.add(project)
 
-
     if amount > 10 and amount < 20:
         tier = 2
     elif amount > 20 and amount < 50:

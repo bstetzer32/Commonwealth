@@ -1,8 +1,14 @@
 const ADD_ONE = "donations/ADD_ONE";
+const LOAD = "donations/LOAD";
 
 const add = (donation) => ({
   type: ADD_ONE,
   donation,
+});
+
+const load = (donations) => ({
+  type: LOAD,
+  donations,
 });
 
 export const addDonation = (donation, id) => async (dispatch) => {
@@ -20,6 +26,20 @@ export const addDonation = (donation, id) => async (dispatch) => {
   dispatch(add(donation));
 };
 
+export const loadDonations = (id) => async (dispatch) => {
+  const response = await fetch(`/api/project/${id}/donations`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const donations = await response.json();
+  if (donations.errors) {
+    return;
+  }
+  dispatch(load(donations));
+};
+
 const initialState = {};
 
 const donationReducer = (state = initialState, action) => {
@@ -28,6 +48,13 @@ const donationReducer = (state = initialState, action) => {
       return {
         ...state,
         [action.donation.id]: action.donation,
+      };
+    }
+
+    case LOAD: {
+      return {
+        ...state,
+        donations: action.donations,
       };
     }
 
