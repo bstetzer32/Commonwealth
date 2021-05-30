@@ -1,4 +1,6 @@
 from ..models import db, Project
+from datetime import date
+from dateutil.relativedelta import relativedelta
 
 
 def seed_projects():
@@ -17,7 +19,9 @@ def seed_projects():
         address_1="123 Sesame Street",
         city="Florence",
         state="Alabama",
-        zipcode=123456
+        zipcode=123456,
+        created_at=date.today(),
+        expiration_date=date.today() + relativedelta(months=+6)
     )
     Project1 = Project(
         user_id=2,
@@ -33,7 +37,9 @@ def seed_projects():
         address_1="123 Timbuktu Road",
         city="Boone",
         state="North Carolina",
-        zipcode=44455
+        zipcode=44455,
+        created_at=date.today(),
+        expiration_date=date.today() + relativedelta(months=+6)
     )
     Project2 = Project(
         user_id=3,
@@ -49,7 +55,9 @@ def seed_projects():
         address_1="3050 Smithington Court",
         city="Boone",
         state="North Carolina",
-        zipcode=44455
+        zipcode=44455,
+        created_at=date.today(),
+        expiration_date=date.today() + relativedelta(months=+6)
     )
     Project3 = Project(
         user_id=3,
@@ -65,7 +73,9 @@ def seed_projects():
         address_1="3050 Smithington Court",
         city="Boone",
         state="North Carolina",
-        zipcode=44455
+        zipcode=44455,
+        created_at=date.today(),
+        expiration_date=date.today() + relativedelta(months=+6)
     )
     Project4 = Project(
         user_id=4,
@@ -81,7 +91,9 @@ def seed_projects():
         address_1="200 Allen Drive",
         city="Jonesboro",
         state="Arkansas",
-        zipcode=44455
+        zipcode=44455,
+        created_at=date.today(),
+        expiration_date=date.today() + relativedelta(months=+6)
     )
     Project5 = Project(
         user_id=5,
@@ -97,7 +109,9 @@ def seed_projects():
         address_1="7 Avenue Way",
         city="Pittsburgh",
         state="Pennsylvania",
-        zipcode=44455
+        zipcode=44455,
+        created_at=date.today(),
+        expiration_date=date.today() + relativedelta(months=+6)
     )
     Project6 = Project(
         user_id=6,
@@ -113,7 +127,9 @@ def seed_projects():
         address_1="2576 Chad Drive",
         city="Dune City",
         state="New Mexico",
-        zipcode=55455
+        zipcode=55455,
+        created_at=date.today(),
+        expiration_date=date.today() + relativedelta(months=+6)
     )
     Project7 = Project(
         user_id=7,
@@ -129,7 +145,9 @@ def seed_projects():
         address_1="687 Main Street",
         city="New York City",
         state="New York",
-        zipcode=55566
+        zipcode=55566,
+        created_at=date.today(),
+        expiration_date=date.today() + relativedelta(months=+6)
     )
     Project8 = Project(
         user_id=8,
@@ -145,7 +163,9 @@ def seed_projects():
         address_1="189 Mysteria Court",
         city="Las Vegas",
         state="Nevada",
-        zipcode=55567
+        zipcode=55567,
+        created_at=date.today(),
+        expiration_date=date.today() + relativedelta(months=+6)
     )
     Project9 = Project(
         user_id=9,
@@ -160,7 +180,9 @@ def seed_projects():
         address_1="111 Untold Street",
         city="Seattle",
         state="Washington",
-        zipcode=68423
+        zipcode=68423,
+        created_at=date.today(),
+        expiration_date=date.today() + relativedelta(months=+6)
     )
     Project10 = Project(
         user_id=10,
@@ -176,7 +198,9 @@ def seed_projects():
         address_1="126 Killer Street",
         city="Fair Banks",
         state="Virginia",
-        zipcode=11573
+        zipcode=11573,
+        created_at=date.today(),
+        expiration_date=date.today() + relativedelta(months=+6)
     )
     Project11 = Project(
         user_id=11,
@@ -192,7 +216,9 @@ def seed_projects():
         address_1="126 Uptown Avenue",
         city="Union",
         state="South Dakota",
-        zipcode=55566
+        zipcode=55566,
+        created_at=date.today(),
+        expiration_date=date.today() + relativedelta(months=+6)
     )
     Project12 = Project(
         user_id=24,
@@ -208,7 +234,9 @@ def seed_projects():
         address_1='  3413 Kirkland Cir',
         city='Jasper',
         state='Alabama',
-        zipcode=658204
+        zipcode=658204,
+        created_at=date.today(),
+        expiration_date=date.today() + relativedelta(months=+6)
     )
     Project13 = Project(
         user_id=16,
@@ -224,7 +252,9 @@ def seed_projects():
         address_1='  7157 Genie Ln.',
         city='Skagway',
         state='Massachusetts',
-        zipcode=590241
+        zipcode=590241,
+        created_at=date.today(),
+        expiration_date=date.today() + relativedelta(months=+6)
     )
     Project14 = Project(
         user_id=2,
@@ -240,7 +270,9 @@ def seed_projects():
         address_1='  1241 Clover Ln.',
         city='Ojai',
         state='South Dakota',
-        zipcode=269301
+        zipcode=269301,
+        created_at=date.today(),
+        expiration_date=date.today() + relativedelta(months=+6)
     )
     Project15 = Project(
         user_id=6,
@@ -256,7 +288,9 @@ def seed_projects():
         address_1='  289 Cedar Rd.',
         city='Rancho Cucamonga',
         state='Arizona',
-        zipcode=360974
+        zipcode=360974,
+        created_at=date.today(),
+        expiration_date=date.today() + relativedelta(months=+6)
     )
     Project16 = Project(
         user_id=21,
@@ -272,7 +306,9 @@ def seed_projects():
         address_1='  1715 Aspen Cir',
         city='Buena Park',
         state='Alaska',
-        zipcode=426895
+        zipcode=426895,
+        created_at=date.today(),
+        expiration_date=date.today() + relativedelta(months=+6)
     )
     Project17 = Project(
         user_id=11,
@@ -288,7 +324,9 @@ def seed_projects():
         address_1='  5402 Wandering Drive',
         city='Fort Payne',
         state='Kansas',
-        zipcode=991613
+        zipcode=991613,
+        created_at=date.today(),
+        expiration_date=date.today() + relativedelta(months=+6)
     )
     Project18 = Project(
         user_id=12,
@@ -304,7 +342,9 @@ def seed_projects():
         address_1='8026 Bald Eagle St',
         city='Mountain View',
         state='Colorado',
-        zipcode=110179
+        zipcode=110179,
+        created_at=date.today(),
+        expiration_date=date.today() + relativedelta(months=+6)
     )
     Project19 = Project(
         user_id=21,
@@ -320,7 +360,9 @@ def seed_projects():
         address_1='8026 Bald Eagle St',
         city='El Dorado',
         state='Montana',
-        zipcode=298014
+        zipcode=298014,
+        created_at=date.today(),
+        expiration_date=date.today() + relativedelta(months=+6)
     )
     Project20 = Project(
         user_id=18,
@@ -336,7 +378,9 @@ def seed_projects():
         address_1='  1570 Patten Rd',
         city='Glendale',
         state='California',
-        zipcode=145048
+        zipcode=145048,
+        created_at=date.today(),
+        expiration_date=date.today() + relativedelta(months=+6)
     )
     Project21 = Project(
         user_id=30,
@@ -352,7 +396,9 @@ def seed_projects():
         address_1='  1238 Rudman Ave.',
         city='Anaheim',
         state='Oklahoma',
-        zipcode=621216
+        zipcode=621216,
+        created_at=date.today(),
+        expiration_date=date.today() + relativedelta(months=+6)
     )
     Project22 = Project(
         user_id=4,
@@ -368,7 +414,9 @@ def seed_projects():
         address_1='  9142 Roosevelt Trl.',
         city='Scottsboro',
         state='Kansas',
-        zipcode=920552
+        zipcode=920552,
+        created_at=date.today(),
+        expiration_date=date.today() + relativedelta(months=+6)
     )
     Project23 = Project(
         user_id=17,
@@ -384,7 +432,9 @@ def seed_projects():
         address_1='  1570 Patten Rd',
         city='Batesville',
         state='Idaho',
-        zipcode=978321
+        zipcode=978321,
+        created_at=date.today(),
+        expiration_date=date.today() + relativedelta(months=+6)
     )
     Project24 = Project(
         user_id=28,
@@ -400,7 +450,9 @@ def seed_projects():
         address_1='  8716 Camden Trail',
         city='Concord',
         state='Wyoming',
-        zipcode=641701
+        zipcode=641701,
+        created_at=date.today(),
+        expiration_date=date.today() + relativedelta(months=+6)
     )
     Project25 = Project(
         user_id=21,
@@ -416,7 +468,9 @@ def seed_projects():
         address_1='  8343 Riverview Terrace',
         city='Hayward',
         state='Texas',
-        zipcode=299924
+        zipcode=299924,
+        created_at=date.today(),
+        expiration_date=date.today() + relativedelta(months=+6)
     )
     Project26 = Project(
         user_id=24,
@@ -432,7 +486,9 @@ def seed_projects():
         address_1='  1570 Patten Rd',
         city='Port Hueneme',
         state='Connecticut',
-        zipcode=682300
+        zipcode=682300,
+        created_at=date.today(),
+        expiration_date=date.today() + relativedelta(months=+6)
     )
     Project27 = Project(
         user_id=18,
@@ -448,7 +504,9 @@ def seed_projects():
         address_1='  4004 Hickory Court',
         city='Kodiak',
         state='Michigan',
-        zipcode=370318
+        zipcode=370318,
+        created_at=date.today(),
+        expiration_date=date.today() + relativedelta(months=+6)
     )
 
     db.session.add(testProject)

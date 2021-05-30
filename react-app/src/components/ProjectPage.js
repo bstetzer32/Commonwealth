@@ -128,9 +128,8 @@ const ProjectPage = () => {
     await dispatch(deleteProject(projectId));
     history.push("/");
   };
-  const start = proyecto?.created_at;
   const end = proyecto?.expiration_date;
-  const x = new Date(start);
+  const x = new Date();
   const y = new Date(end);
 
   const daysLeft = Math.floor(
