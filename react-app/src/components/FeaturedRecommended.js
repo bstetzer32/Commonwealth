@@ -42,7 +42,8 @@ const useStyles = makeStyles((theme) => ({
         width:"35%",
         margin:"5%" ,
         display:"flex",
-        flexDirection:"column"
+        flexDirection:"column",
+        alignItems: "start"
     },
     arrows: {
         display:"flex",
