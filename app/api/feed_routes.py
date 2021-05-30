@@ -15,7 +15,7 @@ def feed():
             ).limit(10)
         projects_new = Project.query.order_by(
             Project.created_at.desc()
-        ).offset(10).limit(20)
+        ).limit(20)
         projects_old = Project.query.order_by(
             Project.created_at.asc()
         ).limit(20)
@@ -25,7 +25,7 @@ def feed():
         ).limit(10)
         projects_new = Project.query.filter(Project.category_id == id).order_by(
             Project.created_at.desc()
-        ).offset(10).limit(20)
+        ).limit(20)
         projects_old = Project.query.filter(Project.category_id == id).order_by(
             Project.created_at.asc()
         ).limit(20)
