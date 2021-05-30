@@ -339,10 +339,10 @@ def seed_bulk():
             userCount = User.query.count()
             project_id = Project.query.order_by(Project.id.desc()).first()
 
-            i = 0
-            while i < 3:
+            i = random.randint(3, 25)
+            while i > 0:
 
-                amount = random.randint(1, 1000)
+                amount = random.randint(500, 10000)
                 tier = 1
                 if amount > 10 and amount < 20:
                     tier = 2
@@ -369,7 +369,7 @@ def seed_bulk():
                 db.session.add(donation)
                 db.session.commit()
 
-                i += 1
+                i -= 1
 
 
 def undo_bulk():
