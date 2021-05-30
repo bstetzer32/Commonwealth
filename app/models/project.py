@@ -50,6 +50,8 @@ class Project(db.Model):
             "city": self.city,
             "state": self.state,
             "zipcode": self.zipcode,
+            "created_at": str(self.created_at),
+            "expiration_date": str(self.expiration_date),
             # "lat":self.lat,
             # "lng":self.lng,
             "donations": [
@@ -70,5 +72,7 @@ class Project(db.Model):
             "address_1": self.address_1,
             "city": self.city,
             "state": self.state,
-            "amount_raised": self.amount_raised
+            "amount_raised": self.amount_raised,
+            "created_at": self.created_at,
+            "expiration_at": self.expiration_date
         }

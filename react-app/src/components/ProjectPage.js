@@ -64,6 +64,7 @@ const ProjectPage = () => {
   const user = useSelector((state) => state.session.user);
   const { projectId } = useParams();
   const classes = useStyles();
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const formatNumber = (num) => {
     const value = num.toString();
@@ -83,16 +84,26 @@ const ProjectPage = () => {
     return result.join("");
   };
 
-  useEffect(() => {
-    dispatch(getOneProject(projectId));
-    dispatch(loadDonations(projectId));
-  }, [dispatch]);
-
   const projectTest = useSelector((state) => state.projectReducer);
   const donatorObj = useSelector((state) => state.donationReducer.donations);
 
   const proyecto = projectTest[projectId];
 
+  useEffect(() => {
+    (async () => {
+      if (!proyecto) {
+        await dispatch(getOneProject(projectId));
+        await dispatch(loadDonations(projectId));
+      }
+      if (!donatorObj) {
+        return;
+      }
+      await setContributors(donatorObj?.number);
+      await setTopContributors(donatorObj?.topContributors);
+      setIsLoaded(true);
+    })();
+    console.log(donatorObj?.number);
+  }, [dispatch, project, proyecto, donatorObj, projectTest]);
   useEffect(() => {
     if (!projectId) {
       return;
@@ -104,10 +115,7 @@ const ProjectPage = () => {
     setDonatedAmount(temp1);
   }, [proyecto, donatedAmount]);
 
-  useEffect(() => {
-    setContributors(donatorObj?.number);
-    setTopContributors(donatorObj?.topContributors);
-  }, [proyecto]);
+  useEffect(() => {}, [proyecto]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -120,9 +128,23 @@ const ProjectPage = () => {
     await dispatch(deleteProject(projectId));
     history.push("/");
   };
-  if (!project) {
+  const start = proyecto?.created_at;
+  const end = proyecto?.expiration_date;
+  const x = new Date(start);
+  const y = new Date(end);
+
+  const daysLeft = Math.floor(
+    (y.getTime() - x.getTime()) / (1000 * 60 * 60 * 24)
+  );
+  if (
+    !project &&
+    !topContributors &&
+    !isLoaded &&
+    typeof daysLeft !== "number"
+  ) {
     return null;
   }
+
   return (
     <>
       <Grid
@@ -132,10 +154,10 @@ const ProjectPage = () => {
         id="projectTitleGrid"
       >
         <Grid item xs={12} className={classes.title} id="projectTitle">
-          {project.title}
+          {project?.title}
         </Grid>
         <Grid item xs={12} className={classes.tagline} id="projectTagline">
-          {project.tagline}
+          {project?.tagline}
         </Grid>
       </Grid>
       <Grid container spacing={0} className={classes.grid} id="projectInfoGrid">
@@ -151,7 +173,7 @@ const ProjectPage = () => {
           <Card id="projectDesciptionGridCard">
             <div id="projectLocationDiv">
               <h3 id="projectLocation">
-                Location: {project.city}, {project.state}
+                Location: {project?.city}, {project?.state}
               </h3>
             </div>
             <div id="projectImageDiv">
@@ -159,7 +181,7 @@ const ProjectPage = () => {
                 <CardActionArea>
                   <CardMedia
                     title="title"
-                    image={project.image_url}
+                    image={project?.image_url}
                     component="img"
                   ></CardMedia>
                 </CardActionArea>
@@ -167,7 +189,7 @@ const ProjectPage = () => {
             </div>
             <div id="projectDescriptionDiv">
               <div className={classes.info} id="projectDescription">
-                {project.description}
+                {project?.description}
               </div>
             </div>
           </Card>
@@ -259,7 +281,7 @@ const ProjectPage = () => {
                     className={classes.tagline}
                     id="projectNumbers"
                   >
-                    {Math.ceil(Math.random() * 182).toString()}
+                    {daysLeft}
                   </Grid>
                   <Grid
                     item
@@ -279,7 +301,7 @@ const ProjectPage = () => {
           </div>
           {project?.user_id === user?.id && (
             <div className="projectPage__update">
-              <Link id="update__link" to={`/projects/${project.id}/update`}>
+              <Link id="update__link" to={`/projects/${projectId}/update`}>
                 <Button id="projectPage__updateButton">Update</Button>
               </Link>
             </div>
@@ -309,7 +331,7 @@ const ProjectPage = () => {
                   <DialogContent>
                     <DialogContentText id="alert-dialog-description">
                       Are you sure you want to delete your project? All donated
-                      funds will be returned to the donaters. This process is
+                      funds will be returned to the donators. This process is
                       irreversible.
                     </DialogContentText>
                   </DialogContent>
@@ -362,7 +384,7 @@ const ProjectPage = () => {
                     className={classes.tagline}
                     id="projectNumbers"
                   >
-                    {topContributors[0] && topContributors[0].user_fullname}
+                    {topContributors && topContributors[0]?.user_fullname}
                   </Grid>
                   <Grid
                     item
@@ -371,8 +393,9 @@ const ProjectPage = () => {
                     id="projectNumbersRelations"
                   >
                     $
-                    {topContributors[0] &&
-                      formatNumber(topContributors[0].amount)}
+                    {topContributors &&
+                      topContributors[0] &&
+                      formatNumber(topContributors[0]?.amount)}
                   </Grid>
                 </Grid>
                 <Grid
@@ -390,7 +413,7 @@ const ProjectPage = () => {
                     className={classes.tagline}
                     id="projectNumbers"
                   >
-                    {topContributors[1] && topContributors[1].user_fullname}
+                    {topContributors && topContributors[1]?.user_fullname}
                   </Grid>
                   <Grid
                     item
@@ -399,8 +422,9 @@ const ProjectPage = () => {
                     id="projectNumbersRelations"
                   >
                     $
-                    {topContributors[1] &&
-                      formatNumber(topContributors[1].amount)}
+                    {topContributors &&
+                      topContributors[1] &&
+                      formatNumber(topContributors[1]?.amount)}
                   </Grid>
                 </Grid>
                 <Grid
@@ -418,7 +442,7 @@ const ProjectPage = () => {
                     className={classes.tagline}
                     id="projectNumbers"
                   >
-                    {topContributors[2] && topContributors[2].user_fullname}
+                    {topContributors && topContributors[2]?.user_fullname}
                   </Grid>
                   <Grid
                     item
@@ -427,8 +451,9 @@ const ProjectPage = () => {
                     id="projectNumbersRelations"
                   >
                     $
-                    {topContributors[2] &&
-                      formatNumber(topContributors[2].amount)}
+                    {topContributors &&
+                      topContributors[2] &&
+                      formatNumber(topContributors[2]?.amount)}
                   </Grid>
                 </Grid>
               </Grid>

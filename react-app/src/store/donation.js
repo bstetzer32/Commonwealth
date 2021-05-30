@@ -37,7 +37,7 @@ export const loadDonations = (id) => async (dispatch) => {
   if (donations.errors) {
     return;
   }
-  dispatch(load(donations));
+  await dispatch(load(donations));
 };
 
 const initialState = {};
