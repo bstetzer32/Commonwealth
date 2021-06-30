@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "0",
     padding: ".25em",
     fontSize: "1em",
+    color: "black"
   },
   title: {
     overflow: "hidden",
@@ -81,6 +82,7 @@ const SearchTile = ({ project }) => {
   return (
     <Box className={classes.root}>
       <Card className={classes.card}>
+          <Link to={`/projects/${project?.id}`} className={classes.title}>
         <CardActionArea className={classes.actionArea}>
           <CardMedia
             className={classes.img}
@@ -89,17 +91,15 @@ const SearchTile = ({ project }) => {
             title="title"
           />
           <CardContent>
-            <Link to={`/projects/${project?.id}`} className={classes.title}>
               <Typography>
                 <span className={classes.title}>{project.title}</span>
               </Typography>
-            </Link>
             <Typography
               className={classes.tagline}
               variant="body2"
               color="textSecondary"
               component="p"
-            >
+              >
               {project.tagline}
             </Typography>
           </CardContent>
@@ -111,6 +111,7 @@ const SearchTile = ({ project }) => {
             Funded
           </Box>
         </div>
+              </Link>
       </Card>
     </Box>
   );

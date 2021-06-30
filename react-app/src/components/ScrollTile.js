@@ -29,7 +29,8 @@ const useStyles = makeStyles((theme) => ({
     },
     info: {
         display:"flex",
-        justifyContent:"space-between"
+        justifyContent:"space-between",
+        color: "black"
     },
     image: {
         height: "12rem",
@@ -57,12 +58,11 @@ const ScrollTile = ({ project }) => {
     return (
             <Box className={matches ? classes.root : classes.rootMobile}>
                 <Card className={classes.card}>
+                            <Link to={`/projects/${project?.id}`} className={classes.link}>
                     <CardActionArea>
                         <CardMedia image={project?.image_url} component="img" title='title' className={classes.image}/>
                         <CardContent>
-                            <Link to={`/projects/${project?.id}`} className={classes.link}>
                                 <Typography gutterBottom variant="h5" component="h1">{project?.title}</Typography>
-                            </Link>
                             <Typography variant="body2" color="textSecondary" component="p">{project?.tagline}</Typography>
                             <Box  className={classes.info}>
                                 <h3>by: {project?.user}</h3>
@@ -70,6 +70,7 @@ const ScrollTile = ({ project }) => {
                             </Box>
                         </CardContent>
                     </CardActionArea>
+                            </Link>
                 </Card>
              </Box>
   );

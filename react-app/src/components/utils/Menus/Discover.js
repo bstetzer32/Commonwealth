@@ -44,6 +44,7 @@ const Discover = () => {
           style: {
             maxHeight: '38%',
             width: "20ch",
+            top: "100px"
           },
         }}
       >

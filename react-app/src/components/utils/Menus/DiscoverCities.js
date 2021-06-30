@@ -1,6 +1,6 @@
 import React from 'react';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
+import MenuItem from '@material-ui/core/MenuItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
@@ -24,17 +24,17 @@ export default function DiscoverCities({state}){
 
   return(
     <>
-      <ListItem button onClick={handleClick}>
+      <MenuItem button onClick={handleClick}>
         <ListItemText primary={state.name} />
         {open ? <ExpandLess /> : <ExpandMore />}
-      </ListItem>
+      </MenuItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List  component="div" disablePadding>
          {state.cities.map(city =>
          <NavLink className={classes.link} key={city.id}  to={`/regions/${city.id}`}>
-         <ListItem  button>
+         <MenuItem  button>
             <ListItemText  primary={city.name} />
-          </ListItem>
+          </MenuItem>
           </NavLink>)}
         </List>
       </Collapse>
