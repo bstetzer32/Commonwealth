@@ -49,7 +49,7 @@ const LoginMenu = () => {
   });
 
   let status = useSelector((state) => state.session.user);
-  console.log(status);
+
   if (status) {
     return (
       <>
