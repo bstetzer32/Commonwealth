@@ -32,9 +32,10 @@ const useStyles = makeStyles((theme) => ({
         objectFit: "cover"
     },
     info: {
-         display:"flex",
-         flexDirection: "column",
-         justifyContent:"space-between"
+        display:"flex",
+        flexDirection: "column",
+        justifyContent:"space-between",
+        color: "black"
     },
     link: {
         textDecoration: 'none',
@@ -50,12 +51,11 @@ const RecomendedTile = ({project}) => {
     return (
         <Box className={classes.root} my="2.5%">
             <Card>
+            <Link to={`/projects/${project?.id}`} className={classes.link}>
             <CardActionArea className={classes.cardRoot}>
             <CardMedia src={project?.image_url} component="img" title='title' className={classes.image}/>
             <CardContent>
-            <Link to={`/projects/${project?.id}`} className={classes.link}>
                 <Typography gutterBottom variant="h5" component="h1">{project?.title}</Typography>
-            </Link>
             <Typography variant="body2" color="textSecondary" component="p">{project?.tagline}</Typography>
             <Box className={classes.info}>
             <h4>by: {project?.user}</h4>
@@ -63,6 +63,7 @@ const RecomendedTile = ({project}) => {
             </Box>
             </CardContent>
             </CardActionArea>
+            </Link>
             </Card>
         </Box>
     )

@@ -33,8 +33,9 @@ const Discover = () => {
         onClose={handleClose}
         PaperProps={{
           style: {
-            maxHeight: 48 * 4.5,
+            maxHeight: "95%",
             width: "20ch",
+            top: "100px"
           },
         }}
       >

@@ -16,8 +16,9 @@ const useStyles = makeStyles((theme) => ({
         margin: '5%'
     },
     info: {
-         display:"flex",
-         justifyContent:"space-between"
+        display:"flex",
+        justifyContent:"space-between",
+        color: "black"
     },
     link: {
         textDecoration: 'none',
