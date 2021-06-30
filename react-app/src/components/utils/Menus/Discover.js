@@ -10,15 +10,24 @@ const Discover = () => {
   const discovery = useSelector((state) => state.discovery);
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState(null);
+
   const openMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   useEffect(() => {
     dispatch(getDiscovery());
   }, [dispatch]);
+
+  useEffect(() => {
+    if(anchorEl) {
+      const discoverMenu = document.querySelector('.MuiPaper-elevation8');
+      discoverMenu.id = 'discoverMenu';
+    }
+  }, [anchorEl])
 
   return (
     <>
@@ -33,7 +42,7 @@ const Discover = () => {
         onClose={handleClose}
         PaperProps={{
           style: {
-            maxHeight: "95%",
+            maxHeight: '38%',
             width: "20ch",
             top: "100px"
           },
@@ -50,7 +59,3 @@ const Discover = () => {
 };
 
 export default Discover;
-
-
-
-

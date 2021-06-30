@@ -847,3 +847,9 @@ input[type="number"] {
   background: #3a59a7;
   cursor: pointer;
 }
+
+/* Discover menu styling */
+
+#discoverMenu {
+  top: 28px !important;
+}
