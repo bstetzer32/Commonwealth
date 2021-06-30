@@ -2,7 +2,7 @@
 
 A community initiative crowdfunding site, influenced by Kickstarter
 
-Live Site: [commonwealth](https://github.com/bstetzer32/Commonwealth/wiki)
+Live Site: [Commonwealth](https://commonwealth-aa.herokuapp.com/)
 
 ## Technologies Used:
 
