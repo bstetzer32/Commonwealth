@@ -70,7 +70,7 @@ const NavBar = () => {
     : null}
     </div>
 
-      <NavLink to='/'className="nav__element" id="nav__logo">
+      <NavLink to='/' className={`nav_title_decorator nav__element`}id="nav__logo">
         commonwealth
       </NavLink>
       <div className="nav__element--searchlog">
