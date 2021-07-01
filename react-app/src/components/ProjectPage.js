@@ -397,7 +397,7 @@ const ProjectPage = () => {
                       '$' + formatNumber(topContributors[0].amount)
                     : null
                     : null
-                    : 'None'
+                    : null
                     }
                   </Grid>
                 </Grid>
