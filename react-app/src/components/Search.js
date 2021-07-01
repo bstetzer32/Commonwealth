@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -13,6 +13,13 @@ const SearchBar = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const checkKeyUp = (e) => {
+    console.log(e.key)
+    if(e.key === 'Enter') {
+      handleSearch();
+    }
+  }
+
   const handleSearch = () => {
     dispatch(searching(null, null, null, value));
     history.push("/search");
@@ -23,6 +30,7 @@ const SearchBar = () => {
       id="standard-search"
       label="Search"
       type="search"
+      onKeyUp={checkKeyUp}
       onChange={(e) => {
         setValue(e.target.value);
       }}
