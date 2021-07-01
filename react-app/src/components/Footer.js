@@ -5,7 +5,7 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer__names--container">
         <div className="footer__name">
-          Marshall Diffey
+          <a href="https://marshall-diffey.github.io/" className="portfolioLink">Marshall Diffey</a>
           <div className="footer__icons">
             <a href="https://github.com/Marshall-Diffey">
               <i className="fab fa-github" />
@@ -16,7 +16,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="footer__name">
-          Chuks Ota
+          <a href="https://chuksota.github.io/" className="portfolioLink">Chuks Ota</a>
           <div className="footer__icons">
             <a href="https://github.com/chuksota">
               <i className="fab fa-github" />
@@ -27,7 +27,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="footer__name">
-          Josh Steinberg
+          <a href="https://jps725.github.io/" className="portfolioLink">Josh Steinberg</a>
           <div className="footer__icons">
             <a href="https://github/jps725">
               <i className="fab fa-github" />
@@ -38,7 +38,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="footer__name">
-          Ben Stetzer
+          <a href="https://github.com/bstetzer32" className="portfolioLink">Ben Stetzer</a>
           <div className="footer__icons">
             <a href="https://github.com/bstetzer32">
               <i className="fab fa-github" />
