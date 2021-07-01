@@ -391,10 +391,14 @@ const ProjectPage = () => {
                     className={classes.tagline}
                     id="projectNumbersRelations"
                   >
-                    $
-                    {topContributors &&
-                      topContributors[0] &&
-                      formatNumber(topContributors[0]?.amount)}
+                    {topContributors ?
+                      topContributors[0] ?
+                      topContributors[0].amount ?
+                      '$' + formatNumber(topContributors[0].amount)
+                    : null
+                    : null
+                    : 'None'
+                    }
                   </Grid>
                 </Grid>
                 <Grid
@@ -420,10 +424,14 @@ const ProjectPage = () => {
                     className={classes.tagline}
                     id="projectNumbersRelations"
                   >
-                    $
-                    {topContributors &&
-                      topContributors[1] &&
-                      formatNumber(topContributors[1]?.amount)}
+                    {topContributors ?
+                      topContributors[1] ?
+                      topContributors[1].amount ?
+                      '$' + formatNumber(topContributors[1].amount)
+                    : null
+                    : null
+                    : null
+                    }
                   </Grid>
                 </Grid>
                 <Grid
@@ -449,10 +457,14 @@ const ProjectPage = () => {
                     className={classes.tagline}
                     id="projectNumbersRelations"
                   >
-                    $
-                    {topContributors &&
-                      topContributors[2] &&
-                      formatNumber(topContributors[2]?.amount)}
+                    {topContributors ?
+                      topContributors[2] ?
+                      topContributors[2].amount ?
+                      '$' + formatNumber(topContributors[2].amount)
+                    : null
+                    : null
+                    : null
+                    }
                   </Grid>
                 </Grid>
               </Grid>
