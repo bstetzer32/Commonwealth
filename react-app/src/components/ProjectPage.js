@@ -102,8 +102,8 @@ const ProjectPage = () => {
       await setTopContributors(donatorObj?.topContributors);
       setIsLoaded(true);
     })();
-    console.log(donatorObj?.number);
   }, [dispatch, project, proyecto, donatorObj, projectTest]);
+
   useEffect(() => {
     if (!projectId) {
       return;
