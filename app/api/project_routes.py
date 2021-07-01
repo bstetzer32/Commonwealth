@@ -50,12 +50,16 @@ def create_project():
     state = State.query.filter_by(name=form.data['st']).first()
     category = Category.query.filter_by(name=form.data['category']).first()
     city = City.query.filter_by(name=form.data['city']).first()
+    if form.data['image_url'] == "":
+        image = 'https://commonwealthprojectpictures.s3.ca-central-1.amazonaws.com/volunteering-hand-volunteer-participation-512.png'
+    else:
+        image = form.data['image_url']
 
     if form.validate_on_submit():
         project = Project(
             title=form.data['title'],
             tagline=form.data['tagline'],
-            image_url=form.data['image_url'],
+            image_url=image,
             description=form.data['description'],
             goal=int(form.data['goal']),
             address_1=form.data['address_1'],
