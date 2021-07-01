@@ -1,10 +1,11 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import Button from "@material-ui/core/Button";
 import { addDonation } from "../../store/donation";
+import { getOneProject } from "../../store/project";
 
 export default function DonationForm({ project_id }) {
   const [amount, setAmount] = useState(0);
@@ -41,13 +42,16 @@ export default function DonationForm({ project_id }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const donation = { user_id, amount, project_id };
-    dispatch(addDonation(donation));
+    await dispatch(addDonation(donation));
+    await dispatch(getOneProject(project_id));
     handleClose();
   };
 
   return (
     <>
-      <Button id='projectDonateButton' onClick={handleClickOpen}>Support this project</Button>
+      <Button id="projectDonateButton" onClick={handleClickOpen}>
+        Support this project
+      </Button>
       <Dialog
         open={open}
         onClose={handleClose}

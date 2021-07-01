@@ -8,7 +8,7 @@ import { NavLink } from "react-router-dom";
 import { authenticate } from "../../../services/auth.js";
 import { makeStyles } from "@material-ui/core/styles";
 import { login } from "../../../store/session";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -48,7 +48,9 @@ const LoginMenu = () => {
     })();
   });
 
-  if (loggedIn) {
+  let status = useSelector((state) => state.session.user);
+
+  if (status) {
     return (
       <>
         <Button onClick={openMenu}>
