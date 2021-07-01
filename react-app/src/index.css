@@ -683,49 +683,6 @@ input[type="number"] {
   margin-right: 1.5em;
 }
 
-.footer {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-content: space-between;
-  background-color: rgb(0, 136, 255);
-  color: #f4f7f8;
-  width: 100%;
-  max-width: 100%;
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  font-family: "Titillium Web", sans-serif;
-}
-
-.footer__names--container {
-  display: flex;
-  flex: column;
-  justify-content: space-between;
-}
-.footer__icons a {
-  padding: 0 0.5em;
-}
-.footer__icons {
-  display: flex;
-  justify-content: center;
-}
-
-.footer__icons a,
-.footer__icons i {
-  text-decoration: none;
-  color: #d2d9dd;
-}
-
-.footer__name {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-content: space-between;
-  padding: 0 5em;
-}
-
 .logout__button {
   position: relative;
   display: block;
@@ -852,4 +809,54 @@ input[type="number"] {
 
 #discoverMenu {
   top: 28px !important;
+}
+
+/* footer styling */
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-content: space-between;
+  background-color: rgb(0, 136, 255);
+  color: #f4f7f8;
+  width: 100%;
+  max-width: 100%;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  font-family: "Titillium Web", sans-serif;
+}
+
+.footer__names--container {
+  display: flex;
+  flex: column;
+  justify-content: space-between;
+}
+.footer__icons a {
+  padding: 0 0.5em;
+}
+.footer__icons {
+  display: flex;
+  justify-content: center;
+}
+
+.footer__icons a,
+.footer__icons i {
+  text-decoration: none;
+  color: #d2d9dd;
+}
+
+.footer__name {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: space-between;
+  padding: 0 5em;
+}
+
+.portfolioLink {
+  color: white;
+  text-decoration: none;
 }
