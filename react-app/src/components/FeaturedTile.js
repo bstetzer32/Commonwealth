@@ -9,11 +9,17 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import json2mq from 'json2mq';
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '90%',
-        margin: '5%'
+        margin: '5% 0',
+    },
+    rootMobile: {
+        width: '100%',
+        margin:"5% 5% 5% 0"
     },
     info: {
         display:"flex",
@@ -29,10 +35,15 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const FeaturedTile = ({project}) => {
+const FeaturedTile = ({project}) => { 
+    const matches = useMediaQuery(
+        json2mq({
+            minWidth: 720,
+        }),
+    );
   const classes = useStyles();
     return (
-        <Card className={classes.root}>
+        <Card className={matches ? classes.root : classes.rootMobile}>
                 <Link to={`/projects/${project?.id}`} className={classes.link}>
             <CardActionArea>
                 <CardMedia image={project?.image_url}component="img" title='title'/>

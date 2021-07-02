@@ -22,15 +22,16 @@ const useStyles = makeStyles((theme) => ({
     rootMobile: {
         display: "flex",
         flexDirection: "column",
+        alignItems: "center",
         width: "100%"
     },
     featuredMobile: {
         width:"90%",
-        margin:"5%"
+        margin:"5% 0"
     },
     recommendedMobile: {
         width:"90%",
-        margin:"5%" ,
+        margin:"5% 0",
         display:"flex",
         flexDirection:"column"
     },
