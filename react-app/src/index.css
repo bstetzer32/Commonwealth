@@ -332,9 +332,12 @@ input[type="number"] {
   align-items: center;
 }
 
-.searchPage__bar--button:hover {
+.searchPage__bar--button:hover,
+.searchPage__bar--categorySelect:hover,
+.searchPage__bar--stateSelect:hover {
   cursor: pointer;
 }
+
 
 .searchPage__bar--element {
   color: black;
