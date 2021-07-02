@@ -2,8 +2,15 @@
 
 /* NavBar Styling */
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 719px) {
   #nav__logo {
+    display: none
+  }
+}
+
+@media screen and (min-width: 720px) {
+  .nav__logo--smallScreenContainer,
+  #nav__logo--smallScreen {
     display: none
   }
 }
@@ -42,6 +49,18 @@
   color: rgb(0, 136, 255);
 }
 
+#nav__logo--smallScreen {
+  font-family: "Righteous", cursive;
+  align-self: center;
+  color: rgb(0, 136, 255);
+  padding: 20px;
+}
+
+.nav__logo--smallScreenContainer {
+  display: flex;
+  justify-content: center;
+
+}
 .nav__element--searchlog {
   display: flex;
   align-items: center;

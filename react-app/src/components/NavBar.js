@@ -41,47 +41,51 @@ const NavBar = () => {
   }
 
   return (
-    <nav className="nav__bar">
-      <div className="nav__element--discover">
-        <Discover className="nav__element" />
-       <Button id='nav__element' onClick={chooseOne}>Create A Project</Button>
-     {open?
-         <Dialog
-         open={open}
-         onClose={handleClose}
-         aria-labelledby="alert-dialog-title"
-         aria-describedby="alert-dialog-description"
-         >
-          <DialogTitle id="alert-dialog-title">{"Please create an account"}</DialogTitle>
-          <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-              You need an account to create to be able to make a new project. Sign up and start making a change in your community!
-          </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-          <Button onClick={handleClose} color="primary">
-              Cancel
-          </Button>
-          <Button onClick={goToSignUp} color="primary" autoFocus>
-              Sign-Up
-          </Button>
-          </DialogActions>
-        </Dialog>
-    : null}
-    </div>
-
-      <NavLink to='/' className={`nav_title_decorator nav__element`}id="nav__logo">
-        commonwealth
-      </NavLink>
-      <div className="nav__element--searchlog">
-        <SearchBar id="nav__element--searchBar" />
-        <LoginMenu className="nav__element" id="nav__element--loginMenu" />
+    <>
+      <div className='nav__logo--smallScreenContainer'>
+        <NavLink to='/' className={`nav_title_decorator nav__element`} id="nav__logo--smallScreen">
+          commonwealth
+        </NavLink>
       </div>
-    </nav>
+      <nav className="nav__bar">
+        <div className="nav__element--discover">
+          <Discover className="nav__element" />
+        <Button id='nav__element' onClick={chooseOne}>Create A Project</Button>
+      {open?
+          <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title">{"Please create an account"}</DialogTitle>
+            <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+                You need an account to create to be able to make a new project. Sign up and start making a change in your community!
+            </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+            <Button onClick={handleClose} color="primary">
+                Cancel
+            </Button>
+            <Button onClick={goToSignUp} color="primary" autoFocus>
+                Sign-Up
+            </Button>
+            </DialogActions>
+          </Dialog>
+      : null}
+      </div>
+
+        <NavLink to='/' className={`nav_title_decorator nav__element`}id="nav__logo">
+          commonwealth
+        </NavLink>
+        <div className="nav__element--searchlog">
+          <SearchBar id="nav__element--searchBar" />
+          <LoginMenu className="nav__element" id="nav__element--loginMenu" />
+        </div>
+      </nav>
+    </>
   );
 };
 
 export default NavBar;
-
-
-
