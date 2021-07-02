@@ -43,7 +43,7 @@ const Discover = () => {
         PaperProps={{
           style: {
             maxHeight: '38%',
-            width: "20ch",
+            width: "30ch",
             top: "100px"
           },
         }}
