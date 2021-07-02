@@ -23,8 +23,8 @@
     flex-direction: column !important;
     align-items: stretch !important;
     margin: 5% 0 !important
+  }
 }
-
 @media screen and (min-width: 720px) {
   .nav__logo--smallScreenContainer,
   #nav__logo--smallScreen {
