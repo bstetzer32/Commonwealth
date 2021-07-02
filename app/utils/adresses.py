@@ -61,7 +61,7 @@ def addresses():
     data = json.load(f)
     locations = []
     # for location in data["addresses"][1:XXX]:
-    for location in data["addresses"]:
+    for location in data["addresses"][:500]:
         if "city" in location.keys():
 
             x = {
