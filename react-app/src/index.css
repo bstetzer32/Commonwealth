@@ -891,3 +891,7 @@ input[type="number"] {
   color: white;
   text-decoration: none;
 }
+
+#tileScroll {
+  overflow-y: hidden !important;
+}

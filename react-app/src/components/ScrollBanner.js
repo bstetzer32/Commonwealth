@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
         width:"100%",
         display:"flex",
         overflow:"scroll",
-        marginBottom: "4em"
+        marginBottom: "4em",
     }
 }))
 
@@ -34,7 +34,7 @@ const ScrollBanner = ({type}) => {
         <Box className={classes.header}>
         <Typography gutterBottom variant="h6" component="h1">{type}</Typography>
         </Box>
-        <Box className={classes.tiles}>
+        <Box className={classes.tiles} id='tileScroll'>
             {feed.map(project=><ScrollTile key={project.id} project={project} />)}
 
         </Box>
