@@ -47,13 +47,15 @@
   font-family: "Righteous", cursive;
   align-self: center;
   color: rgb(0, 136, 255);
+  padding: 0px;
 }
 
 #nav__logo--smallScreen {
   font-family: "Righteous", cursive;
   align-self: center;
   color: rgb(0, 136, 255);
-  padding: 20px;
+  padding: 0px;
+  margin: 20px;
 }
 
 .nav__logo--smallScreenContainer {
