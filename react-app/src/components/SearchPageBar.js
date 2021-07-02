@@ -43,7 +43,7 @@ export default function SearchPageBar() {
           projects in
         </div>
         <div className="searchPage__bar--category searchPage__bar--element">
-          <select value={category} onChange={updateCategory}>
+          <select className="searchPage__bar--categorySelect" value={category} onChange={updateCategory}>
             <option value={""}>All Categories</option>
             <option value={"Education"}>Education</option>
             <option value={"Sports"}>Sports</option>
@@ -64,7 +64,7 @@ export default function SearchPageBar() {
         </div>
         <div className="searchPage__bar--text4 searchPage__bar--element">,</div>
         <div className="searchPage__bar--state searchPage__bar--element">
-          <select value={st} onChange={updateSt}>
+          <select className="searchPage__bar--stateSelect" value={st} onChange={updateSt}>
             {states?.map((state) => (
               <option key={state.id} value={state.name}>
                 {state.name}
