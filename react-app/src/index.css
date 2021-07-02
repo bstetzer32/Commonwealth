@@ -2,7 +2,7 @@
 
 /* NavBar Styling */
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 719px) {
   #nav__logo {
     display: none
   }
@@ -17,11 +17,18 @@
     flex-shrink: none !important;
     flex-basis: none !important;
   }
+
   .searchPage__form {
     height:max-content !important;
     flex-direction: column !important;
     align-items: stretch !important;
     margin: 5% 0 !important
+}
+
+@media screen and (min-width: 720px) {
+  .nav__logo--smallScreenContainer,
+  #nav__logo--smallScreen {
+    display: none
   }
 }
 
@@ -57,8 +64,22 @@
   font-family: "Righteous", cursive;
   align-self: center;
   color: rgb(0, 136, 255);
+  padding: 0px;
 }
 
+#nav__logo--smallScreen {
+  font-family: "Righteous", cursive;
+  align-self: center;
+  color: rgb(0, 136, 255);
+  padding: 0px;
+  margin: 20px;
+}
+
+.nav__logo--smallScreenContainer {
+  display: flex;
+  justify-content: center;
+
+}
 .nav__element--searchlog {
   display: flex;
   align-items: center;
@@ -327,6 +348,13 @@ input[type="number"] {
   justify-content: center;
   align-items: center;
 }
+
+.searchPage__bar--button:hover,
+.searchPage__bar--categorySelect:hover,
+.searchPage__bar--stateSelect:hover {
+  cursor: pointer;
+}
+
 
 .searchPage__bar--element {
   color: black;

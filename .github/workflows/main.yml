@@ -24,6 +24,10 @@ jobs:
 #       env:
 #         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
 #       run: heroku run -a commonwealth-aa flask db upgrade 
+#     - name: Unseed
+#       env:
+#         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+#       run: heroku run -a commonwealth-aa flask seed undo
 #     - name: Seed
 #       env:
 #         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
