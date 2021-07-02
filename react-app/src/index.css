@@ -408,6 +408,7 @@ input[type="number"] {
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
+  margin-bottom: 6em;
 }
 
 .searchPage__project--scrollTile {
