@@ -6,6 +6,23 @@
   #nav__logo {
     display: none
   }
+  .searchPage__projects--container {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+  }
+  .searchPage__project--scrollTile {
+    flex-grow: none !important;
+    flex-shrink: none !important;
+    flex-basis: none !important;
+  }
+  .searchPage__form {
+    height:max-content !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    margin: 5% 0 !important
+  }
 }
 
 .nav__bar {
@@ -794,7 +811,6 @@ input[type="number"] {
 
 #discoverMenu {
   top: 28px !important;
-
 }
 
 /* footer styling */
@@ -820,16 +836,17 @@ input[type="number"] {
   flex: column;
   justify-content: space-between;
 }
+
 .footer__icons a {
   padding: 0 0.5em;
 }
+
 .footer__icons {
   display: flex;
   justify-content: center;
 }
 
-.footer__icons a,
-.footer__icons i {
+.footer__icons a, .footer__icons i {
   text-decoration: none;
   color: #d2d9dd;
 }
