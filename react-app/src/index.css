@@ -332,6 +332,10 @@ input[type="number"] {
   align-items: center;
 }
 
+.searchPage__bar--button:hover {
+  cursor: pointer;
+}
+
 .searchPage__bar--element {
   color: black;
   text-decoration: none;
