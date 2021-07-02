@@ -6,6 +6,17 @@
   #nav__logo {
     display: none
   }
+  .searchPage__projects--container {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+  }
+  .searchPage__project--scrollTile {
+    flex-grow: none !important;
+    flex-shrink: none !important;
+    flex-basis: none !important;
+  }
 }
 
 @media screen and (min-width: 720px) {
