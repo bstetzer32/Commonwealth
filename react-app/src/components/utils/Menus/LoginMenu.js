@@ -33,7 +33,7 @@ const LoginMenu = () => {
 
   const handleDemo = async (e) => {
     e.preventDefault();
-    let email = "demo@aa.io";
+    let email = "3000demo@aa.io";
     let password = "password";
     await dispatch(login(email, password));
   };

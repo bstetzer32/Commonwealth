@@ -2,6 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { searching } from "../store/search";
 import { getStates } from "../store/state";
+// const useStyles = makeStyles((theme) => ({
+//     root: {
+//       ['@media (max-width:719px)']: {
+
+//       }
+//     }
+//   }
+// ))
 
 export default function SearchPageBar() {
   const [input, setInput] = useState("");

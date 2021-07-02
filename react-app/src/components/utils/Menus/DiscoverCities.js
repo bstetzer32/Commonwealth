@@ -30,12 +30,26 @@ export default function DiscoverCities({state}){
       </MenuItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List  component="div" disablePadding>
-         {state.cities.map(city =>
+         {state.cities.length >0 ? state.cities.map(city =>
          <NavLink className={classes.link} key={city.id}  to={`/regions/${city.id}`}>
          <MenuItem  button>
             <ListItemText  primary={city.name} />
           </MenuItem>
-          </NavLink>)}
+          </NavLink>) : 
+        <List  component="div" disablePadding>
+          <NavLink className={classes.link} to='/create-project'>
+            <MenuItem button>
+            <ListItemText>
+              Doesn't look<br/>
+              like we have<br/>
+              any projects<br/>
+              in this state.<br/>
+              Click here to<br/>
+              be the first!
+            </ListItemText>  
+            </MenuItem>
+          </NavLink>
+          </List>}
         </List>
       </Collapse>
       </>
