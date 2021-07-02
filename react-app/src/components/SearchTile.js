@@ -18,6 +18,10 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
     fontFamily: "Montserrat, sans-serif",
+    ['@media (max-width:719px)']:{
+      minWidth: "90%",
+      maxWidth: "90%",
+    }
   },
   card: {
     minHeight: "100%",
