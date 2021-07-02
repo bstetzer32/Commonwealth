@@ -37,7 +37,7 @@ export default function SearchPageBar() {
           Show me
         </div>
         <div className="searchPage__bar--input searchPage__bar--element">
-          <input value={input} onChange={updateInput} />
+          <input placeholder='Search' value={input} onChange={updateInput} />
         </div>
         <div className="searchPage__bar--text2 searchPage__bar--element">
           projects in
@@ -60,7 +60,7 @@ export default function SearchPageBar() {
           in
         </div>
         <div className="searchPage__bar--city searchPage__bar--element">
-          <input value={city} onChange={updateCity} />
+          <input placeholder='City' value={city} onChange={updateCity} />
         </div>
         <div className="searchPage__bar--text4 searchPage__bar--element">,</div>
         <div className="searchPage__bar--state searchPage__bar--element">
