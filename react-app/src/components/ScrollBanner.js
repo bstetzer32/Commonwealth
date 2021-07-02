@@ -8,13 +8,14 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles((theme) => ({
     header: {
         width:"95%" ,
-        display:"flex", 
+        display:"flex",
         marginLeft:"5%"
     },
     tiles: {
-        width:"100%", 
-        display:"flex", 
-        overflow:"scroll"
+        width:"100%",
+        display:"flex",
+        overflow:"scroll",
+        marginBottom: "4em"
     }
 }))
 
@@ -35,7 +36,7 @@ const ScrollBanner = ({type}) => {
         </Box>
         <Box className={classes.tiles}>
             {feed.map(project=><ScrollTile key={project.id} project={project} />)}
-            
+
         </Box>
         </>
     )
