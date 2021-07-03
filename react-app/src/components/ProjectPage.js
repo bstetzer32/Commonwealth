@@ -101,6 +101,7 @@ const ProjectPage = () => {
       await setContributors(donatorObj?.number);
       await setTopContributors(donatorObj?.topContributors);
       setIsLoaded(true);
+      console.log(topContributors)
     })();
   }, [dispatch, project, proyecto, donatorObj, projectTest, donatedAmount]);
 
@@ -131,7 +132,7 @@ const ProjectPage = () => {
   const end = proyecto?.expiration_date;
   const x = new Date();
   const y = new Date(end);
-
+  
   const daysLeft = Math.floor(
     (y.getTime() - x.getTime()) / (1000 * 60 * 60 * 24)
   );
