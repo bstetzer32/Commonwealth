@@ -86,12 +86,18 @@ const ProjectPage = () => {
 
   const projectTest = useSelector((state) => state.projectReducer);
   const donatorObj = useSelector((state) => state.donationReducer.donations);
-
   const proyecto = projectTest[projectId];
 
   useEffect(() => {
+    dispatch(getOneProject(projectId))
+    dispatch(loadDonations(projectId));
+  }, []);
+
+  useEffect(() => {
     (async () => {
+      console.log('=======')
       if (!proyecto) {
+        console.log(';lkajsd;flkjasd;lfkjasdf')
         await dispatch(getOneProject(projectId));
         await dispatch(loadDonations(projectId));
       }
@@ -116,7 +122,6 @@ const ProjectPage = () => {
     setDonatedAmount(temp1);
   }, [proyecto, donatedAmount]);
 
-  useEffect(() => {}, [proyecto]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -132,7 +137,7 @@ const ProjectPage = () => {
   const end = proyecto?.expiration_date;
   const x = new Date();
   const y = new Date(end);
-  
+
   const daysLeft = Math.floor(
     (y.getTime() - x.getTime()) / (1000 * 60 * 60 * 24)
   );
