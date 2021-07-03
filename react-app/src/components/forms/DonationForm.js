@@ -4,8 +4,9 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import Button from "@material-ui/core/Button";
-import { addDonation } from "../../store/donation";
+import { addDonation, loadDonations } from "../../store/donation";
 import { getOneProject } from "../../store/project";
+import { formatNumber } from "../ProjectPage";
 
 export default function DonationForm({ project_id }) {
   const [amount, setAmount] = useState(0);
@@ -43,8 +44,10 @@ export default function DonationForm({ project_id }) {
     e.preventDefault();
     const donation = { user_id, amount, project_id };
     await dispatch(addDonation(donation));
+    await dispatch(loadDonations(project_id));
     await dispatch(getOneProject(project_id));
     handleClose();
+    window.alert(`You donated $${formatNumber(amount)} to this project! ♥`)
   };
 
   return (

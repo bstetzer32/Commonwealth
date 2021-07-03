@@ -52,6 +52,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+export const formatNumber = (num) => {
+  const value = num.toString();
+  let count = 1;
+  let result = [];
+  for (let i = value.length - 1; i >= 0; i--) {
+    result.unshift(value[i]);
+    if (i === 0) {
+      continue;
+    }
+    if (count === 3) {
+      result.unshift(",");
+      count = 0;
+    }
+    count++;
+  }
+  return result.join("");
+};
+
 const ProjectPage = () => {
   const [project, setProject] = useState({});
   const [goalAmount, setGoalAmount] = useState(null);
@@ -65,24 +83,6 @@ const ProjectPage = () => {
   const { projectId } = useParams();
   const classes = useStyles();
   const [isLoaded, setIsLoaded] = useState(false);
-
-  const formatNumber = (num) => {
-    const value = num.toString();
-    let count = 1;
-    let result = [];
-    for (let i = value.length - 1; i >= 0; i--) {
-      result.unshift(value[i]);
-      if (i === 0) {
-        continue;
-      }
-      if (count === 3) {
-        result.unshift(",");
-        count = 0;
-      }
-      count++;
-    }
-    return result.join("");
-  };
 
   const projectTest = useSelector((state) => state.projectReducer);
   const donatorObj = useSelector((state) => state.donationReducer.donations);
@@ -101,8 +101,9 @@ const ProjectPage = () => {
       await setContributors(donatorObj?.number);
       await setTopContributors(donatorObj?.topContributors);
       setIsLoaded(true);
+      console.log(topContributors)
     })();
-  }, [dispatch, project, proyecto, donatorObj, projectTest]);
+  }, [dispatch, project, proyecto, donatorObj, projectTest, donatedAmount]);
 
   useEffect(() => {
     if (!projectId) {
@@ -131,7 +132,7 @@ const ProjectPage = () => {
   const end = proyecto?.expiration_date;
   const x = new Date();
   const y = new Date(end);
-
+  
   const daysLeft = Math.floor(
     (y.getTime() - x.getTime()) / (1000 * 60 * 60 * 24)
   );
